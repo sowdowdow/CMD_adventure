@@ -4,18 +4,6 @@ Le but de ce programme (qui devrait être un jeu) sera simplement d'en apprendre
 ============
 Bloc d'idée
 ============
-mettre en place un système de sauvegarde /!\
-
-Les points serait des @ utilisables pour l'achat d'objets qu'on gagne en tuant des monstres
-l'experience ??
-
-gerer les couleurs
-
-faire une barre de menu
-
-ouvrir un trello ?
-
-Valeurs a enregistrer:
--le temps de jeu
--@ du joueur
--les objets du joueur
+|
+\/
+https://trello.com/b/xihk7s0X
