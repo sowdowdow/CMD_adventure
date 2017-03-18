@@ -4,7 +4,6 @@ namespace jeu
 {
     internal class affichage
     {
-<<<<<<< HEAD
         //attributs du jeu
         public string perso_base = "°v°";
         public string perso_wow = "*v*";
@@ -16,11 +15,6 @@ namespace jeu
 
 
         //methodes et fonctions
-=======
-        public string perso_base = "°v°";
-        public string perso_wow = "*v*";
-        public string perso_deprime = "-v-";
->>>>>>> 13e21d82148039fac17498d9db9114bef3f97f9b
         public void affiche(string text)
         {
             Console.WriteLine(text);
@@ -38,7 +32,6 @@ namespace jeu
         }
         public void ecran_titre()
         {
-<<<<<<< HEAD
             string titre = "CMD_ Adventure";
             string appuyez = "appuyez sur une touche pour continuer...";
             for (int i = 0; i < Console.BufferWidth; i++)
@@ -47,23 +40,10 @@ namespace jeu
                 Console.Write('=');
             }
 
-=======
-            string titre = "CMD_ Adventure !";
-            string appuyez = "appuyez sur une touche pour continuer...";
-            for (int i = 0; i < Console.BufferWidth; i++)
-            {
-                wait(10);
-                Console.Write('=');
-            }
->>>>>>> 13e21d82148039fac17498d9db9114bef3f97f9b
             for (int i = 0; i < Console.BufferWidth / 2 - (titre.Length / 2); i++)
             {
                 Console.Write(" ");
             }
-<<<<<<< HEAD
-=======
-
->>>>>>> 13e21d82148039fac17498d9db9114bef3f97f9b
             for (int i = 0; i < titre.Length; i++)
             {
                 wait(200);
@@ -73,17 +53,10 @@ namespace jeu
             Console.Write("\n");
             for (int i = 0; i < Console.BufferWidth; i++)
             {
-<<<<<<< HEAD
                 wait(1000 / Console.WindowWidth);
                 Console.Write('=');
             }
             Console.Write("\n");
-=======
-                wait(10);
-                Console.Write('=');
-            }
-
->>>>>>> 13e21d82148039fac17498d9db9114bef3f97f9b
             for (int i = 0; i < appuyez.Length; i++)
             {
                 wait(20);
@@ -95,31 +68,19 @@ namespace jeu
         public void descente_perso()
         {
             ligH('=');
-<<<<<<< HEAD
             centrage("tap tap tap !");
-=======
-            Console.Write("\n");
-            centrage("Bienvenue Dans CMD_ Adventure !");
->>>>>>> 13e21d82148039fac17498d9db9114bef3f97f9b
             Console.WriteLine();
             ligH('=');
             for (int i = Console.CursorTop + 1;i < Console.WindowHeight; i++)
             {
                 centrage(perso_base);
-<<<<<<< HEAD
                 wait(1000 / Console.WindowHeight);  //gestion relative dynamique de la vitesse de descente (1 sec au tot)
-=======
-                wait(100);
->>>>>>> 13e21d82148039fac17498d9db9114bef3f97f9b
                 Console.Write("\r");
                 centrage("   ");
                 Console.Write("\n");
             }
             centrage(perso_base);
-<<<<<<< HEAD
 
-=======
->>>>>>> 13e21d82148039fac17498d9db9114bef3f97f9b
         }
         public void ligH(char car,char car2)
         {
@@ -138,7 +99,6 @@ namespace jeu
             }
             Console.Write(obj);
         }
-<<<<<<< HEAD
         public void wait(int temps)
         {
             System.Threading.Thread.Sleep(temps);   //temps d'attente de la console en MilliSec.
@@ -209,11 +169,5 @@ namespace jeu
                 Console.ReadLine();
             };
         }
-=======
-        public void wait(Int16 temps)
-        {
-            System.Threading.Thread.Sleep(temps);   //temps d'attente de la console en MilliSec.
-        }
->>>>>>> 13e21d82148039fac17498d9db9114bef3f97f9b
     }
 }
