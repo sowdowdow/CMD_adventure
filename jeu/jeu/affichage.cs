@@ -4,6 +4,9 @@ namespace jeu
 {
     internal class affichage
     {
+        public string perso_base = "°v°";
+        public string perso_wow = "*v*";
+        public string perso_deprime = "-v-";
         public void affiche(string text)
         {
             Console.WriteLine(text);
@@ -22,6 +25,15 @@ namespace jeu
                 Console.Write(car);
                 Console.Write(car2);
             }
+        }
+        public void centrage(string obj)
+        {
+            int taille_obj = obj.Length/2;
+            for (int i = 0; i < Console.BufferWidth / 2 - taille_obj; i++)
+            {
+                Console.Write(" ");
+            }
+            Console.WriteLine(obj);
         }
     }
 }
