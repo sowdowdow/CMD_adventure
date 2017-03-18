@@ -14,10 +14,7 @@ namespace jeu
             Console.Title = "CMD_ adventure";   //défini le titre de la console
 
 
-            af.ligH('=');
-            af.centrage("Bienvenue Dans CMD_ Adventure !");
-            af.ligH('=');
-            af.affiche("appuyez sur une touche pour continuer...");
+            af.ecran_titre();
             Console.ReadKey(true);  // attend la saisie d'un appui sur clavier
             Console.Clear(); //efface la console
             af.ligH('=');
