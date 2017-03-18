@@ -11,7 +11,7 @@ namespace jeu
 
 
         //définition de l'objet stat
-        statistix stat = new statistix();
+        public statistix stat = new statistix();
 
 
         //methodes et fonctions
@@ -127,41 +127,40 @@ namespace jeu
         }
         public void taptaptap_game()
         {
-            stat.taptaptap = 0;
             while (stat.taptaptap < 1000)
-            {
+            {   //il faut arriver a 1000 ttt
                 Console.SetCursorPosition(0, 3);
                 deleteLig(3);
                 stat.taptaptap++;
                 Console.SetCursorPosition(Console.WindowWidth - 10, Console.WindowHeight - 2);
                 affiche("ttt: "+stat.taptaptap);
                 Console.SetCursorPosition(0, 3);
-                if (stat.taptaptap == 10)
+                if (stat.taptaptap >= 10)
                 {
                     Console.SetCursorPosition(0, 4);
                     affiche("\rWoaw 10 tap !");
                 }
-                if (stat.taptaptap == 50)
+                if (stat.taptaptap >= 50)
                 {
                     Console.SetCursorPosition(0, 5);
                     affiche("\r50 tap !");
                 }
-                if (stat.taptaptap == 100)
+                if (stat.taptaptap >= 100)
                 {
                     Console.SetCursorPosition(0, 6);
                     affiche("\r100 tap !!");
                 }
-                if (stat.taptaptap == 200)
+                if (stat.taptaptap >= 200)
                 {
                     Console.SetCursorPosition(0, 7);
                     affiche("\r200 tap !!!");
                 }
-                if (stat.taptaptap == 500)
+                if (stat.taptaptap >= 500)
                 {
                     Console.SetCursorPosition(0, 8);
                     affiche("\r500 tap !!!! some more for a gift :)");
                 }
-                if (stat.taptaptap == 1000)
+                if (stat.taptaptap >= 1000)
                 {
                     Console.SetCursorPosition(0, 9);
                     affiche("\r1000 tap :o");

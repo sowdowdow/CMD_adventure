@@ -11,14 +11,16 @@ namespace jeu
         static void Main(string[] args)
         {
             affichage af = new affichage();
+
+            af.stat.Lecture_Sauvegarde();
             Console.ForegroundColor = ConsoleColor.DarkYellow;          //-------------objectif gerer la couleur
             Console.Title = "CMD_ adventure";   //défini le titre de la console
-            //af.ecran_titre();            //<--------------------------------------réactiver a la fin du dev.
+            af.ecran_titre();            //<--------------------------------------réactiver a la fin du dev.
             Console.ReadKey(true);  // attend la saisie d'un appui sur clavier
             Console.Clear(); //efface la console
             af.descente_perso();    //fait descendre le personnage en bas de la console
             af.taptaptap_game();    //lance le jeu tap tap tap
-
+            af.stat.Ecriture_Sauvegarde();
             Console.ReadLine();
         }
     }
