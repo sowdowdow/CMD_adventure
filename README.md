@@ -1,13 +1,19 @@
 # CMD_adventure
 Le but de ce programme (qui devrait être un jeu) sera simplement d'en apprendre plus sur l'utilisation du C# en console.
 
-==================================
+============
 Bloc d'idée
-==================================
+============
 mettre en place un système de sauvegarde /!\
 
 Les points serait des @ utilisables pour l'achat d'objets qu'on gagne en tuant des monstres
 l'experience ??
+
+gerer les couleurs
+
+faire une barre de menu
+
+ouvrir un trello ?
 
 Valeurs a enregistrer:
 -le temps de jeu
