@@ -4,9 +4,17 @@ namespace jeu
 {
     internal class affichage
     {
+        //attributs du jeu
         public string perso_base = "°v°";
         public string perso_wow = "*v*";
         public string perso_deprime = "-v-";
+
+
+        //définition de l'objet stat
+        statistix stat = new statistix();
+
+
+        //methodes et fonctions
         public void affiche(string text)
         {
             Console.WriteLine(text);
@@ -24,18 +32,18 @@ namespace jeu
         }
         public void ecran_titre()
         {
-            string titre = "CMD_ Adventure !";
+            string titre = "CMD_ Adventure";
             string appuyez = "appuyez sur une touche pour continuer...";
             for (int i = 0; i < Console.BufferWidth; i++)
             {
-                wait(10);
+                wait(1000 / Console.WindowWidth);
                 Console.Write('=');
             }
+
             for (int i = 0; i < Console.BufferWidth / 2 - (titre.Length / 2); i++)
             {
                 Console.Write(" ");
             }
-
             for (int i = 0; i < titre.Length; i++)
             {
                 wait(200);
@@ -45,10 +53,10 @@ namespace jeu
             Console.Write("\n");
             for (int i = 0; i < Console.BufferWidth; i++)
             {
-                wait(10);
+                wait(1000 / Console.WindowWidth);
                 Console.Write('=');
             }
-
+            Console.Write("\n");
             for (int i = 0; i < appuyez.Length; i++)
             {
                 wait(20);
@@ -60,19 +68,19 @@ namespace jeu
         public void descente_perso()
         {
             ligH('=');
-            Console.Write("\n");
-            centrage("Bienvenue Dans CMD_ Adventure !");
+            centrage("tap tap tap !");
             Console.WriteLine();
             ligH('=');
             for (int i = Console.CursorTop + 1;i < Console.WindowHeight; i++)
             {
                 centrage(perso_base);
-                wait(100);
+                wait(1000 / Console.WindowHeight);  //gestion relative dynamique de la vitesse de descente (1 sec au tot)
                 Console.Write("\r");
                 centrage("   ");
                 Console.Write("\n");
             }
             centrage(perso_base);
+
         }
         public void ligH(char car,char car2)
         {
@@ -91,9 +99,75 @@ namespace jeu
             }
             Console.Write(obj);
         }
-        public void wait(Int16 temps)
+        public void wait(int temps)
         {
             System.Threading.Thread.Sleep(temps);   //temps d'attente de la console en MilliSec.
+        }
+        public void deleteLig(int ligne)
+        { //suppression de ligne
+            Console.SetCursorPosition(0, ligne);
+            for(int i = 0;i < Console.WindowWidth;i++)
+            {
+                Console.Write(" ");
+            }
+            Console.SetCursorPosition(0, ligne);
+        }
+        public void deleteLig(int ligne_d,int ligne_f)
+
+        {   //suppression de ligne d -> f
+            for(int j = ligne_d;j < ligne_f; j++)
+            {
+                Console.SetCursorPosition(0, j);
+                for (int i = 0; i < Console.WindowWidth; i++)
+                {
+                    Console.Write(" ");
+                }
+            }         
+            Console.SetCursorPosition(0, ligne_d);
+        }
+        public void taptaptap_game()
+        {
+            stat.taptaptap = 0;
+            while (stat.taptaptap < 1000)
+            {
+                Console.SetCursorPosition(0, 3);
+                deleteLig(3);
+                stat.taptaptap++;
+                Console.SetCursorPosition(Console.WindowWidth - 10, Console.WindowHeight - 2);
+                affiche("ttt: "+stat.taptaptap);
+                Console.SetCursorPosition(0, 3);
+                if (stat.taptaptap == 10)
+                {
+                    Console.SetCursorPosition(0, 4);
+                    affiche("\rWoaw 10 tap !");
+                }
+                if (stat.taptaptap == 50)
+                {
+                    Console.SetCursorPosition(0, 5);
+                    affiche("\r50 tap !");
+                }
+                if (stat.taptaptap == 100)
+                {
+                    Console.SetCursorPosition(0, 6);
+                    affiche("\r100 tap !!");
+                }
+                if (stat.taptaptap == 200)
+                {
+                    Console.SetCursorPosition(0, 7);
+                    affiche("\r200 tap !!!");
+                }
+                if (stat.taptaptap == 500)
+                {
+                    Console.SetCursorPosition(0, 8);
+                    affiche("\r500 tap !!!! some more for a gift :)");
+                }
+                if (stat.taptaptap == 1000)
+                {
+                    Console.SetCursorPosition(0, 9);
+                    affiche("\r1000 tap :o");
+                }
+                Console.ReadLine();
+            };
         }
     }
 }
