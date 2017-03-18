@@ -14,14 +14,11 @@ namespace jeu
             Console.Title = "CMD_ adventure";   //défini le titre de la console
 
 
-            af.ecran_titre();
+            //af.ecran_titre();            <--------------------------------------réactiver a la fin du dev.
             Console.ReadKey(true);  // attend la saisie d'un appui sur clavier
             Console.Clear(); //efface la console
-            af.ligH('=');
-            af.centrage("Bienvenue Dans CMD_ Adventure !");
-            af.ligH('=');
-            af.centrage(af.perso_base);
 
+            af.descente_perso();    //fait descendre le personnage en bas de la console
 
             Console.ReadKey(true);
         }
