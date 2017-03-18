@@ -11,6 +11,10 @@ namespace jeu
         {
             Console.WriteLine(text);
         }
+        public void affiche(int nb)
+        {
+            Console.WriteLine(nb);
+        }
         public void ligH(char car)
         {
             for(int i = 0; i < Console.BufferWidth; i++)
@@ -53,6 +57,23 @@ namespace jeu
 
 
         }
+        public void descente_perso()
+        {
+            ligH('=');
+            Console.Write("\n");
+            centrage("Bienvenue Dans CMD_ Adventure !");
+            Console.WriteLine();
+            ligH('=');
+            for (int i = Console.CursorTop + 1;i < Console.WindowHeight; i++)
+            {
+                centrage(perso_base);
+                wait(100);
+                Console.Write("\r");
+                centrage("   ");
+                Console.Write("\n");
+            }
+            centrage(perso_base);
+        }
         public void ligH(char car,char car2)
         {
             for (int i = 0; i < Console.BufferWidth/2; i++)
@@ -68,7 +89,7 @@ namespace jeu
             {
                 Console.Write(" ");
             }
-            Console.WriteLine(obj);
+            Console.Write(obj);
         }
         public void wait(Int16 temps)
         {
