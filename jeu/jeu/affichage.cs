@@ -21,7 +21,7 @@ namespace jeu
         }
         public void affiche(int nb)
         {
-            Console.WriteLine(nb);
+            Console.Write(nb);
         }
         public void ligH(char car)
         {
@@ -170,6 +170,41 @@ namespace jeu
             };
         }
         public void barre_menu()
+        {
+            String[] menu = { "Carte (a)", "Inventaire (z)", "Magasin (e)" , "Crdt (r)" };
+            int longeur_texte_menu = 0;
+            int nombre_obj_menu = 0;
+            foreach (string value in menu)
+            {
+                longeur_texte_menu += value.Length;
+                nombre_obj_menu++;
+            }
+            Console.SetCursorPosition(0, 0);    // Ligne 1
+            for (int i = 0; i < Console.WindowWidth; i++)
+            {
+                Console.Write('-');
+            }
+            for (int i = 0; i < nombre_obj_menu; i++)   //Ligne 2
+            {
+                Console.Write("|");
+                for (int j = 0; j < (Console.WindowWidth - longeur_texte_menu) / (nombre_obj_menu*2); j++)  //divise par 2 car 2x la même opération
+                {
+                    Console.Write(" ");
+                }
+                Console.Write(menu[i]);
+                for (int j = 1; j < (Console.WindowWidth - longeur_texte_menu) / (nombre_obj_menu*2); j++)    // <-----------
+                {
+                    Console.Write(" ");
+                }
+            }
+            Console.WriteLine("|");
+            // Ligne 3
+            for (int i = 0; i < Console.WindowWidth; i++)
+            {
+                Console.Write('-');
+            }
+        }
+        public void barre_de_vie()
         {
 
         }
