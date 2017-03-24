@@ -206,6 +206,20 @@ namespace jeu
             {
                 Console.Write('-');
             }
+            barre_de_vie();     //appel de la méthode barre de vie
+        }
+        
+        public void barre_de_vie()
+        {
+            Console.SetCursorPosition(0, 3);
+            affiche("Vie: ");
+            ConsoleColor couleur_actuel = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Green;
+            for (int i = Console.CursorLeft; i < Console.WindowWidth; i++)
+            {
+                Console.Write('■');
+            }
+            Console.ForegroundColor = couleur_actuel;
         }
         public void choix_action()
         {
@@ -232,10 +246,6 @@ namespace jeu
                     break;
             }
             Console.ReadLine();
-        }
-        public void barre_de_vie()
-        {
-
         }
     }
 }
