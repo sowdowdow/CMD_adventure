@@ -2,17 +2,15 @@
 
 namespace jeu
 {
-    internal class affichage
+    internal class jeu
     {
         //attributs du jeu
         public string perso_base = "°v°";
         public string perso_wow = "*v*";
         public string perso_deprime = "-v-";
 
-
-        //définition de l'objet stat
+        //on instancie stat
         public statistix stat = new statistix();
-
 
         //methodes et fonctions
         public void affiche(string text)

@@ -10,24 +10,25 @@ namespace jeu
     {
         static void Main(string[] args)
         {
-            affichage af = new affichage();
+            //on instancie affiche
+            jeu Jeu = new jeu();
 
-            af.stat.Lecture_Sauvegarde();
+            Jeu.stat.Lecture_Sauvegarde();
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Title = "CMD_ adventure";   //défini le titre de la console
-            //af.ecran_titre();            //<--------------------------------------réactiver a la fin du dev.
+            //jeu.ecran_titre();            //<--------------------------------------réactiver a la fin du dev.
             Console.ReadKey(true);  // attend la saisie d'un appui sur clavier
             Console.Clear(); //efface la console
 
-            af.barre_menu();
+            Jeu.barre_menu();
 
 
 
 
 
-            af.descente_perso();    //fait descendre le personnage en bas de la console
-            af.taptaptap_game();    //lance le jeu tap tap tap
-            af.stat.Ecriture_Sauvegarde();
+            Jeu.descente_perso();    //fait descendre le personnage en bas de la console
+            Jeu.taptaptap_game();    //lance le jeu tap tap tap
+            Jeu.stat.Ecriture_Sauvegarde();
             Console.ReadLine();
         }
     }
