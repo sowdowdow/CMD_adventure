@@ -65,6 +65,8 @@ namespace jeu
         }
         public void descente_perso()
         {
+            Console.Clear();
+            Console.SetCursorPosition(0, 0);
             ligH('=');
             centrage("tap tap tap !");
             Console.WriteLine();
@@ -169,7 +171,7 @@ namespace jeu
         }
         public void barre_menu()
         {
-            String[] menu = { "Carte (a)", "Inventaire (z)", "Magasin (e)" , "Crdt (r)" };
+            String[] menu = { "Carte (a)", "Inventaire (z)", "Magasin (e)" , "Aide (r)", "Crdt (t)" };
             int longeur_texte_menu = 0;
             int nombre_obj_menu = 0;
             foreach (string value in menu)
@@ -184,7 +186,6 @@ namespace jeu
             }
             for (int i = 0; i < nombre_obj_menu; i++)   //Ligne 2
             {
-                Console.Write("|");
                 for (int j = 0; j < (Console.WindowWidth - longeur_texte_menu) / (nombre_obj_menu*2); j++)  //divise par 2 car 2x la même opération
                 {
                     Console.Write(" ");
@@ -194,13 +195,43 @@ namespace jeu
                 {
                     Console.Write(" ");
                 }
+                if (i < nombre_obj_menu - 1)
+                {
+                    Console.Write("|");
+                }
             }
-            Console.WriteLine("|");
             // Ligne 3
+            Console.SetCursorPosition(0, 2);
             for (int i = 0; i < Console.WindowWidth; i++)
             {
                 Console.Write('-');
             }
+        }
+        public void choix_action()
+        {
+            string choix_utilisateur = Console.ReadLine();
+            switch (choix_utilisateur)
+            {
+                case "a":
+                    Console.WriteLine("Vous ouvrez la carte");
+                    break;
+                case "z":
+                    Console.WriteLine("Vous ouvrez votre inventaire");
+                    break;
+                case "e":
+                    Console.WriteLine("Vous ouvrez le magasin");
+                    break;
+                case "r":
+                    Console.WriteLine("Vous avez besoin d'aide !");
+                    break;
+                case "t":
+                    Console.WriteLine("Vous ouvrez le credit");
+                    break;
+                default:
+                    Console.WriteLine("Vous n'avez rien choisi");
+                    break;
+            }
+            Console.ReadLine();
         }
         public void barre_de_vie()
         {

@@ -21,9 +21,7 @@ namespace jeu
             Console.Clear(); //efface la console
 
             Jeu.barre_menu();
-
-
-
+            Jeu.choix_action();
 
 
             Jeu.descente_perso();    //fait descendre le personnage en bas de la console
