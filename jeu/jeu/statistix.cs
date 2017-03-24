@@ -33,7 +33,7 @@ namespace jeu
             }
             else
             {
-                System.Console.WriteLine("File not found.");
+                System.Console.WriteLine("Sauvegarde inexistante.");
             }                
         }
     }

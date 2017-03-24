@@ -17,7 +17,7 @@ namespace jeu
         //methodes et fonctions
         public void affiche(string text)
         {
-            Console.WriteLine(text);
+            Console.Write(text);
         }
         public void affiche(int nb)
         {
@@ -134,7 +134,7 @@ namespace jeu
                 stat.taptaptap++;
                 Console.SetCursorPosition(Console.WindowWidth - 10, Console.WindowHeight - 2);
                 affiche("ttt: "+stat.taptaptap);
-                Console.SetCursorPosition(0, 3);
+                Console.SetCursorPosition(0, 0);
                 if (stat.taptaptap >= 10)
                 {
                     Console.SetCursorPosition(0, 4);
@@ -165,8 +165,13 @@ namespace jeu
                     Console.SetCursorPosition(0, 9);
                     affiche("\r1000 tap :o");
                 }
+                Console.SetCursorPosition(0, 0);
                 Console.ReadLine();
             };
+        }
+        public void barre_menu()
+        {
+
         }
     }
 }
