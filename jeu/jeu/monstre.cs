@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace jeu
+﻿namespace jeu
 {
-    class monstre
+	class monstre
     {
         private string _nom;
         private string _skin;

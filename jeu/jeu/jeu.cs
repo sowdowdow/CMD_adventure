@@ -9,11 +9,12 @@ namespace jeu
         public string perso_wow = "*v*";
         public string perso_deprime = "-v-";
 
-        //on instancie stat
+        //on instancie stat / sprite
         public statistix stat = new statistix();
+		public Sprite_box sprite = new Sprite_box();
 
-        //methodes et fonctions
-        public void affiche(string text)
+		//methodes et fonctions
+		public void affiche(string text)
         {
             Console.Write(text);
         }
@@ -60,8 +61,7 @@ namespace jeu
                 wait(20);
                 Console.Write(appuyez[i]);
             }
-
-
+            Console.ReadKey(true);  // attend la saisie d'un appui sur clavier
         }
         public void descente_perso()
         {
@@ -92,12 +92,15 @@ namespace jeu
         }
         public void centrage(string obj)
         {
+            ConsoleColor couleur_actuel = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Gray;
             int taille_obj = obj.Length/2;
             for (int i = 0; i < Console.BufferWidth / 2 - taille_obj; i++)
             {
                 Console.Write(" ");
             }
             Console.Write(obj);
+            Console.ForegroundColor = couleur_actuel;
         }
         public void wait(int temps)
         {
@@ -184,13 +187,17 @@ namespace jeu
             {
                 Console.Write('-');
             }
-            for (int i = 0; i < nombre_obj_menu; i++)   //Ligne 2
+            Console.SetCursorPosition(0, 1);    //Ligne 2
+            for (int i = 0; i < nombre_obj_menu; i++)
             {
                 for (int j = 0; j < (Console.WindowWidth - longeur_texte_menu) / (nombre_obj_menu*2); j++)  //divise par 2 car 2x la même opération
                 {
                     Console.Write(" ");
                 }
+                ConsoleColor actuel = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Write(menu[i]);
+                Console.ForegroundColor = actuel;
                 for (int j = 1; j < (Console.WindowWidth - longeur_texte_menu) / (nombre_obj_menu*2); j++)    // <-----------
                 {
                     Console.Write(" ");
@@ -206,46 +213,53 @@ namespace jeu
             {
                 Console.Write('-');
             }
+            Console.SetCursorPosition(0, 3);    //ligne 4
             barre_de_vie();     //appel de la méthode barre de vie
+            Console.SetCursorPosition(0, 4);    // Ligne 5
+            for (int i = 0; i < Console.WindowWidth; i++)
+            {
+                Console.Write('-');
+            }
         }
         
         public void barre_de_vie()
         {
             Console.SetCursorPosition(0, 3);
+            ConsoleColor actuel = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.White;
             affiche("Vie: ");
+            Console.ForegroundColor = actuel;
             ConsoleColor couleur_actuel = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Green;
             for (int i = Console.CursorLeft; i < Console.WindowWidth; i++)
             {
-                Console.Write('■');
+                Console.Write('█'); //■
             }
             Console.ForegroundColor = couleur_actuel;
         }
         public void choix_action()
         {
-            string choix_utilisateur = Console.ReadLine();
-            switch (choix_utilisateur)
-            {
-                case "a":
-                    Console.WriteLine("Vous ouvrez la carte");
-                    break;
-                case "z":
-                    Console.WriteLine("Vous ouvrez votre inventaire");
-                    break;
-                case "e":
-                    Console.WriteLine("Vous ouvrez le magasin");
-                    break;
-                case "r":
-                    Console.WriteLine("Vous avez besoin d'aide !");
-                    break;
-                case "t":
-                    Console.WriteLine("Vous ouvrez le credit");
-                    break;
-                default:
-                    Console.WriteLine("Vous n'avez rien choisi");
-                    break;
-            }
-            Console.ReadLine();
+            switch (Console.ReadKey().Key)
+                        {
+                            case ConsoleKey.A:
+                                Console.WriteLine("Vous ouvrez la carte");
+                                break;
+                            case ConsoleKey.Z:
+                                Console.WriteLine("Vous ouvrez votre inventaire");
+                                break;
+                            case ConsoleKey.E:
+                                Console.WriteLine("Vous ouvrez le magasin");
+                                break;
+                            case ConsoleKey.R:
+                                Console.WriteLine("Vous avez besoin d'aide !");
+                                break;
+                            case ConsoleKey.T:
+                                Console.WriteLine("Vous ouvrez le credit");
+                                break;
+                            default:
+                                Console.WriteLine("Vous n'avez rien choisi");
+                                break;
+                        }
         }
     }
 }
