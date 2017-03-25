@@ -9,83 +9,87 @@ namespace jeu
         public string perso_wow = "*v*";
         public string perso_deprime = "-v-";
         //instance des monstres (NOM / SKIN / HP / ATK / EXP)
-        monstre lapin = new monstre("lapin","°O'",1,0,1);
-        monstre tortue = new monstre("tortue", "°,O,", 10, 2, 5);
+        monstre lapin = new monstre("lapin","°o'",1,0,1);
+        monstre tortue = new monstre("tortue", "°,o,", 10, 2, 5);
 
         //on instancie stat / sprite
         public statistix stat = new statistix();
         public Sprite_box sprite = new Sprite_box();
 
         //methodes et fonctions
-        public void affiche(string text)
+        public void Affiche(string text)
         {
             Console.Write(text);
         }
-        public void affiche(int nb)
+        public void Affiche(int nb)
         {
             Console.Write(nb);
         }
-        public void ligH(char car)
+        public void LigH(char car)
         {
             for (int i = 0; i < Console.BufferWidth; i++)
             {
                 Console.Write(car);
             }
         }
-        public void ecran_titre()
+        public void Ecran_titre()
         {
+            Console.Clear();
+            Console.CursorLeft = 0;
+            Console.CursorTop = (Console.WindowHeight/2)-3;
             string titre = "CMD_ Adventure";
-            string appuyez = "appuyez sur une touche pour continuer...";
+            string appuyez = "appuyez pour continuer...";
             for (int i = 0; i < Console.BufferWidth; i++)
             {
-                wait(1000 / Console.WindowWidth);
-                Console.Write('=');
+                Wait(1000 / Console.WindowWidth);
+                Console.Write('-');
             }
-
             for (int i = 0; i < Console.BufferWidth / 2 - (titre.Length / 2); i++)
             {
                 Console.Write(" ");
             }
+            ConsoleColor fg = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Red;
             for (int i = 0; i < titre.Length; i++)
             {
-                wait(200);
+                Wait(200);
                 Console.Write(titre[i]);
             }
-            wait(1000);
+            Console.ForegroundColor = fg;
+            Wait(1000);
             Console.Write("\n");
             for (int i = 0; i < Console.BufferWidth; i++)
             {
-                wait(1000 / Console.WindowWidth);
-                Console.Write('=');
+                Wait(1000 / Console.WindowWidth);
+                Console.Write('-');
             }
-            Console.Write("\n");
             for (int i = 0; i < appuyez.Length; i++)
             {
-                wait(20);
+                Wait(20);
                 Console.Write(appuyez[i]);
             }
             Console.ReadKey(true);  // attend la saisie d'un appui sur clavier
         }
-        public void descente_perso()
+        public void Descente_perso()
         {
             Console.Clear();
             Console.SetCursorPosition(0, 0);
-            ligH('=');
-            centrage("tap tap tap !");
+            LigH('=');
+            Centrage("tap tap tap !");
             Console.WriteLine();
-            ligH('=');
+            LigH('=');
             for (int i = Console.CursorTop + 1; i < Console.WindowHeight; i++)
             {
-                centrage(perso_base);
-                wait(1000 / Console.WindowHeight);  //gestion relative dynamique de la vitesse de descente (1 sec au tot)
+                Centrage(perso_base);
+                Wait(1000 / Console.WindowHeight);  //gestion relative dynamique de la vitesse de descente (1 sec au tot)
                 Console.Write("\r");
-                centrage("   ");
+                Centrage("   ");
                 Console.Write("\n");
             }
-            centrage(perso_base);
+            Centrage(perso_base);
 
         }
-        public void ligH(char car, char car2)
+        public void LigH(char car, char car2)
         {
             for (int i = 0; i < Console.BufferWidth / 2; i++)
             {
@@ -93,17 +97,17 @@ namespace jeu
                 Console.Write(car2);
             }
         }
-        public void centrage(string obj)
+        public void Centrage(string obj)
         {
             int taille_obj = obj.Length / 2;
             Console.CursorLeft = Console.BufferWidth / 2 - taille_obj;
             Console.Write(obj);
         }
-        public void wait(int temps)
+        public void Wait(int temps)
         {
             System.Threading.Thread.Sleep(temps);   //temps d'attente de la console en MilliSec.
         }
-        public void deleteLig(int ligne)
+        public void DeleteLig(int ligne)
         { //suppression de ligne
             Console.SetCursorPosition(0, ligne);
             for (int i = 0; i < Console.WindowWidth; i++)
@@ -112,7 +116,7 @@ namespace jeu
             }
             Console.SetCursorPosition(0, ligne);
         }
-        public void deleteLig(int ligne_d, int ligne_f)
+        public void DeleteLig(int ligne_d, int ligne_f)
 
         {   //suppression de ligne d -> f
             for (int j = ligne_d; j < ligne_f; j++)
@@ -125,56 +129,56 @@ namespace jeu
             }
             Console.SetCursorPosition(0, ligne_d);
         }
-        public void taptaptap_game()
+        public void Taptaptap_game()
         {
-            while (stat.taptaptap < 1000)
+            while (stat.Taptaptap < 1000)
             {   //il faut arriver a 1000 ttt
                 Console.SetCursorPosition(0, 3);
-                deleteLig(3);
-                stat.taptaptap++;
+                DeleteLig(3);
+                stat.Taptaptap++;
                 Console.SetCursorPosition(Console.WindowWidth - 10, Console.WindowHeight - 2);
-                affiche("ttt: " + stat.taptaptap);
-                if (stat.taptaptap >= 10)
+                Affiche("ttt: " + stat.Taptaptap);
+                if (stat.Taptaptap >= 10)
                 {
                     Console.SetCursorPosition(0, 5);
-                    deleteLig(5);
-                    affiche("\rWoaw 10 tap !");
+                    DeleteLig(5);
+                    Affiche("\rWoaw 10 tap !");
                 }
-                if (stat.taptaptap >= 50)
+                if (stat.Taptaptap >= 50)
                 {
                     Console.SetCursorPosition(0, 5);
-                    deleteLig(5);
-                    affiche("\r50 tap !");
+                    DeleteLig(5);
+                    Affiche("\r50 tap !");
                 }
-                if (stat.taptaptap >= 100)
+                if (stat.Taptaptap >= 100)
                 {
                     Console.SetCursorPosition(0, 5);
-                    deleteLig(5);
-                    affiche("\r100 tap !!");
+                    DeleteLig(5);
+                    Affiche("\r100 tap !!");
                 }
-                if (stat.taptaptap >= 200)
+                if (stat.Taptaptap >= 200)
                 {
                     Console.SetCursorPosition(0, 5);
-                    deleteLig(5);
-                    affiche("\r200 tap !!!");
+                    DeleteLig(5);
+                    Affiche("\r200 tap !!!");
                 }
-                if (stat.taptaptap >= 500)
+                if (stat.Taptaptap >= 500)
                 {
                     Console.SetCursorPosition(0, 5);
-                    deleteLig(5);
-                    affiche("\r500 tap !!!! some more for a gift :)");
+                    DeleteLig(5);
+                    Affiche("\r500 tap !!!! some more for a gift :)");
                 }
-                if (stat.taptaptap >= 1000)
+                if (stat.Taptaptap >= 1000)
                 {
                     Console.SetCursorPosition(0, 5);
-                    deleteLig(5);
-                    affiche("\r1000 tap :o");
+                    DeleteLig(5);
+                    Affiche("\r1000 tap :o");
                 }
                 Console.SetCursorPosition(0, 0);
                 Console.ReadLine();
             };
         }
-        public void barre_menu()
+        public void Barre_menu()
         {
             String[] menu = { "Carte (a)", "Inventaire (z)", "Magasin (e)", "Aide (r)", "Crdt (t)" };
             int longeur_texte_menu = 0;
@@ -216,7 +220,7 @@ namespace jeu
                 Console.Write('-');
             }
             Console.SetCursorPosition(0, 3);    //ligne 4
-            barre_de_vie();     //appel de la méthode barre de vie
+            Barre_de_vie();     //appel de la méthode barre de vie
             Console.SetCursorPosition(0, 4);    // Ligne 5
             for (int i = 0; i < Console.WindowWidth; i++)
             {
@@ -224,12 +228,12 @@ namespace jeu
             }
         }
 
-        public void barre_de_vie()
+        public void Barre_de_vie()
         {
             Console.SetCursorPosition(0, 3);
             ConsoleColor actuel = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.White;
-            affiche("Vie: ");
+            Affiche("Vie: ");
             Console.ForegroundColor = actuel;
             ConsoleColor couleur_actuel = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Green;
@@ -239,7 +243,7 @@ namespace jeu
             }
             Console.ForegroundColor = couleur_actuel;
         }
-        public void choix_action()
+        public void Choix_action()
         {
             switch (Console.ReadKey().Key)
             {

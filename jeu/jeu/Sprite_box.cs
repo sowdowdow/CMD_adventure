@@ -4,7 +4,7 @@ namespace jeu
 {
 	internal class Sprite_box
 	{
-		public void maison1()
+		public void Maison1()
 		{
 			Console.Write("    ______| |_");
 			Console.Write("  /            \\");
