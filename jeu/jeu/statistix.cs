@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace jeu
+﻿namespace jeu
 {
-    internal class statistix
+	internal class statistix
     {
         //attributs a sauvegarder
         public int taptaptap;
