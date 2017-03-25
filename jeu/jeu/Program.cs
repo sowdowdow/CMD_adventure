@@ -28,6 +28,7 @@ namespace jeu
             Jeu.choix_action();
 
             Jeu.stat.Ecriture_Sauvegarde();
+            Console.WriteLine("\nFin du jeu");
             Console.ReadLine();
         }
     }

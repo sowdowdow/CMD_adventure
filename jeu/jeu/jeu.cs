@@ -4,17 +4,20 @@ namespace jeu
 {
     internal class jeu
     {
-        //attributs du jeu
+        //skin du joueur
         public string perso_base = "°v°";
         public string perso_wow = "*v*";
         public string perso_deprime = "-v-";
+        //instance des monstres (NOM / SKIN / HP / ATK / EXP)
+        monstre lapin = new monstre("lapin","°O'",1,0,1);
+        monstre tortue = new monstre("tortue", "°,O,", 10, 2, 5);
 
         //on instancie stat / sprite
         public statistix stat = new statistix();
-		public Sprite_box sprite = new Sprite_box();
+        public Sprite_box sprite = new Sprite_box();
 
-		//methodes et fonctions
-		public void affiche(string text)
+        //methodes et fonctions
+        public void affiche(string text)
         {
             Console.Write(text);
         }
@@ -24,7 +27,7 @@ namespace jeu
         }
         public void ligH(char car)
         {
-            for(int i = 0; i < Console.BufferWidth; i++)
+            for (int i = 0; i < Console.BufferWidth; i++)
             {
                 Console.Write(car);
             }
@@ -71,7 +74,7 @@ namespace jeu
             centrage("tap tap tap !");
             Console.WriteLine();
             ligH('=');
-            for (int i = Console.CursorTop + 1;i < Console.WindowHeight; i++)
+            for (int i = Console.CursorTop + 1; i < Console.WindowHeight; i++)
             {
                 centrage(perso_base);
                 wait(1000 / Console.WindowHeight);  //gestion relative dynamique de la vitesse de descente (1 sec au tot)
@@ -82,9 +85,9 @@ namespace jeu
             centrage(perso_base);
 
         }
-        public void ligH(char car,char car2)
+        public void ligH(char car, char car2)
         {
-            for (int i = 0; i < Console.BufferWidth/2; i++)
+            for (int i = 0; i < Console.BufferWidth / 2; i++)
             {
                 Console.Write(car);
                 Console.Write(car2);
@@ -92,15 +95,9 @@ namespace jeu
         }
         public void centrage(string obj)
         {
-            ConsoleColor couleur_actuel = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Gray;
-            int taille_obj = obj.Length/2;
-            for (int i = 0; i < Console.BufferWidth / 2 - taille_obj; i++)
-            {
-                Console.Write(" ");
-            }
+            int taille_obj = obj.Length / 2;
+            Console.CursorLeft = Console.BufferWidth / 2 - taille_obj;
             Console.Write(obj);
-            Console.ForegroundColor = couleur_actuel;
         }
         public void wait(int temps)
         {
@@ -109,23 +106,23 @@ namespace jeu
         public void deleteLig(int ligne)
         { //suppression de ligne
             Console.SetCursorPosition(0, ligne);
-            for(int i = 0;i < Console.WindowWidth;i++)
+            for (int i = 0; i < Console.WindowWidth; i++)
             {
                 Console.Write(" ");
             }
             Console.SetCursorPosition(0, ligne);
         }
-        public void deleteLig(int ligne_d,int ligne_f)
+        public void deleteLig(int ligne_d, int ligne_f)
 
         {   //suppression de ligne d -> f
-            for(int j = ligne_d;j < ligne_f; j++)
+            for (int j = ligne_d; j < ligne_f; j++)
             {
                 Console.SetCursorPosition(0, j);
                 for (int i = 0; i < Console.WindowWidth; i++)
                 {
                     Console.Write(" ");
                 }
-            }         
+            }
             Console.SetCursorPosition(0, ligne_d);
         }
         public void taptaptap_game()
@@ -136,36 +133,41 @@ namespace jeu
                 deleteLig(3);
                 stat.taptaptap++;
                 Console.SetCursorPosition(Console.WindowWidth - 10, Console.WindowHeight - 2);
-                affiche("ttt: "+stat.taptaptap);
-                Console.SetCursorPosition(0, 0);
+                affiche("ttt: " + stat.taptaptap);
                 if (stat.taptaptap >= 10)
                 {
-                    Console.SetCursorPosition(0, 4);
+                    Console.SetCursorPosition(0, 5);
+                    deleteLig(5);
                     affiche("\rWoaw 10 tap !");
                 }
                 if (stat.taptaptap >= 50)
                 {
                     Console.SetCursorPosition(0, 5);
+                    deleteLig(5);
                     affiche("\r50 tap !");
                 }
                 if (stat.taptaptap >= 100)
                 {
-                    Console.SetCursorPosition(0, 6);
+                    Console.SetCursorPosition(0, 5);
+                    deleteLig(5);
                     affiche("\r100 tap !!");
                 }
                 if (stat.taptaptap >= 200)
                 {
-                    Console.SetCursorPosition(0, 7);
+                    Console.SetCursorPosition(0, 5);
+                    deleteLig(5);
                     affiche("\r200 tap !!!");
                 }
                 if (stat.taptaptap >= 500)
                 {
-                    Console.SetCursorPosition(0, 8);
+                    Console.SetCursorPosition(0, 5);
+                    deleteLig(5);
                     affiche("\r500 tap !!!! some more for a gift :)");
                 }
                 if (stat.taptaptap >= 1000)
                 {
-                    Console.SetCursorPosition(0, 9);
+                    Console.SetCursorPosition(0, 5);
+                    deleteLig(5);
                     affiche("\r1000 tap :o");
                 }
                 Console.SetCursorPosition(0, 0);
@@ -174,7 +176,7 @@ namespace jeu
         }
         public void barre_menu()
         {
-            String[] menu = { "Carte (a)", "Inventaire (z)", "Magasin (e)" , "Aide (r)", "Crdt (t)" };
+            String[] menu = { "Carte (a)", "Inventaire (z)", "Magasin (e)", "Aide (r)", "Crdt (t)" };
             int longeur_texte_menu = 0;
             int nombre_obj_menu = 0;
             foreach (string value in menu)
@@ -190,7 +192,7 @@ namespace jeu
             Console.SetCursorPosition(0, 1);    //Ligne 2
             for (int i = 0; i < nombre_obj_menu; i++)
             {
-                for (int j = 0; j < (Console.WindowWidth - longeur_texte_menu) / (nombre_obj_menu*2); j++)  //divise par 2 car 2x la même opération
+                for (int j = 0; j < (Console.WindowWidth - longeur_texte_menu) / (nombre_obj_menu * 2); j++)  //divise par 2 car 2x la même opération
                 {
                     Console.Write(" ");
                 }
@@ -198,7 +200,7 @@ namespace jeu
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write(menu[i]);
                 Console.ForegroundColor = actuel;
-                for (int j = 1; j < (Console.WindowWidth - longeur_texte_menu) / (nombre_obj_menu*2); j++)    // <-----------
+                for (int j = 1; j < (Console.WindowWidth - longeur_texte_menu) / (nombre_obj_menu * 2); j++)    // <-----------
                 {
                     Console.Write(" ");
                 }
@@ -221,7 +223,7 @@ namespace jeu
                 Console.Write('-');
             }
         }
-        
+
         public void barre_de_vie()
         {
             Console.SetCursorPosition(0, 3);
@@ -240,26 +242,32 @@ namespace jeu
         public void choix_action()
         {
             switch (Console.ReadKey().Key)
-                        {
-                            case ConsoleKey.A:
-                                Console.WriteLine("Vous ouvrez la carte");
-                                break;
-                            case ConsoleKey.Z:
-                                Console.WriteLine("Vous ouvrez votre inventaire");
-                                break;
-                            case ConsoleKey.E:
-                                Console.WriteLine("Vous ouvrez le magasin");
-                                break;
-                            case ConsoleKey.R:
-                                Console.WriteLine("Vous avez besoin d'aide !");
-                                break;
-                            case ConsoleKey.T:
-                                Console.WriteLine("Vous ouvrez le credit");
-                                break;
-                            default:
-                                Console.WriteLine("Vous n'avez rien choisi");
-                                break;
-                        }
+            {
+                case ConsoleKey.A:
+                    Console.CursorLeft = 0;
+                    Console.Write("Vous ouvrez la carte");
+                    break;
+                case ConsoleKey.Z:
+                    Console.CursorLeft = 0;
+                    Console.Write("Vous ouvrez votre inventaire");
+                    break;
+                case ConsoleKey.E:
+                    Console.CursorLeft = 0;
+                    Console.Write("Vous ouvrez le magasin");
+                    break;
+                case ConsoleKey.R:
+                    Console.CursorLeft = 0;
+                    Console.Write("Vous avez besoin d'aide !");
+                    break;
+                case ConsoleKey.T:
+                    Console.CursorLeft = 0;
+                    Console.Write("Vous ouvrez le credit");
+                    break;
+                default:
+                    Console.CursorLeft = 0;
+                    Console.Write("Vous n'avez rien choisi");
+                    break;
+            }
         }
     }
 }
