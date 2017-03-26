@@ -42,13 +42,15 @@
         }
         //attribut sans sauvegarde
         public int vie_joueur;
+        public bool fin_du_jeu;
 
 
-        //accesseurs
+        #region accesseurs
         public int Taptaptap { get => taptaptap; set => taptaptap = value; }
         public long Temps_de_jeu { get => temps_de_jeu; set => temps_de_jeu = value; }
         public int Money { get => money; set => money = value; }
         public int Vie_max_joueur { get => vie_max_joueur; set => vie_max_joueur = value; }
         public string Nom_joueur { get => nom_joueur; set => nom_joueur = value; }
+        #endregion accesseurs
     }
 }
