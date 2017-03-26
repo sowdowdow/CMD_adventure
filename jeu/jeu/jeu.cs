@@ -112,7 +112,33 @@ namespace jeu
             Console.SetCursorPosition(0, ligne_d);
         }//supprime toutes les lignes de D a F
         #endregion METHODE_AFFICHAGE
-
+        public void Crazy_Console_Random_Number()
+        {
+            Random lol = new Random();
+            int rnd;
+            Console.ForegroundColor = ConsoleColor.Green;
+            for (int i = 0; i < 10e3; i++)
+            {
+                rnd = lol.Next(0, Console.WindowHeight);
+                Console.CursorTop = rnd;
+                Console.Write(rnd);
+                if (Console.ForegroundColor == ConsoleColor.Green)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
+            }
+            for (int i = 0; i < 10e3; i++)
+            {
+                rnd = lol.Next(0, Console.WindowHeight);
+                Console.CursorTop = rnd;
+                Console.Write(' ');
+            }
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+        }//quelque chose de bizarre apparaît a l'écran
         public void Taptaptap_game()
         {
             Console.Clear();
@@ -141,34 +167,35 @@ namespace jeu
             {
                 Console.SetCursorPosition(0, 3);
                 DeleteLig(3);
+                Console.ReadKey();
                 stat.Taptaptap++;
                 Console.SetCursorPosition(Console.WindowWidth - 10, Console.WindowHeight - 2);
                 Affiche("ttt: " + stat.Taptaptap);
-                if (stat.Taptaptap >= 10)
+                if (stat.Taptaptap == 10)
                 {
                     Console.SetCursorPosition(0, 5);
                     DeleteLig(5);
                     Affiche("Woaw 10 tap !");
                 }
-                if (stat.Taptaptap >= 50)
+                if (stat.Taptaptap == 50)
                 {
                     Console.SetCursorPosition(0, 5);
                     DeleteLig(5);
                     Affiche("50 tap !");
                 }
-                if (stat.Taptaptap >= 100)
+                if (stat.Taptaptap == 100)
                 {
                     Console.SetCursorPosition(0, 5);
                     DeleteLig(5);
                     Affiche("100 tap !!");
                 }
-                if (stat.Taptaptap >= 200)
+                if (stat.Taptaptap == 200)
                 {
                     Console.SetCursorPosition(0, 5);
                     DeleteLig(5);
                     Affiche("200 tap !!!");
                 }
-                if (stat.Taptaptap >= 500)
+                if (stat.Taptaptap == 500)
                 {
                     Console.SetCursorPosition(0, 5);
                     DeleteLig(5);
@@ -181,7 +208,8 @@ namespace jeu
                     Affiche("1000 tap :o");
                 }
                 Console.SetCursorPosition(0, 5);
-                //après 1000 ttt le joueur obtient la barre de titre
+             };
+               //après 1000 ttt le joueur obtient la barre de titre
                 Console.Write("réclamer quelque-chose contre {0} ttt ? (O/N)", stat.Taptaptap);
                 bool YES = false;
                 int emoji = 0;
@@ -244,7 +272,6 @@ namespace jeu
                     Console.CursorVisible = false;
                 }
                 Console.ReadKey();
-            };
         }//mini jeu de début de partie
         public void Barre_menu(string onglet)
         {
@@ -274,7 +301,7 @@ namespace jeu
                 //test de l'onglet actif
                 if (menu[i].Contains(onglet))
                 {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.Green;
                 }
                 Console.Write(menu[i]);
                 Console.ForegroundColor = actuel;

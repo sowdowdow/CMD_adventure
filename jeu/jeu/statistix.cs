@@ -37,7 +37,7 @@
             else
             {
                 System.Console.WriteLine("Sauvegarde inexistante.");
-                System.Threading.Thread.Sleep(500);
+                System.Threading.Thread.Sleep(1000);
             }                
         }
         //attribut sans sauvegarde

@@ -14,12 +14,13 @@ namespace jeu
             jeu Jeu = new jeu();
 
             Jeu.stat.Lecture_Sauvegarde();
+            //Jeu.Crazy_Console_Random_Number(); //<--------------------------------
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Title = "CMD_ adventure";   //défini le titre de la console
             //Jeu.Ecran_titre();            //<--------------------------------------réactiver a la fin du dev.
             Console.Clear(); //efface la console
 
-            Jeu.stat.Taptaptap = 999; //commande de triche
+            Jeu.stat.Taptaptap = 0; //commande de triche
 
             Jeu.Taptaptap_game();    //lance le jeu tap tap tap
             while (!Jeu.stat.fin_du_jeu)
