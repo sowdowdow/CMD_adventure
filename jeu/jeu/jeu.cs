@@ -17,6 +17,7 @@ namespace jeu
         public Sprite_box sprite = new Sprite_box();
 
         //methodes et fonctions
+        #region METHODE_AFFICHAGE
         public void Affiche(string text)
         {
             Console.Write(text);
@@ -31,7 +32,15 @@ namespace jeu
             {
                 Console.Write(car);
             }
-        }//affiche une ligne de caractères
+        }//affiche une ligne de 1 caractères
+        public void LigH(char car, char car2)
+        {
+            for (int i = 0; i < Console.BufferWidth / 2; i++)
+            {
+                Console.Write(car);
+                Console.Write(car2);
+            }
+        }//affiche une ligne de 2 caractères
         public void Ecran_titre()
         {
             Console.Clear();
@@ -70,24 +79,16 @@ namespace jeu
             }
             Console.ReadKey(true);  // attend la saisie d'un appui sur clavier
         }//affiche l'animation du Titre
-        public void LigH(char car, char car2)
-        {
-            for (int i = 0; i < Console.BufferWidth / 2; i++)
-            {
-                Console.Write(car);
-                Console.Write(car2);
-            }
-        }
         public void Centrage(string obj)
         {
             int taille_obj = obj.Length / 2;
             Console.CursorLeft = Console.BufferWidth / 2 - taille_obj;
             Console.Write(obj);
-        }
+        }//affiche un objet au centre de la ligne actuelle 
         public void Wait(int temps)
         {
-            System.Threading.Thread.Sleep(temps);   //temps d'attente de la console en MilliSec.
-        }
+            System.Threading.Thread.Sleep(temps);
+        }//met en pause la console (en MilliSec)
         public void DeleteLig(int ligne)
         { //suppression de ligne
             Console.SetCursorPosition(0, ligne);
@@ -96,7 +97,7 @@ namespace jeu
                 Console.Write(" ");
             }
             Console.SetCursorPosition(0, ligne);
-        }
+        }//supprime une ligne a l'ordonné souhaité
         public void DeleteLig(int ligne_d, int ligne_f)
 
         {   //suppression de ligne d -> f
@@ -109,7 +110,9 @@ namespace jeu
                 }
             }
             Console.SetCursorPosition(0, ligne_d);
-        }
+        }//supprime toutes les lignes de D a F
+        #endregion METHODE_AFFICHAGE
+
         public void Taptaptap_game()
         {
             Console.Clear();
@@ -179,7 +182,7 @@ namespace jeu
                 }
                 Console.SetCursorPosition(0, 5);
                 //après 1000 ttt le joueur obtient la barre de titre
-                Console.Write("réclamer quelque-chose contre {0} ttt ? (O/N)",stat.Taptaptap);
+                Console.Write("réclamer quelque-chose contre {0} ttt ? (O/N)", stat.Taptaptap);
                 bool YES = false;
                 int emoji = 0;
 
@@ -242,7 +245,7 @@ namespace jeu
                 }
                 Console.ReadKey();
             };
-        }
+        }//mini jeu de début de partie
         public void Barre_menu()
         {
             String[] menu = { "Carte (a)", "Inventaire (z)", "Magasin (e)", "Aide (r)", "Crdt (t)" };
@@ -338,5 +341,27 @@ namespace jeu
                     break;
             }
         }
+        #region actions
+        public void Action_Carte()
+        {
+
+        }
+        public void Action_Inventaire()
+        {
+
+        }
+        public void Action_Magasin()
+        {
+
+        }
+        public void Action_Aide()
+        {
+
+        }
+        public void Action_Credit()
+        {
+
+        }
+        #endregion actions
     }
 }
