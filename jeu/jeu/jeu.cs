@@ -246,7 +246,7 @@ namespace jeu
                 Console.ReadKey();
             };
         }//mini jeu de début de partie
-        public void Barre_menu()
+        public void Barre_menu(string onglet)
         {
             String[] menu = { "Carte (a)", "Inventaire (z)", "Magasin (e)", "Aide (r)", "Crdt (t)" };
             int longeur_texte_menu = 0;
@@ -264,14 +264,21 @@ namespace jeu
             Console.SetCursorPosition(0, 1);    //Ligne 2
             for (int i = 0; i < nombre_obj_menu; i++)
             {
+                //epacement entre les onglets
                 for (int j = 0; j < (Console.WindowWidth - longeur_texte_menu) / (nombre_obj_menu * 2); j++)  //divise par 2 car 2x la même opération
                 {
                     Console.Write(" ");
                 }
                 ConsoleColor actuel = Console.ForegroundColor;
                 Console.ForegroundColor = ConsoleColor.White;
+                //test de l'onglet actif
+                if (menu[i].Contains(onglet))
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                }
                 Console.Write(menu[i]);
                 Console.ForegroundColor = actuel;
+                //epacement entre les onglets
                 for (int j = 1; j < (Console.WindowWidth - longeur_texte_menu) / (nombre_obj_menu * 2); j++)    // <-----------
                 {
                     Console.Write(" ");
@@ -317,23 +324,27 @@ namespace jeu
             {
                 case ConsoleKey.A:
                     Console.CursorLeft = 0;
+                    stat.onglet = Action_Carte();
                     Console.Write("Vous ouvrez la carte");
                     break;
                 case ConsoleKey.Z:
                     Console.CursorLeft = 0;
+                    stat.onglet = Action_Inventaire();
                     Console.Write("Vous ouvrez votre inventaire");
                     break;
                 case ConsoleKey.E:
                     Console.CursorLeft = 0;
+                    stat.onglet = Action_Magasin();
                     Console.Write("Vous ouvrez le magasin");
                     break;
                 case ConsoleKey.R:
                     Console.CursorLeft = 0;
+                    stat.onglet = Action_Aide();
                     Console.Write("Vous avez besoin d'aide !");
                     break;
                 case ConsoleKey.T:
                     Console.CursorLeft = 0;
-                    Console.Write("Vous ouvrez le credit");
+                    stat.onglet = Action_Credit();
                     break;
                 default:
                     Console.CursorLeft = 0;
@@ -342,25 +353,35 @@ namespace jeu
             }
         }
         #region actions
-        public void Action_Carte()
+        public string Action_Carte()
         {
-
+            DeleteLig(5, Console.WindowHeight - 1);
+            return "Carte";
         }
-        public void Action_Inventaire()
+        public string Action_Inventaire()
         {
-
+            DeleteLig(5, Console.WindowHeight - 1);
+            return "Inventaire";
         }
-        public void Action_Magasin()
+        public string Action_Magasin()
         {
-
+            DeleteLig(5, Console.WindowHeight - 1);
+            return "Magasin";
         }
-        public void Action_Aide()
+        public string Action_Aide()
         {
-
+            DeleteLig(5, Console.WindowHeight - 1);
+            return "Aide";
         }
-        public void Action_Credit()
+        public string Action_Credit()
         {
-
+            DeleteLig(5, Console.WindowHeight - 1);
+            Centrage("Imaginé par Sowdowdow");
+            Console.CursorTop += 1;
+            Centrage("Codé par Sowdowdow");
+            Console.CursorTop += 1;
+            Centrage("Réalisé par Sowdowdow");
+            return "Crdt";
         }
         #endregion actions
     }

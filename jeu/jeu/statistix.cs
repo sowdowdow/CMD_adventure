@@ -43,6 +43,7 @@
         //attribut sans sauvegarde
         public int vie_joueur;
         public bool fin_du_jeu;
+        public string onglet = "onglet par defaut";
 
 
         #region accesseurs
