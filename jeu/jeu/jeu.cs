@@ -208,74 +208,75 @@ namespace jeu
                     Affiche("1000 tap :o");
                 }
                 Console.SetCursorPosition(0, 5);
-             };
-               //après 1000 ttt le joueur obtient la barre de titre
-                Console.Write("réclamer quelque-chose contre {0} ttt ? (O/N)", stat.Taptaptap);
-                bool YES = false;
-                int emoji = 0;
+            };
+            //après 1000 ttt le joueur obtient la barre de titre
+            Console.Write("réclamer quelque-chose contre {0} ttt ? (O/N)", stat.Taptaptap);
+            bool YES = false;
+            int emoji = 0;
 
-                while (!YES)
+            while (!YES)
+            {
+                Console.SetCursorPosition(0, 6);
+                switch (Console.ReadKey().Key)
                 {
-                    Console.SetCursorPosition(0, 6);
-                    switch (Console.ReadKey().Key)
-                    {
-                        case ConsoleKey.O:
-                            YES = true;
-                            DeleteLig(6);
-                            DeleteLig(5);
-                            DeleteLig(Console.WindowHeight - 2);
-                            Console.SetCursorPosition(0, 5);
-                            Console.Write("Conversion !");
-                            break;
-                        case ConsoleKey.N:
-                            DeleteLig(6);
-                            switch (emoji)
-                            {
-                                case 0:
-                                    Console.Write(".-.");
-                                    emoji++;
-                                    break;
-                                case 1:
-                                    Console.Write(".o.");
-                                    emoji++;
-                                    break;
-                                case 2:
-                                    Console.Write("._.");
-                                    emoji++;
-                                    break;
-                                case 3:
-                                    Console.Write(".__.");
-                                    emoji++;
-                                    break;
-                                case 4:
-                                    Console.Write(".___.");
-                                    emoji++;
-                                    break;
-                                case 5:
-                                    Console.Write("-___-");
-                                    emoji++;
-                                    break;
-                                case 6:
-                                    Console.Write("-.-");
-                                    emoji = 0;
-                                    break;
-                                default:
-                                    Console.Write("._.");
-                                    break;
-                            }
-                            break;
-                        default:
-                            DeleteLig(6);
-                            Console.Write("Vous n'avez pas choisi :/");
-                            break;
-                    }
-                    Console.CursorVisible = false;
+                    case ConsoleKey.O:
+                        YES = true;
+                        DeleteLig(6);
+                        DeleteLig(5);
+                        DeleteLig(Console.WindowHeight - 2);
+                        Console.SetCursorPosition(0, 5);
+                        Console.Write("Conversion !");
+                        break;
+                    case ConsoleKey.N:
+                        DeleteLig(6);
+                        switch (emoji)
+                        {
+                            case 0:
+                                Console.Write(".-.");
+                                emoji++;
+                                break;
+                            case 1:
+                                Console.Write(".o.");
+                                emoji++;
+                                break;
+                            case 2:
+                                Console.Write("._.");
+                                emoji++;
+                                break;
+                            case 3:
+                                Console.Write(".__.");
+                                emoji++;
+                                break;
+                            case 4:
+                                Console.Write(".___.");
+                                emoji++;
+                                break;
+                            case 5:
+                                Console.Write("-___-");
+                                emoji++;
+                                break;
+                            case 6:
+                                Console.Write("-.-");
+                                emoji = 0;
+                                break;
+                            default:
+                                Console.Write("._.");
+                                break;
+                        }
+                        break;
+                    default:
+                        DeleteLig(6);
+                        Console.Write("Vous n'avez pas choisi :/");
+                        break;
                 }
-                Console.ReadKey();
+                Console.CursorVisible = false;
+            }
+            Console.ReadKey();
+            Console.Clear();
         }//mini jeu de début de partie
         public void Barre_menu(string onglet)
         {
-            String[] menu = { "Carte (a)", "Inventaire (z)", "Magasin (e)", "Aide (r)", "Crdt (t)" };
+            String[] menu = { "Carte (a)", "Inventaire (z)", "Magasin (e)", "??? (r)", "Options (t)" };
             int longeur_texte_menu = 0;
             int nombre_obj_menu = 0;
             foreach (string value in menu)
@@ -323,11 +324,6 @@ namespace jeu
             }
             Console.SetCursorPosition(0, 3);    //ligne 4
             Barre_de_vie();     //appel de la méthode barre de vie
-            Console.SetCursorPosition(0, 4);    // Ligne 5
-            for (int i = 0; i < Console.WindowWidth; i++)
-            {
-                Console.Write('-');
-            }
         }
 
         public void Barre_de_vie()
@@ -366,52 +362,84 @@ namespace jeu
                     break;
                 case ConsoleKey.R:
                     Console.CursorLeft = 0;
-                    stat.onglet = Action_Aide();
-                    Console.Write("Vous avez besoin d'aide !");
+                    stat.onglet = Action_What();
+                    Console.Write("???");
                     break;
                 case ConsoleKey.T:
                     Console.CursorLeft = 0;
-                    stat.onglet = Action_Credit();
+                    stat.onglet = Action_Option();
                     break;
                 default:
-                    Console.CursorLeft = 0;
-                    Console.Write("Vous n'avez rien choisi");
                     break;
             }
         }
         #region actions
         public string Action_Carte()
         {
-            DeleteLig(5, Console.WindowHeight - 1);
+            DeleteLig(4, Console.WindowHeight - 1);
             return "Carte";
         }
         public string Action_Inventaire()
         {
-            DeleteLig(5, Console.WindowHeight - 1);
+            DeleteLig(4, Console.WindowHeight - 1);
             return "Inventaire";
         }
         public string Action_Magasin()
         {
-            DeleteLig(5, Console.WindowHeight - 1);
+            DeleteLig(4, Console.WindowHeight - 1);
             return "Magasin";
         }
         public string Action_Aide()
         {
-            DeleteLig(5, Console.WindowHeight - 1);
+            DeleteLig(4, Console.WindowHeight - 1);
             return "Aide";
         }
         public string Action_Credit()
         {
-            DeleteLig(5, Console.WindowHeight - 1);
+            DeleteLig(4, Console.WindowHeight - 1);
             Centrage("Imaginé par Sowdowdow");
             Console.CursorTop += 1;
             Centrage("Codé par Sowdowdow");
             Console.CursorTop += 1;
             Centrage("Réalisé par Sowdowdow");
             Console.CursorTop += 1;
-            Console.WriteLine(stat.Temps_de_jeu);
-            
+            Centrage("première partie : " + stat.Temps_de_jeu);
+
             return "Crdt";
+        }
+        public string Action_Option()
+        {
+            DeleteLig(4, Console.WindowHeight - 1);
+            string curseur = "=>";
+            int pos_curseur = 0;
+            String[] options = { "Contrôles", "Aide", "Langue", "Crédit", "Sauvegarder & quitter" };
+            foreach (string option in options)
+            {
+                Centrage(option);
+                Console.CursorTop += 1;
+            }
+
+            switch (Console.ReadKey().Key)
+            {
+                case ConsoleKey.DownArrow:
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - options[pos_curseur].Length, 0);
+                    pos_curseur++;
+                    Console.Write(curseur);
+                    break;
+                case ConsoleKey.UpArrow:
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - options[pos_curseur].Length, 0);
+                    pos_curseur--;
+                    Console.Write(curseur);
+                    break;
+                default:
+                    break;
+            }
+            return "Options";
+        }
+        public string Action_What()
+        {
+            DeleteLig(5, Console.WindowHeight - 1);
+            return "???";
         }
         #endregion actions
     }

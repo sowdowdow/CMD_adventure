@@ -23,7 +23,7 @@ namespace jeu
             //Jeu.Ecran_titre();            //<--------------------------------------réactiver a la fin du dev.
             Console.Clear(); //efface la console
 
-            Jeu.stat.Taptaptap = 995; //commande de triche
+            Jeu.stat.Taptaptap = 999; //commande de triche
 
             Jeu.Taptaptap_game();    //lance le jeu tap tap tap
             while (!Jeu.stat.fin_du_jeu)
@@ -38,9 +38,3 @@ namespace jeu
         }
     }
 }
-/* Référence utiles:
- * https://msdn.microsoft.com/fr-fr/library/ms228362.aspx#Anchor_4    les séquences d'éhapement de chaîne
- * https://tinyurl.com/lggakbh formatage des chaines de carac.
- * 
- * 
- */
