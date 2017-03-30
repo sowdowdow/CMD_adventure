@@ -28,7 +28,7 @@ namespace jeu
             Jeu.Taptaptap_game();    //lance le jeu tap tap tap
             while (!Jeu.stat.fin_du_jeu)
             {
-            Jeu.Barre_menu(Jeu.stat.onglet);
+            Jeu.Barre_menu(Jeu.stat.onglet); //on actualise l'affichage de la barre de menu
             Jeu.Choix_action();
             }
 

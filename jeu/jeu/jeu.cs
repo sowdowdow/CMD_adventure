@@ -346,57 +346,61 @@ namespace jeu
             switch (Console.ReadKey().Key)
             {
                 case ConsoleKey.A:
-                    Console.CursorLeft = 0;
-                    stat.onglet = Action_Carte();
+                    stat.onglet = "Carte";
+                    Barre_menu(stat.onglet);
+                    DeleteLig(4, Console.WindowHeight - 1);
+                    Action_Carte();
                     Console.Write("Vous ouvrez la carte");
                     break;
                 case ConsoleKey.Z:
-                    Console.CursorLeft = 0;
-                    stat.onglet = Action_Inventaire();
+                    stat.onglet = "Inventaire";
+                    Barre_menu(stat.onglet);
+                    DeleteLig(4, Console.WindowHeight - 1);
+                    Action_Inventaire();
                     Console.Write("Vous ouvrez votre inventaire");
                     break;
                 case ConsoleKey.E:
-                    Console.CursorLeft = 0;
-                    stat.onglet = Action_Magasin();
+                    stat.onglet = "Magasin";
+                    Barre_menu(stat.onglet);
+                    DeleteLig(4, Console.WindowHeight - 1);
+                    Action_Magasin();
                     Console.Write("Vous ouvrez le magasin");
                     break;
                 case ConsoleKey.R:
-                    Console.CursorLeft = 0;
-                    stat.onglet = Action_What();
+                    stat.onglet = "???";
+                    Barre_menu(stat.onglet);
+                    DeleteLig(4, Console.WindowHeight - 1);
+                    Action_What();
                     Console.Write("???");
                     break;
                 case ConsoleKey.T:
-                    Console.CursorLeft = 0;
-                    stat.onglet = Action_Option();
+                    stat.onglet = "Options";
+                    Barre_menu(stat.onglet);
+                    DeleteLig(4, Console.WindowHeight - 1);
+                    Action_Option();
                     break;
                 default:
                     break;
             }
         }
         #region actions
-        public string Action_Carte()
+        public void Action_Carte()
         {
-            DeleteLig(4, Console.WindowHeight - 1);
-            return "Carte";
+
         }
-        public string Action_Inventaire()
+        public void Action_Inventaire()
         {
-            DeleteLig(4, Console.WindowHeight - 1);
-            return "Inventaire";
         }
-        public string Action_Magasin()
+        public void Action_Magasin()
         {
-            DeleteLig(4, Console.WindowHeight - 1);
-            return "Magasin";
+
         }
-        public string Action_Aide()
+        public void Action_Aide()
         {
-            DeleteLig(4, Console.WindowHeight - 1);
-            return "Aide";
+            stat.onglet = "Aide";
         }
-        public string Action_Credit()
+        public void Action_Credit()
         {
-            DeleteLig(4, Console.WindowHeight - 1);
             Centrage("Imaginé par Sowdowdow");
             Console.CursorTop += 1;
             Centrage("Codé par Sowdowdow");
@@ -404,12 +408,9 @@ namespace jeu
             Centrage("Réalisé par Sowdowdow");
             Console.CursorTop += 1;
             Centrage("première partie : " + stat.Temps_de_jeu);
-
-            return "Crdt";
         }
-        public string Action_Option()
+        public void Action_Option()
         {
-            DeleteLig(4, Console.WindowHeight - 1);
             string curseur = "=>";
             int pos_curseur = 0;
             String[] options = { "Contrôles", "Aide", "Langue", "Crédit", "Sauvegarder & quitter" };
@@ -431,15 +432,15 @@ namespace jeu
                     pos_curseur--;
                     Console.Write(curseur);
                     break;
+                case ConsoleKey.Enter:
+                    Console.Write("Vous ouvrez la sous-option de votre choix");
+                    break;
                 default:
                     break;
             }
-            return "Options";
         }
-        public string Action_What()
+        public void Action_What()
         {
-            DeleteLig(5, Console.WindowHeight - 1);
-            return "???";
         }
         #endregion actions
     }
