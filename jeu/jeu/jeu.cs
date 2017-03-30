@@ -138,7 +138,7 @@ namespace jeu
                 Console.Write(' ');
             }
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-        }//quelque chose de bizarre apparaît a l'écran
+        }//remplie de nombres aléatoires la console
         public void Taptaptap_game()
         {
             Console.Clear();
@@ -408,6 +408,9 @@ namespace jeu
             Centrage("Codé par Sowdowdow");
             Console.CursorTop += 1;
             Centrage("Réalisé par Sowdowdow");
+            Console.CursorTop += 1;
+            Console.WriteLine(stat.Temps_de_jeu);
+            
             return "Crdt";
         }
         #endregion actions

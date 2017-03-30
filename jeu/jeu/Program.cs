@@ -10,8 +10,11 @@ namespace jeu
     {
         static void Main(string[] args)
         {
+
             //on instancie affiche
             jeu Jeu = new jeu();
+            Jeu.stat.Temps_de_jeu = DateTime.Now; // la valeur prise ici sera remplacé si une sauvegarde existe
+            Jeu.stat.heure_debut_partie = DateTime.Now; //lecture de l'heure actuel (utile si le jeu n'a pas de sauvegarde)
 
             Jeu.stat.Lecture_Sauvegarde();
             //Jeu.Crazy_Console_Random_Number(); //<--------------------------------
@@ -20,7 +23,7 @@ namespace jeu
             //Jeu.Ecran_titre();            //<--------------------------------------réactiver a la fin du dev.
             Console.Clear(); //efface la console
 
-            Jeu.stat.Taptaptap = 0; //commande de triche
+            Jeu.stat.Taptaptap = 995; //commande de triche
 
             Jeu.Taptaptap_game();    //lance le jeu tap tap tap
             while (!Jeu.stat.fin_du_jeu)
