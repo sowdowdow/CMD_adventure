@@ -5,10 +5,6 @@ namespace jeu
 {
     internal class jeu
     {
-        //skin du joueur
-        public string perso_base = "°v°";
-        public string perso_wow = "*v*";
-        public string perso_deprime = "-v-";
         //instance des monstres (NOM / SKIN / HP / ATK / EXP)
         monstre lapin = new monstre("lapin", "°o'", 1, 0, 1);
         monstre tortue = new monstre("tortue", "°,o,", 10, 2, 5);
@@ -170,13 +166,13 @@ namespace jeu
             LigH(4, '=');
             for (int i = Console.CursorTop + 1; i < Console.WindowHeight; i++)
             {
-                Centrage(perso_base);
+                Centrage(sprite.perso_base);
                 Wait(1000 / Console.WindowHeight);  //gestion relative dynamique de la vitesse de descente (1 sec au total)
                 Console.Write("\r");
                 Centrage("   ");
                 Console.Write("\n");
             }
-            Centrage(perso_base);
+            Centrage(sprite.perso_base);
 
 
             //Boucle du jeu ttt (il faut arriver a 1000 ttt)
@@ -562,7 +558,7 @@ namespace jeu
             Centrage(i, "inspiré de CandyBox2");      //...
             i+=2;
             Centrage(i, premiere_partie);//...
-            Centrage(Console.WindowHeight - 1, perso_base);
+            Centrage(Console.WindowHeight - 1, sprite.perso_base);
         }
         public void Option_SauvegarderEtQuitter()
         {

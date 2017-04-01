@@ -14,7 +14,12 @@ namespace jeu
             }
             Console.SetCursorPosition(Console.WindowWidth - 3,Console.WindowHeight - 2);
         }
-            public string[] Maison1 = {
+        //skin du joueur
+        public string perso_base = "°v°";
+        public string perso_wow = "*v*";
+        public string perso_deprime = "-v-";
+        //sprite des objets
+        public string[] Maison1 = {
                 "  _______| |__",
                 " /            \\",
                 "/______________\\",

@@ -12,6 +12,7 @@ namespace jeu
         private int vie_max_joueur = 10;
         private string nom_joueur = "nameless";
         private int joueur_ATK = 1; //puissance d'attaque du joueur
+        private int niveau_progression = 0;
         #region liste_de_sauvegarde
 //a faire
         #endregion liste_de_sauvegarde
@@ -20,7 +21,7 @@ namespace jeu
             heure_fin_partie = DateTime.Now; // par défaut sinon la lecture de l'attribut temps de jeu sera invalide
             string pathString = @"C: \Users\Public\SAVE_CMD_adventure";
             System.IO.Directory.CreateDirectory(pathString);
-            string[] lines = { taptaptap.ToString(), temps_de_jeu.ToString(), money.ToString(), vie_max_joueur.ToString(), nom_joueur.ToString(), joueur_ATK.ToString() };
+            string[] lines = { taptaptap.ToString(), temps_de_jeu.ToString(), money.ToString(), vie_max_joueur.ToString(), nom_joueur.ToString(), joueur_ATK.ToString(),niveau_progression.ToString() };
             System.IO.File.WriteAllLines(@"C:\Users\Public\SAVE_CMD_adventure\save.txt", lines);
         }
         public void Lecture_Sauvegarde()
@@ -37,6 +38,7 @@ namespace jeu
                 int.TryParse(lines[3], out vie_max_joueur);
                 lines[4] = nom_joueur;
                 int.TryParse(lines[4], out joueur_ATK);
+                int.TryParse(lines[5], out niveau_progression);
             }
             else
             {
