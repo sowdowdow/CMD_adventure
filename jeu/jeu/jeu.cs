@@ -16,7 +16,6 @@ namespace jeu
         //on instancie stat / sprite
         public statistix stat = new statistix();
         public Sprite_box sprite = new Sprite_box();
-
         //methodes et fonctions
         #region METHODE_AFFICHAGE
         public void Affiche(string text)
@@ -106,10 +105,12 @@ namespace jeu
         public void DeleteLig(int ligne)
         { //suppression de ligne
             Console.SetCursorPosition(0, ligne);
+            Console.CursorVisible = false;
             for (int i = 0; i < Console.WindowWidth; i++)
             {
                 Console.Write(" ");
             }
+            Console.CursorVisible = true;
             Console.SetCursorPosition(0, ligne);
         }//supprime une ligne a l'ordonné souhaité
         public void DeleteLig(int ligne_d, int ligne_f)
@@ -120,9 +121,11 @@ namespace jeu
                 Console.SetCursorPosition(0, j);
                 for (int i = 0; i < Console.WindowWidth; i++)
                 {
+                    Console.CursorVisible = false;
                     Console.Write(" ");
                 }
             }
+            Console.CursorVisible = true;
             Console.SetCursorPosition(0, ligne_d);
         }//supprime toutes les lignes de D a F
         #endregion METHODE_AFFICHAGE
@@ -364,7 +367,6 @@ namespace jeu
                     Barre_menu(stat.onglet);
                     DeleteLig(4, Console.WindowHeight - 1);
                     Action_Carte();
-                    Console.Write("Vous ouvrez la carte");
                     break;
                 case ConsoleKey.Z:
                     stat.onglet = "Inventaire";
@@ -400,7 +402,8 @@ namespace jeu
         #region actions
         public void Action_Carte()
         {
-
+            sprite.Affiche_sprite(0, 4, sprite.Maison1);
+            sprite.Affiche_sprite(30, 5, sprite.Maison2);
         }
         public void Action_Inventaire()
         {
