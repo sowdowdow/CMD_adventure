@@ -46,9 +46,14 @@ namespace jeu
         {
             Console.Clear();
             Console.CursorLeft = 0;
-            Console.CursorTop = (Console.WindowHeight / 2) - 3;
-            string titre = "CMD_ Adventure";
+            string[] titre = {
+                "   ___  __  __  ___       _      _                 _                   ",
+                "  / __||  \\/  ||   \\     /_\\  __| |__ __ ___  _ _ | |_  _  _  _ _  ___ ",
+                " | (__ | |\\/| || |) |   / _ \\/ _` |\\ V // -_)| ' \\|  _|| || || '_|/ -_)",
+                "  \\___||_|  |_||___/___/_/ \\_\\__,_| \\_/ \\___||_||_|\\__| \\_,_||_|  \\___|",
+                "                   |___|                                                "};
             string appuyez = "appuyez pour continuer...";
+            Console.CursorTop = (Console.WindowHeight / 2) - titre.Length;
             for (int i = 0; i < Console.BufferWidth; i++)
             {
                 Wait(1000 / Console.WindowWidth);
@@ -60,10 +65,11 @@ namespace jeu
             }
             ConsoleColor fg = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Red;
-            for (int i = 0; i < titre.Length; i++)
+            for (int i = 0; i < titre.Length; i++)  //on affiche le titre
             {
                 Wait(200);
-                Console.Write(titre[i]);
+                Centrage(titre[i]);
+                Console.CursorTop++;
             }
             Console.ForegroundColor = fg;
             Wait(1000);

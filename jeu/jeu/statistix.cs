@@ -3,20 +3,24 @@ using System.Collections.Generic;
 
 namespace jeu
 {
-	internal class statistix
+    internal class statistix
     {
         //attributs a sauvegarder
         private int taptaptap;
         private DateTime temps_de_jeu;
         private int money;
-        private int vie_max_joueur;
+        private int vie_max_joueur = 10;
         private string nom_joueur = "nameless";
+        private int joueur_ATK = 1; //puissance d'attaque du joueur
+        #region liste_de_sauvegarde
+//a faire
+        #endregion liste_de_sauvegarde
         public void Ecriture_Sauvegarde()
         {
             heure_fin_partie = DateTime.Now; // par défaut sinon la lecture de l'attribut temps de jeu sera invalide
             string pathString = @"C: \Users\Public\SAVE_CMD_adventure";
             System.IO.Directory.CreateDirectory(pathString);
-            string[] lines = {taptaptap.ToString(), temps_de_jeu.ToString(), money.ToString(), vie_max_joueur.ToString(),nom_joueur.ToString()};
+            string[] lines = { taptaptap.ToString(), temps_de_jeu.ToString(), money.ToString(), vie_max_joueur.ToString(), nom_joueur.ToString(), joueur_ATK.ToString() };
             System.IO.File.WriteAllLines(@"C:\Users\Public\SAVE_CMD_adventure\save.txt", lines);
         }
         public void Lecture_Sauvegarde()
@@ -24,19 +28,21 @@ namespace jeu
             string pathString = @"C: \Users\Public\SAVE_CMD_adventure";
             System.IO.Directory.CreateDirectory(pathString);
             string[] lines = null;
-            if(System.IO.File.Exists(@"C: \Users\Public\SAVE_CMD_adventure")){
+            if (System.IO.File.Exists(@"C: \Users\Public\SAVE_CMD_adventure"))
+            {
                 lines = System.IO.File.ReadAllLines(@"C:\Users\Public\SAVE_CMD_adventure\save.txt");
                 int.TryParse(lines[0], out taptaptap);
                 DateTime.TryParse(lines[1], out temps_de_jeu);
                 int.TryParse(lines[2], out money);
                 int.TryParse(lines[3], out vie_max_joueur);
                 lines[4] = nom_joueur;
+                int.TryParse(lines[4], out joueur_ATK);
             }
             else
             {
                 System.Console.WriteLine("Sauvegarde inexistante.");
                 System.Threading.Thread.Sleep(1000);
-            }                
+            }
         }
         //attribut sans sauvegarde
         public int vie_joueur;
