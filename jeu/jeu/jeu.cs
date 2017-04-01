@@ -413,31 +413,54 @@ namespace jeu
         {
             string curseur = "=>";
             int pos_curseur = 0;
+            int offset = 4; //on ne doit pas afficher par dessus la barre de menu
             String[] options = { "Contrôles", "Aide", "Langue", "Crédit", "Sauvegarder & quitter" };
-            foreach (string option in options)
+            Console.SetCursorPosition(curseur.Length + Console.WindowWidth/2, 4);
+            foreach (string option in options)  //affichage de chaque optin
             {
-                Centrage(option);
-                Console.CursorTop += 1;
+                Affiche(option);
+                Console.SetCursorPosition(curseur.Length + Console.WindowWidth / 2, Console.CursorTop += 1);
             }
+            ConsoleColor actuel = Console.ForegroundColor;  //change la couleur
+            Console.ForegroundColor = ConsoleColor.Yellow;   //...
 
-            switch (Console.ReadKey().Key)
+            Console.SetCursorPosition(Console.WindowWidth / 2, 4);                          //on positionne le curseur sur la première ligne
+            Console.Write(curseur);                                                         //afficher le curseur dès le départ
+            Console.SetCursorPosition(Console.WindowWidth - 2, Console.WindowHeight - 1);   //évite de ré-écrire sur l'affichage
+            while (true)
             {
-                case ConsoleKey.DownArrow:
-                    Console.SetCursorPosition(Console.WindowWidth / 2 - options[pos_curseur].Length, 0);
-                    pos_curseur++;
-                    Console.Write(curseur);
-                    break;
-                case ConsoleKey.UpArrow:
-                    Console.SetCursorPosition(Console.WindowWidth / 2 - options[pos_curseur].Length, 0);
-                    pos_curseur--;
-                    Console.Write(curseur);
-                    break;
-                case ConsoleKey.Enter:
-                    Console.Write("Vous ouvrez la sous-option de votre choix");
-                    break;
-                default:
-                    break;
+                switch (Console.ReadKey().Key)
+                {
+                    case ConsoleKey.DownArrow:
+                        if (pos_curseur < options.Length - 1)
+                        {
+                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset); //
+                            Console.Write("  ");                                //on efface le curseur courant
+                            pos_curseur++;
+                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset);
+                            Console.Write(curseur);
+                        }
+                        break;
+                    case ConsoleKey.UpArrow:
+                        if (pos_curseur > 0)
+                        {
+                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset); //
+                            Console.Write("  ");                                //on efface le curseur courant
+                            pos_curseur--;
+                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset);
+                            Console.Write(curseur);
+                        }
+                        break;
+                    case ConsoleKey.Enter:
+                        Console.Write("Choississez avec les flèches !");
+                        break;
+                    default:
+                        Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
+                        break;
+                }
+                Console.SetCursorPosition(Console.WindowWidth-2, Console.WindowHeight-1);
             }
+            Console.ForegroundColor = actuel;
         }
         public void Action_What()
         {

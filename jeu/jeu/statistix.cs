@@ -18,12 +18,6 @@ namespace jeu
             System.IO.Directory.CreateDirectory(pathString);
             string[] lines = {taptaptap.ToString(), temps_de_jeu.ToString(), money.ToString(), vie_max_joueur.ToString(),nom_joueur.ToString()};
             System.IO.File.WriteAllLines(@"C:\Users\Public\SAVE_CMD_adventure\save.txt", lines);
-            /*lines = System.IO.File.ReadAllLines(@"C:\Users\Public\SAVE_CMD_adventure\save.txt");
-            foreach (string line in lines)
-            {
-                // Use a tab to indent each line of the file.
-                System.Console.WriteLine("\t" + line);
-            }*/
         }
         public void Lecture_Sauvegarde()
         {
@@ -54,7 +48,7 @@ namespace jeu
 
         #region accesseurs
         public int Taptaptap { get => taptaptap; set => taptaptap = value; }
-        public DateTime Temps_de_jeu { get => temps_de_jeu + (heure_debut_partie - DateTime.Now); set => temps_de_jeu = value; } //gestion du temps total joué
+        public DateTime Temps_de_jeu { get => temps_de_jeu + (heure_debut_partie - DateTime.UtcNow); set => temps_de_jeu = value; } //gestion du temps total joué
         public int Money { get => money; set => money = value; }
         public int Vie_max_joueur { get => vie_max_joueur; set => vie_max_joueur = value; }
         public string Nom_joueur { get => nom_joueur; set => nom_joueur = value; }
