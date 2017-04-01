@@ -411,6 +411,7 @@ namespace jeu
         }
         public void Action_Option()
         {
+            bool changement_onglet = false;
             string curseur = "=>";
             int pos_curseur = 0;
             int offset = 4; //on ne doit pas afficher par dessus la barre de menu
@@ -427,15 +428,15 @@ namespace jeu
             Console.SetCursorPosition(Console.WindowWidth / 2, 4);                          //on positionne le curseur sur la première ligne
             Console.Write(curseur);                                                         //afficher le curseur dès le départ
             Console.SetCursorPosition(Console.WindowWidth - 2, Console.WindowHeight - 1);   //évite de ré-écrire sur l'affichage
-            while (true)
+            while (!changement_onglet)
             {
                 switch (Console.ReadKey().Key)
                 {
                     case ConsoleKey.DownArrow:
                         if (pos_curseur < options.Length - 1)
                         {
-                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset); //
-                            Console.Write("  ");                                //on efface le curseur courant
+                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset); //...
+                            Console.Write("  ");    //on efface le curseur courant
                             pos_curseur++;
                             Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset);
                             Console.Write(curseur);
@@ -444,15 +445,33 @@ namespace jeu
                     case ConsoleKey.UpArrow:
                         if (pos_curseur > 0)
                         {
-                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset); //
-                            Console.Write("  ");                                //on efface le curseur courant
+                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset); //...
+                            Console.Write("  ");    //on efface le curseur courant
                             pos_curseur--;
                             Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset);
                             Console.Write(curseur);
                         }
                         break;
+                    case ConsoleKey.A:
+                        changement_onglet = true;
+                        break;
+                    case ConsoleKey.Z:
+                        changement_onglet = true;
+                        break;
+                    case ConsoleKey.E:
+                        changement_onglet = true;
+                        break;
+                    case ConsoleKey.R:
+                        changement_onglet = true;
+                        break;
+                    case ConsoleKey.T:
+                        changement_onglet = true;
+                        break;
                     case ConsoleKey.Enter:
+                        Console.SetCursorPosition(0,4);
+                        Console.ForegroundColor = ConsoleColor.Gray;
                         Console.Write("Choississez avec les flèches !");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         break;
                     default:
                         Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
