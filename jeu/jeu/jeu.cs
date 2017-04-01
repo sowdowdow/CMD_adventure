@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace jeu
 {
@@ -406,17 +407,8 @@ namespace jeu
         {
             stat.onglet = "Aide";
         }
-        public void Action_Credit()
+        public void Action_What()
         {
-            DeleteLig(4, Console.WindowHeight - 1);
-            Console.CursorTop=4;
-            Centrage("Imaginé par Sowdowdow");
-            Console.CursorTop += 1;
-            Centrage("Codé par Sowdowdow");
-            Console.CursorTop += 1;
-            Centrage("Réalisé par Sowdowdow");
-            Console.CursorTop += 1;
-            Centrage("première partie : " + stat.Temps_de_jeu);
         }
         public void Action_Option()
         {
@@ -477,10 +469,11 @@ namespace jeu
                         changement_onglet = true;
                         break;
                     case ConsoleKey.Enter:
+                        //on rentre dans l'option voulue
                         if (pos_curseur == 3)
                         {
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            Action_Credit();
+                            Option_Credit();
                         }
                         else
                         {
@@ -498,9 +491,33 @@ namespace jeu
             }
             Console.ForegroundColor = actuel;
         }
-        public void Action_What()
+        public void Option_Controles()
         {
+
         }
+        public void Option_Aide()
+        {
+
+        }
+        public void Option_Langue()
+        {
+
+        }
+
+        public void Option_Credit()
+        {
+            DeleteLig(4, Console.WindowHeight - 1);
+            Centrage(4,"Imaginé par Sowdowdow");    //on centre le texte a la ligne 4
+            Centrage(5,"Codé par Sowdowdow");       //...
+            Centrage(6,"Réalisé par Sowdowdow");      //...
+            string premiere_partie = "première partie : " + stat.Temps_de_jeu.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR"));
+            Centrage(7,premiere_partie);//...
+        }
+        public void Option_SauvegarderEtQuitter()
+        {
+
+        }
+
         #endregion actions
     }
 }
