@@ -84,7 +84,14 @@ namespace jeu
             int taille_obj = obj.Length / 2;
             Console.CursorLeft = Console.BufferWidth / 2 - taille_obj;
             Console.Write(obj);
-        }//affiche un objet au centre de la ligne actuelle 
+        }//affiche un objet au centre de la ligne actuelle
+        public void Centrage(int ligne,string obj)
+        {
+            Console.CursorTop = ligne;
+            int taille_obj = obj.Length / 2;
+            Console.CursorLeft = Console.BufferWidth / 2 - taille_obj;
+            Console.Write(obj);
+        }//affiche un objet au centre de la ligne actuelle
         public void Wait(int temps)
         {
             System.Threading.Thread.Sleep(temps);
@@ -401,6 +408,8 @@ namespace jeu
         }
         public void Action_Credit()
         {
+            DeleteLig(4, Console.WindowHeight - 1);
+            Console.CursorTop=4;
             Centrage("Imaginé par Sowdowdow");
             Console.CursorTop += 1;
             Centrage("Codé par Sowdowdow");
@@ -416,7 +425,7 @@ namespace jeu
             int pos_curseur = 0;
             int offset = 4; //on ne doit pas afficher par dessus la barre de menu
             String[] options = { "Contrôles", "Aide", "Langue", "Crédit", "Sauvegarder & quitter" };
-            Console.SetCursorPosition(curseur.Length + Console.WindowWidth/2, 4);
+            Console.SetCursorPosition(curseur.Length + Console.WindowWidth / 2, 4);
             foreach (string option in options)  //affichage de chaque optin
             {
                 Affiche(option);
@@ -430,7 +439,7 @@ namespace jeu
             Console.SetCursorPosition(Console.WindowWidth - 2, Console.WindowHeight - 1);   //évite de ré-écrire sur l'affichage
             while (!changement_onglet)
             {
-                switch (Console.ReadKey().Key)
+                switch (Console.ReadKey().Key)  //switch pour le choix de l'option a choisir.
                 {
                     case ConsoleKey.DownArrow:
                         if (pos_curseur < options.Length - 1)
@@ -468,16 +477,24 @@ namespace jeu
                         changement_onglet = true;
                         break;
                     case ConsoleKey.Enter:
-                        Console.SetCursorPosition(0,4);
+                        if (pos_curseur == 3)
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Action_Credit();
+                        }
+                        else
+                        {
+                            Console.Write("Choississez avec les flèches !");
+                        }
+                        Console.SetCursorPosition(0, 4);
                         Console.ForegroundColor = ConsoleColor.Gray;
-                        Console.Write("Choississez avec les flèches !");
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         break;
                     default:
                         Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
                         break;
                 }
-                Console.SetCursorPosition(Console.WindowWidth-2, Console.WindowHeight-1);
+                Console.SetCursorPosition(Console.WindowWidth - 2, Console.WindowHeight - 1);
             }
             Console.ForegroundColor = actuel;
         }
