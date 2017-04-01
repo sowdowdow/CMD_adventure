@@ -26,15 +26,17 @@ namespace jeu
         {
             Console.Write(nb);
         }//console.write(int)
-        public void LigH(char car)
+        public void LigH(int hauteur, char car)
         {
+            Console.SetCursorPosition(0, hauteur);
             for (int i = 0; i < Console.BufferWidth; i++)
             {
                 Console.Write(car);
             }
         }//affiche une ligne de 1 caractères
-        public void LigH(char car, char car2)
+        public void LigH(int hauteur, char car, char car2)
         {
+            Console.SetCursorPosition(0, hauteur);
             for (int i = 0; i < Console.BufferWidth / 2; i++)
             {
                 Console.Write(car);
@@ -91,7 +93,7 @@ namespace jeu
             Console.CursorLeft = Console.BufferWidth / 2 - taille_obj;
             Console.Write(obj);
         }//affiche un objet au centre de la ligne actuelle
-        public void Centrage(int ligne,string obj)
+        public void Centrage(int ligne, string obj)
         {
             Console.CursorTop = ligne;
             int taille_obj = obj.Length / 2;
@@ -159,15 +161,13 @@ namespace jeu
         public void Taptaptap_game()
         {
             Console.Clear();
-            Console.SetCursorPosition(0, 0);
-            LigH('=');
+            LigH(0, '=');
             Console.SetCursorPosition(0, 2);
             ConsoleColor fg_actuel = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.White;
             Centrage("tap tap tap !");
             Console.ForegroundColor = fg_actuel;
-            Console.SetCursorPosition(0, 4);
-            LigH('=');
+            LigH(4, '=');
             for (int i = Console.CursorTop + 1; i < Console.WindowHeight; i++)
             {
                 Centrage(perso_base);
@@ -358,6 +358,7 @@ namespace jeu
             }
             Console.ForegroundColor = couleur_actuel;
         }
+        #region actions
         public void Choix_action()
         {
             switch (Console.ReadKey().Key)
@@ -399,7 +400,6 @@ namespace jeu
                     break;
             }
         }
-        #region actions
         public void Action_Carte()
         {
             sprite.Affiche_sprite(0, 4, sprite.Maison1);
@@ -412,32 +412,36 @@ namespace jeu
         {
 
         }
-        public void Action_Aide()
-        {
-            stat.onglet = "Aide";
-        }
         public void Action_What()
         {
         }
         public void Action_Option()
         {
-            bool changement_onglet = false;
-            string curseur = "=>";
-            int pos_curseur = 0;
-            int offset = 4; //on ne doit pas afficher par dessus la barre de menu
-            String[] options = { "Contrôles", "Aide", "Langue", "Crédit", "Sauvegarder & quitter" };
-            Console.SetCursorPosition(curseur.Length + Console.WindowWidth / 2, 4);
-            foreach (string option in options)  //affichage de chaque optin
-            {
-                Affiche(option);
-                Console.SetCursorPosition(curseur.Length + Console.WindowWidth / 2, Console.CursorTop += 1);
-            }
-            ConsoleColor actuel = Console.ForegroundColor;  //change la couleur
-            Console.ForegroundColor = ConsoleColor.Yellow;   //...
+                bool changement_onglet = false;
+                int pos_curseur = 0;
+                int offset = 4; //on ne doit pas afficher par dessus la barre de menu
+                String[] options = { "Contrôles", "Aide", "Langue", "Crédit", "Sauvegarder & quitter" };
+                string curseur = "=>";
+                ConsoleColor actuel = Console.ForegroundColor;  //change la couleur
 
-            Console.SetCursorPosition(Console.WindowWidth / 2, 4);                          //on positionne le curseur sur la première ligne
-            Console.Write(curseur);                                                         //afficher le curseur dès le départ
-            Console.SetCursorPosition(Console.WindowWidth - 2, Console.WindowHeight - 1);   //évite de ré-écrire sur l'affichage
+            void affichage_des_options()
+            {
+                DeleteLig(4, Console.WindowHeight - 1);
+                Console.SetCursorPosition(curseur.Length + Console.WindowWidth / 2, 4);
+                foreach (string option in options)  //affichage de chaque optin
+                {
+                    Affiche(option);
+                    Console.SetCursorPosition(curseur.Length + Console.WindowWidth / 2, Console.CursorTop += 1);
+                }
+                Console.ForegroundColor = ConsoleColor.Yellow;   //...
+
+                Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + 4);                          //on positionne le curseur sur la première ligne
+                Console.Write(curseur);                                                         //afficher le curseur dès le départ
+                Console.SetCursorPosition(Console.WindowWidth - 2, Console.WindowHeight - 1);   //évite de ré-écrire sur l'affichage
+            }
+
+            affichage_des_options();    //on lance la boucle
+
             while (!changement_onglet)
             {
                 switch (Console.ReadKey().Key)  //switch pour le choix de l'option a choisir.
@@ -462,6 +466,7 @@ namespace jeu
                             Console.Write(curseur);
                         }
                         break;
+                    #region touches_vers_retour_choix_onglet
                     case ConsoleKey.A:
                         changement_onglet = true;
                         break;
@@ -477,17 +482,43 @@ namespace jeu
                     case ConsoleKey.T:
                         changement_onglet = true;
                         break;
-                    case ConsoleKey.Enter:
+                    #endregion touches_vers_retour_choix_onglet
+                    case ConsoleKey.RightArrow:
                         //on rentre dans l'option voulue
-                        if (pos_curseur == 3)
+                        if (pos_curseur == 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Option_Controles();
+                        }
+                        else if (pos_curseur == 1)
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Option_Aide();
+                        }
+                        else if (pos_curseur == 2)
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Option_Langue();
+                        }
+                        else if (pos_curseur == 3)
                         {
                             Console.ForegroundColor = ConsoleColor.DarkYellow;
                             Option_Credit();
                         }
+                        else if (pos_curseur == 4)
+                        {
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Option_SauvegarderEtQuitter();
+                        }
                         else
                         {
-                            Console.Write("Choississez avec les flèches !");
+                            Console.Write("situation impossible rencontré");
                         }
+                        break;
+                    case ConsoleKey.LeftArrow:
+                        affichage_des_options();
+                        break;
+                    case ConsoleKey.Enter:
                         Console.SetCursorPosition(0, 4);
                         Console.ForegroundColor = ConsoleColor.Gray;
                         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -500,6 +531,8 @@ namespace jeu
             }
             Console.ForegroundColor = actuel;
         }
+        #endregion actions
+        #region Option_
         public void Option_Controles()
         {
 
@@ -510,23 +543,32 @@ namespace jeu
         }
         public void Option_Langue()
         {
-
+            DeleteLig(4, Console.WindowHeight - 1);
+            Centrage(Console.WindowHeight / 2, "en cours de developpement");
         }
 
         public void Option_Credit()
         {
             DeleteLig(4, Console.WindowHeight - 1);
-            Centrage(4,"Imaginé par Sowdowdow");    //on centre le texte a la ligne 4
-            Centrage(5,"Codé par Sowdowdow");       //...
-            Centrage(6,"Réalisé par Sowdowdow");      //...
-            string premiere_partie = "première partie : " + stat.Temps_de_jeu.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR"));
-            Centrage(7,premiere_partie);//...
+            string premiere_partie = "date de votre première partie : " + stat.Temps_de_jeu.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR"));
+            int i = Console.WindowHeight / 2 - 4; //n° ligne
+            DeleteLig(i, Console.WindowHeight - 1); //on efface la console
+            Centrage(i, "Imaginé, réalisé et codé par : Sowdowdow");    //on centre le texte a la ligne 4
+            i++;
+            Centrage(i, "début dev. : 2017");      //...
+            i++;
+            Centrage(i, "fin dev. : ~");      //...
+            i++;
+            Centrage(i, "inspiré de CandyBox2");      //...
+            i+=2;
+            Centrage(i, premiere_partie);//...
+            Centrage(Console.WindowHeight - 1, perso_base);
         }
         public void Option_SauvegarderEtQuitter()
         {
 
         }
+        #endregion Option_
 
-        #endregion actions
     }
 }
