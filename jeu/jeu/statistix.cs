@@ -21,8 +21,11 @@ namespace jeu
             heure_fin_partie = DateTime.Now; // par défaut sinon la lecture de l'attribut temps de jeu sera invalide
             string pathString = @"C: \Users\Public\SAVE_CMD_adventure";
             System.IO.Directory.CreateDirectory(pathString);
-            string[] lines = { taptaptap.ToString(), temps_de_jeu.ToString(), money.ToString(), vie_max_joueur.ToString(), nom_joueur.ToString(), joueur_ATK.ToString(),niveau_progression.ToString() };
+            string[] lines = { taptaptap.ToString(), temps_de_jeu.ToString(), money.ToString(), vie_max_joueur.ToString(), nom_joueur.ToString(), Joueur_ATK.ToString(),Niveau_progression.ToString() };
             System.IO.File.WriteAllLines(@"C:\Users\Public\SAVE_CMD_adventure\save.txt", lines);
+            Console.Write("Parite sauvegardée");
+            System.Threading.Thread.Sleep(1000);
+
         }
         public void Lecture_Sauvegarde()
         {
@@ -60,6 +63,8 @@ namespace jeu
         public int Money { get => money; set => money = value; }
         public int Vie_max_joueur { get => vie_max_joueur; set => vie_max_joueur = value; }
         public string Nom_joueur { get => nom_joueur; set => nom_joueur = value; }
+        public int Joueur_ATK { get => joueur_ATK; set => joueur_ATK = value; }
+        public int Niveau_progression { get => niveau_progression; set => niveau_progression = value; }
         #endregion accesseurs
     }
 }
