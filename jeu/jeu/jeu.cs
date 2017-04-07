@@ -576,8 +576,17 @@ namespace jeu
         public void Option_Credit()
         {
             DeleteLig(4, Console.WindowHeight - 1);
-            string premiere_partie = "date de votre première partie : " + stat.Temps_de_jeu.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR"));
-            int i = Console.WindowHeight / 2 - 4; //n° ligne
+            string premiere_partie = "date de votre première partie : " + stat.Date_premiere_partie.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR"));
+            int h = 0, m = 0, s; //heure minute seconde
+            s = statistix.Temps_de_jeu;
+            h = s / 3600;
+            s = s % 3600;
+            m = s / 60;
+            s = s % 60;
+
+            string temps_jeu_formate = h + "h" + m + "m" + s + "s";
+            string temps_de_jeu = "temps de jeu : " + temps_jeu_formate;
+            int i = Console.WindowHeight / 2 - 5; //n° ligne
             DeleteLig(i, Console.WindowHeight - 1); //on efface la console
             Centrage(i, "Imaginé, réalisé et codé par : Sowdowdow");    //on centre le texte a la ligne 4
             i++;
@@ -587,7 +596,10 @@ namespace jeu
             i++;
             Centrage(i, "inspiré de CandyBox2");      //...
             i += 2;
+            Centrage(temps_de_jeu); //on espace les statistiques
+            i++;
             Centrage(i, premiere_partie);//...
+
             Centrage(Console.WindowHeight - 1, sprite.perso_base);
         }
         public void Option_SauvegarderEtQuitter()
@@ -600,7 +612,7 @@ namespace jeu
             ConsoleColor fg_actuel = Console.ForegroundColor;
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
-            Centrage((Console.WindowHeight / 2), "   "+espace+yesno[1]);
+            Centrage((Console.WindowHeight / 2), "   " + espace + yesno[1]);
             Curseur_repos();
             int quitter = 1;    //0 : OUI   1 : NON 2 : retour
             while (quitter != 2)

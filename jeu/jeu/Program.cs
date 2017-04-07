@@ -9,9 +9,13 @@ namespace jeu
 
             //on instancie affiche
             jeu Jeu = new jeu();
-            Jeu.stat.Temps_de_jeu = DateTime.UtcNow; // la valeur prise ici sera remplacé si une sauvegarde existe
-            Jeu.stat.heure_debut_partie = DateTime.UtcNow; //lecture de l'heure actuel (utile si le jeu n'a pas de sauvegarde)
+            Timers timers = new Timers();
+            Jeu.stat.Date_premiere_partie = DateTime.UtcNow; // la valeur prise ici sera remplacé si une sauvegarde existe
             Jeu.stat.vie_joueur = Jeu.stat.Vie_max_joueur;
+
+            //on déclare l'éxecution des différents timers
+            timers.update_temps_de_jeu.Elapsed += timers.Update_temps_jouer;
+            timers.update_temps_de_jeu.Enabled = true;
 
             Jeu.stat.Lecture_Sauvegarde();
             //Jeu.Crazy_Console_Random_Number(); //<--------------------------------
