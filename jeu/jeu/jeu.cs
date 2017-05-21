@@ -12,6 +12,7 @@ namespace jeu
         //on instancie stat / sprite
         public statistix stat = new statistix();
         public Sprite_box sprite = new Sprite_box();
+        public Timers timers = new Timers();
         //methodes et fonctions
         #region METHODE_AFFICHAGE
         public void Curseur_repos()
@@ -345,8 +346,8 @@ namespace jeu
 
         public void Barre_de_vie()
         {
-            string vie = "Vie: " + stat.vie_joueur + "/" + stat.Vie_max_joueur;
-            double coefficient_barre_de_vie = 1 + ((stat.Vie_max_joueur - stat.vie_joueur) / stat.Vie_max_joueur);
+            string vie = "Vie: " + statistix.vie_joueur + "/" + stat.Vie_max_joueur;
+            double coefficient_barre_de_vie = 1 + ((stat.Vie_max_joueur - statistix.vie_joueur) / stat.Vie_max_joueur);
             ConsoleColor fond_actuel = Console.BackgroundColor;
             ConsoleColor couleur_actuel = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.White;
@@ -577,7 +578,9 @@ namespace jeu
         {
             DeleteLig(4, Console.WindowHeight - 1);
             string premiere_partie = "date de votre première partie : " + stat.Date_premiere_partie.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR"));
-            int h = 0, m = 0, s; //heure minute seconde
+            
+            //heure minute seconde
+            int h = 0, m = 0, s; 
             s = statistix.Temps_de_jeu;
             h = s / 3600;
             s = s % 3600;

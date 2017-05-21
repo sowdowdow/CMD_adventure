@@ -13,7 +13,7 @@ namespace jeu
         private string nom_joueur = "nameless";
         private int joueur_ATK = 1; //puissance d'attaque du joueur
         private int niveau_progression = 0;
-        private static int temps_de_jeu = 0;   //temps de jeu en secondes
+        private int temps_de_jeu = 0;   //temps de jeu en secondes
         #region liste_de_sauvegarde
         //a faire
         #endregion liste_de_sauvegarde
@@ -59,14 +59,14 @@ namespace jeu
         }
 
         //attribut sans sauvegarde
-        public int vie_joueur;
+        public static int vie_joueur = 0;
         public bool fin_du_jeu = false;
         public string onglet = "onglet par defaut";
 
 
         #region accesseurs
         public int Taptaptap { get => taptaptap; set => taptaptap = value; }
-        public static int Temps_de_jeu { get => temps_de_jeu; set => temps_de_jeu = value; } //gestion du temps total joué
+        public int Temps_de_jeu { get => temps_de_jeu; set => temps_de_jeu = value; } //gestion du temps total joué
         public int Money { get => money; set => money = value; }
         public int Vie_max_joueur { get => vie_max_joueur; set => vie_max_joueur = value; }
         public string Nom_joueur { get => nom_joueur; set => nom_joueur = value; }
