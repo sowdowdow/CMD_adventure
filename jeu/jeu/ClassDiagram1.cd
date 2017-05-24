@@ -3,7 +3,7 @@
   <Class Name="jeu.jeu">
     <Position X="4.75" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>BAUAABAACAAAAAACACAAoAAECBYhAgAgAAAACABAMIE=</HashCode>
+      <HashCode>BAEAABAACAAAABACACAAoAAECBYhAgAgEAAACABAMIE=</HashCode>
       <FileName>jeu.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -33,13 +33,6 @@
     <TypeIdentifier>
       <HashCode>AAAQAACQFAAAAAUAAAgAgEEAEAAAAAIEAAgACAAAEQg=</HashCode>
       <FileName>statistix.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="jeu.Timers">
-    <Position X="1" Y="0.5" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAIAAAAAAAAAAA=</HashCode>
-      <FileName>Timers.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

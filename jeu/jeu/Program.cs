@@ -12,9 +12,9 @@ namespace jeu
             Jeu.stat.Date_premiere_partie = DateTime.UtcNow; // la valeur prise ici sera remplacé si une sauvegarde existe
             statistix.vie_joueur = Jeu.stat.Vie_max_joueur;
 
-            //on déclare l'éxecution des différents timers
-            Jeu.timers.update_temps_de_jeu.Elapsed += Jeu.timers.Update_temps_jouer;
-            Jeu.timers.update_temps_de_jeu.Enabled = true;
+            //on déclare l'éxecution du timer
+            Jeu.update_temps_jeu.Elapsed += Jeu.Update_temps;
+            Jeu.update_temps_jeu.Enabled = true;
 
             Jeu.stat.Lecture_Sauvegarde();
             //Jeu.Crazy_Console_Random_Number(); //<--------------------------------

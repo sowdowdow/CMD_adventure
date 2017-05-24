@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Timers;
 
 namespace jeu
 {
@@ -12,7 +13,26 @@ namespace jeu
         //on instancie stat / sprite
         public statistix stat = new statistix();
         public Sprite_box sprite = new Sprite_box();
-        public Timers timers = new Timers();
+
+        //Timer qui actualise le jeu
+#region timer
+        public Timer update_temps_jeu = new System.Timers.Timer(1000)  //on update toute les secondes
+        {
+            AutoReset = true
+        };
+        public void Update_temps(object source, System.Timers.ElapsedEventArgs e)
+        {
+            //1 seconde de plus au temps de jeu
+            stat.Temps_de_jeu++;
+            //boucle de régéneration de la vie du joueur
+            if (statistix.vie_joueur < stat.Vie_max_joueur)
+            {
+                statistix.vie_joueur++;
+                Barre_de_vie();
+            }
+        }
+#endregion timer
+
         //methodes et fonctions
         #region METHODE_AFFICHAGE
         public void Curseur_repos()
@@ -581,7 +601,7 @@ namespace jeu
             
             //heure minute seconde
             int h = 0, m = 0, s; 
-            s = statistix.Temps_de_jeu;
+            s = stat.Temps_de_jeu;
             h = s / 3600;
             s = s % 3600;
             m = s / 60;
