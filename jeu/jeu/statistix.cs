@@ -19,6 +19,9 @@ namespace jeu
         #endregion liste_de_sauvegarde
         public void Ecriture_Sauvegarde()
         {
+            //efface la console
+            Console.Clear();
+            //défini l'emplacement de la sauvegarde
             string pathString = @"C: \Users\Public\SAVE_CMD_adventure";
             System.IO.Directory.CreateDirectory(pathString);
             string[] lines = { taptaptap.ToString(), temps_de_jeu.ToString(), money.ToString(), vie_max_joueur.ToString(), nom_joueur.ToString(), Joueur_ATK.ToString(), Niveau_progression.ToString(), date_premiere_partie.ToString() };
@@ -74,5 +77,21 @@ namespace jeu
         public int Niveau_progression { get => niveau_progression; set => niveau_progression = value; }
         public DateTime Date_premiere_partie { get => date_premiere_partie; set => date_premiere_partie = value; } //date de la premiere partie
         #endregion accesseurs
+
+
+        //Constructeur
+        public statistix()
+        {
+            //La lecture de la sauvegarde = automatique --> au démarrage du jeu appel de ce constructeur
+            Lecture_Sauvegarde();
+        }
+
+
+        //Destructeur
+        ~statistix()
+        {
+            //L'écriture de la sauvegarde = automatique --> appel de ce destructeur
+            Ecriture_Sauvegarde();
+        }
     }
 }

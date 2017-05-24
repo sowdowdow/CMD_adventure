@@ -16,7 +16,6 @@ namespace jeu
             Jeu.update_temps_jeu.Elapsed += Jeu.Update_temps;
             Jeu.update_temps_jeu.Enabled = true;
 
-            Jeu.stat.Lecture_Sauvegarde();
             //Jeu.Crazy_Console_Random_Number(); //<--------------------------------
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Title = "CMD_ adventure";   //défini le titre de la console
@@ -31,8 +30,6 @@ namespace jeu
             Jeu.Choix_action();
             }
 
-            Jeu.stat.Ecriture_Sauvegarde();
-            Console.WriteLine("\nFin du jeu");
             Jeu.Wait(1500);
         }
     }
