@@ -20,6 +20,17 @@ namespace jeu
         {
             AutoReset = true
         };
+
+
+        //Constructeur
+        public jeu()
+        {
+            Console.Title = "CMD_ adventure";   //défini le titre de la console
+            //Jeu.Crazy_Console_Random_Number(); //<--------------------------------réactiver a la fin du dev.
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            //Jeu.Ecran_titre();            //<--------------------------------------idem
+        }
+
         public void Update_temps(object source, System.Timers.ElapsedEventArgs e)
         {
             //1 seconde de plus au temps de jeu
@@ -107,6 +118,7 @@ namespace jeu
                 Console.Write(appuyez[i]);
             }
             Console.ReadKey(true);  // attend la saisie d'un appui sur clavier
+            Console.Clear(); //efface la console
         }//affiche l'animation du Titre
         public void Centrage(string obj)
         {

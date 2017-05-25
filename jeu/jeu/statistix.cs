@@ -24,10 +24,10 @@ namespace jeu
             //défini l'emplacement de la sauvegarde
             string pathString = @"C: \Users\Public\SAVE_CMD_adventure";
             System.IO.Directory.CreateDirectory(pathString);
-            string[] lines = { taptaptap.ToString(), temps_de_jeu.ToString(), money.ToString(), vie_max_joueur.ToString(), nom_joueur.ToString(), Joueur_ATK.ToString(), Niveau_progression.ToString(), date_premiere_partie.ToString() };
+            string[] attributs_sauvegarde = { taptaptap.ToString(), temps_de_jeu.ToString(), money.ToString(), vie_max_joueur.ToString(), nom_joueur.ToString(), Joueur_ATK.ToString(), Niveau_progression.ToString(), date_premiere_partie.ToString() };
             try
             {
-                System.IO.File.WriteAllLines(@"C:\Users\Public\SAVE_CMD_adventure\save.txt", lines);
+                System.IO.File.WriteAllLines(@"C:\Users\Public\SAVE_CMD_adventure\save.txt", attributs_sauvegarde);
                 Console.Write("Partie sauvegardée");
             }
             catch (Exception)
@@ -45,18 +45,18 @@ namespace jeu
             if (System.IO.File.Exists(@"C: \Users\Public\SAVE_CMD_adventure"))
             {
                 lines = System.IO.File.ReadAllLines(@"C:\Users\Public\SAVE_CMD_adventure\save.txt");
-                int.TryParse(lines[0], out taptaptap);
-                DateTime.TryParse(lines[1], out date_premiere_partie);
-                int.TryParse(lines[2], out money);
-                int.TryParse(lines[3], out vie_max_joueur);
+                taptaptap = int.Parse(lines[0]);
+                date_premiere_partie = DateTime.Parse(lines[1]);
+                money = int.Parse(lines[2]);
+                vie_max_joueur = int.Parse(lines[3]);
                 lines[4] = nom_joueur;
-                int.TryParse(lines[4], out joueur_ATK);
-                int.TryParse(lines[5], out niveau_progression);
-                int.TryParse(lines[6], out temps_de_jeu);
+                joueur_ATK = int.Parse(lines[4]);
+                niveau_progression = int.Parse(lines[5]);
+                temps_de_jeu = int.Parse(lines[6]);
             }
             else
             {
-                System.Console.WriteLine("Sauvegarde inexistante.");
+                System.Console.WriteLine("/!\\ Sauvegarde inexistante");
                 System.Threading.Thread.Sleep(1000);
             }
         }

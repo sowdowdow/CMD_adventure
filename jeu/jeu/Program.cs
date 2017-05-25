@@ -16,14 +16,8 @@ namespace jeu
             Jeu.update_temps_jeu.Elapsed += Jeu.Update_temps;
             Jeu.update_temps_jeu.Enabled = true;
 
-            //Jeu.Crazy_Console_Random_Number(); //<--------------------------------
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.Title = "CMD_ adventure";   //défini le titre de la console
-            //Jeu.Ecran_titre();            //<--------------------------------------réactiver a la fin du dev.
-            Console.Clear(); //efface la console
 
-
-            //Jeu.Taptaptap_game();    /<--------------------------------------réactiver a la fin du dev.			lance le jeu tap tap tap
+            //Jeu.Taptaptap_game();    //<--------------------------------------réactiver a la fin du dev.			lance le jeu tap tap tap
             Jeu.Barre_menu(Jeu.stat.onglet); //on actualise l'affichage de la barre de menu une premiere fois
             while (!Jeu.stat.fin_du_jeu)
             {
