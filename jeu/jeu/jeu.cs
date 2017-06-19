@@ -15,7 +15,7 @@ namespace jeu
         public Sprite_box sprite = new Sprite_box();
 
         //Timer qui actualise le jeu
-#region timer
+        #region timer
         public Timer update_temps_jeu = new System.Timers.Timer(1000)  //on update toute les secondes
         {
             AutoReset = true
@@ -42,7 +42,7 @@ namespace jeu
                 Barre_de_vie();
             }
         }
-#endregion timer
+        #endregion timer
 
         //methodes et fonctions
         #region METHODE_AFFICHAGE
@@ -610,9 +610,9 @@ namespace jeu
         {
             DeleteLig(4, Console.WindowHeight - 1);
             string premiere_partie = "date de votre première partie : " + stat.Date_premiere_partie.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR"));
-            
+
             //heure minute seconde
-            int h = 0, m = 0, s; 
+            int h = 0, m = 0, s;
             s = stat.Temps_de_jeu;
             h = s / 3600;
             s = s % 3600;
@@ -639,45 +639,92 @@ namespace jeu
         }
         public void Option_SauvegarderEtQuitter()
         {
-            string[] yesno = { "OUI", "NON" };
-            string espace = "          ";
-            Centrage((Console.WindowHeight / 2) - 2, "Voulez-vous vraiment quitter ?");
-            Centrage((Console.WindowHeight / 2), yesno[0] + espace + "   ");
             ConsoleColor bg_actuel = Console.BackgroundColor;
             ConsoleColor fg_actuel = Console.ForegroundColor;
-            Console.BackgroundColor = ConsoleColor.White;
-            Console.ForegroundColor = ConsoleColor.Black;
-            Centrage((Console.WindowHeight / 2), "   " + espace + yesno[1]);
-            Curseur_repos();
-            int quitter = 1;    //0 : OUI   1 : NON 2 : retour
-            while (quitter != 2)
+
+            int centre_horizontal = Console.WindowWidth / 2;
+            int centre_vertical = Console.WindowHeight / 2;
+            string[] yesno = { "NON", "OUI" };
+            string espace = "             ";
+            void Quit_True()
             {
+                Centrage((Console.WindowHeight / 2) - 2, "Voulez-vous vraiment quitter ?");
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.SetCursorPosition(centre_horizontal - espace.Length/2, centre_vertical);
+                Console.Write(yesno[1]);
+                //On remet les couleurs originals
+                Console.BackgroundColor = bg_actuel;
+                Console.ForegroundColor = fg_actuel;
+                Console.Write(espace + yesno[0]);
+                Curseur_repos();
+            }
+            void Quit_False()
+            {
+                Centrage((Console.WindowHeight / 2) - 2, "Voulez-vous vraiment quitter ?");
+                Console.SetCursorPosition(centre_horizontal - espace.Length/2, centre_vertical);
+                Console.Write(yesno[1] + espace);
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.Write(yesno[0]);
+                //On remet les couleurs originals
+                Console.BackgroundColor = bg_actuel;
+                Console.ForegroundColor = fg_actuel;
+                Curseur_repos();
+            }
+            //Initialisation
+            Quit_False();
+            //si la valeur quitter = VRAI et touche entrée => on quitte
+            bool quitter = false;
+            bool sortie_boucle = false;
+
+            while (sortie_boucle == false)
+            {
+                centre_horizontal = Console.WindowWidth / 2;
                 switch (Console.ReadKey().Key)
                 {
                     case ConsoleKey.LeftArrow:
-                        if (quitter == 0)
+                        if (quitter == true)
                         {
-
+                            quitter = false;
+                            Quit_False();
                         }
-                        else if (quitter == 1)
+                        else
                         {
-
+                            quitter = true;
+                            Quit_True();
                         }
                         break;
                     case ConsoleKey.RightArrow:
-
+                        if (quitter == true)
+                        {
+                            quitter = false;
+                            Quit_False();
+                        }
+                        else
+                        {
+                            quitter = true;
+                            Quit_True();
+                        }
                         break;
                     case ConsoleKey.Enter:
-                        quitter = 2;
-                        stat.fin_du_jeu = true;
+                        if (quitter == true)
+                        {
+                            stat.fin_du_jeu = true;
+                            sortie_boucle = true;
+                        }
+                        else
+                        {
+                            sortie_boucle = true;
+                        }
                         break;
                     default:
+                        Curseur_repos();
                         break;
                 }
             }
             Console.BackgroundColor = bg_actuel;
             Console.ForegroundColor = fg_actuel;
-
         }
         #endregion Option_
 
