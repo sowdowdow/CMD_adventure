@@ -459,6 +459,7 @@ namespace jeu
         }
         public void Action_Option()
         {
+            bool option_active = false;
             bool changement_onglet = false;
             int pos_curseur = 0;
             int offset = 4; //on ne doit pas afficher par dessus la barre de menu
@@ -489,7 +490,7 @@ namespace jeu
                 switch (Console.ReadKey().Key)  //switch pour le choix de l'option a choisir.
                 {
                     case ConsoleKey.DownArrow:
-                        if (pos_curseur < options.Length - 1)
+                        if (pos_curseur < options.Length - 1 && option_active == false)
                         {
                             Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset); //...
                             Console.Write("  ");    //on efface le curseur courant
@@ -499,7 +500,7 @@ namespace jeu
                         }
                         break;
                     case ConsoleKey.UpArrow:
-                        if (pos_curseur > 0)
+                        if (pos_curseur > 0 && option_active == false)
                         {
                             Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset); //...
                             Console.Write("  ");    //on efface le curseur courant
@@ -507,6 +508,47 @@ namespace jeu
                             Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset);
                             Console.Write(curseur);
                         }
+                        break;
+                    case ConsoleKey.RightArrow:
+                        //on rentre dans l'option voulue
+                        option_active = true;
+                        switch (pos_curseur)
+                        {
+                            case 0:
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Option_Controles();
+                                break;
+                            case 1:
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Option_Aide();
+                                break;
+                            case 2:
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Option_Langue();
+                                break;
+                            case 3:
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Option_Credit();
+                                break;
+                            case 4:
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Option_SauvegarderEtQuitter();
+                                break;
+                            default:
+                                //si jamais on rencontre une erreur
+                                option_active = false;
+                                Console.Write("situation impossible rencontré");
+                                break;
+                        }
+                        break;
+                    case ConsoleKey.LeftArrow:
+                        option_active = false;
+                        affichage_des_options();
+                        break;
+                    case ConsoleKey.Enter:
+                        Console.SetCursorPosition(0, 4);
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         break;
                     #region touches_vers_retour_choix_onglet
                     case ConsoleKey.A:
@@ -525,46 +567,6 @@ namespace jeu
                         changement_onglet = true;
                         break;
                     #endregion touches_vers_retour_choix_onglet
-                    case ConsoleKey.RightArrow:
-                        //on rentre dans l'option voulue
-                        if (pos_curseur == 0)
-                        {
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            Option_Controles();
-                        }
-                        else if (pos_curseur == 1)
-                        {
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            Option_Aide();
-                        }
-                        else if (pos_curseur == 2)
-                        {
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            Option_Langue();
-                        }
-                        else if (pos_curseur == 3)
-                        {
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            Option_Credit();
-                        }
-                        else if (pos_curseur == 4)
-                        {
-                            Console.ForegroundColor = ConsoleColor.DarkYellow;
-                            Option_SauvegarderEtQuitter();
-                        }
-                        else
-                        {
-                            Console.Write("situation impossible rencontré");
-                        }
-                        break;
-                    case ConsoleKey.LeftArrow:
-                        affichage_des_options();
-                        break;
-                    case ConsoleKey.Enter:
-                        Console.SetCursorPosition(0, 4);
-                        Console.ForegroundColor = ConsoleColor.Gray;
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        break;
                     default:
                         Curseur_repos();
                         break;
@@ -651,7 +653,7 @@ namespace jeu
                 Centrage((Console.WindowHeight / 2) - 2, "Voulez-vous vraiment quitter ?");
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
-                Console.SetCursorPosition(centre_horizontal - espace.Length/2, centre_vertical);
+                Console.SetCursorPosition(centre_horizontal - espace.Length / 2, centre_vertical);
                 Console.Write(yesno[1]);
                 //On remet les couleurs originals
                 Console.BackgroundColor = bg_actuel;
@@ -662,7 +664,7 @@ namespace jeu
             void Quit_False()
             {
                 Centrage((Console.WindowHeight / 2) - 2, "Voulez-vous vraiment quitter ?");
-                Console.SetCursorPosition(centre_horizontal - espace.Length/2, centre_vertical);
+                Console.SetCursorPosition(centre_horizontal - espace.Length / 2, centre_vertical);
                 Console.Write(yesno[1] + espace);
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
