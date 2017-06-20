@@ -35,7 +35,7 @@ namespace jeu
                 Date_premiere_partie.ToString() };
             try
             {
-                System.IO.File.WriteAllLines(@"C:\Users\Public\SAVE_CMD_adventure\save.txt", attributs_sauvegarde);
+                System.IO.File.WriteAllLines(@"C:\Users\Public\SAVE_CMD_adventure\save.save", attributs_sauvegarde);
                 Console.Write("Partie sauvegardée");
             }
             catch (Exception)
@@ -50,10 +50,10 @@ namespace jeu
             string pathString = @"C: \Users\Public\SAVE_CMD_adventure";
             System.IO.Directory.CreateDirectory(pathString);
             string[] lines = null;
-            if (System.IO.File.Exists(@"C: \Users\Public\SAVE_CMD_adventure\save.txt"))
+            if (System.IO.File.Exists(@"C: \Users\Public\SAVE_CMD_adventure\save.save"))
             {
                 //lecture du fichier
-                lines = System.IO.File.ReadAllLines(@"C:\Users\Public\SAVE_CMD_adventure\save.txt");
+                lines = System.IO.File.ReadAllLines(@"C:\Users\Public\SAVE_CMD_adventure\save.save");
                 //lecture des variables
                 try
                 {
@@ -79,13 +79,13 @@ namespace jeu
             }
             else
             {
-                System.Console.WriteLine("/!\\ Sauvegarde inexistante");
+                System.Console.WriteLine(@"/!\ Sauvegarde inexistante");
                 System.Threading.Thread.Sleep(1000);
             }
         }
 
         //attribut sans sauvegarde
-        public static int vie_joueur = 0;
+        public int vie_joueur = 1;
         public bool fin_du_jeu = false;
         public string onglet = "onglet par defaut";
 
@@ -111,8 +111,6 @@ namespace jeu
             //La lecture de la sauvegarde = automatique --> au démarrage du jeu appel de ce constructeur
             Lecture_Sauvegarde();
         }
-
-
         //Destructeur
         ~statistix()
         {

@@ -36,9 +36,9 @@ namespace jeu
             //1 seconde de plus au temps de jeu
             stat.Temps_de_jeu++;
             //boucle de régéneration de la vie du joueur
-            if (statistix.vie_joueur < stat.Vie_max_joueur)
+            if (stat.vie_joueur < stat.Vie_max_joueur)
             {
-                statistix.vie_joueur++;
+                stat.vie_joueur++;
                 Barre_de_vie();
             }
         }
@@ -378,13 +378,13 @@ namespace jeu
 
         public void Barre_de_vie()
         {
-            string vie = "Vie: " + statistix.vie_joueur + "/" + stat.Vie_max_joueur;
-            double coefficient_barre_de_vie = 1 + ((stat.Vie_max_joueur - statistix.vie_joueur) / stat.Vie_max_joueur);
+            string vie = "Vie: " + stat.vie_joueur + "/" + stat.Vie_max_joueur;
+            double coefficient_barre_de_vie = 1 + ((stat.Vie_max_joueur - stat.vie_joueur) / stat.Vie_max_joueur);
             ConsoleColor fond_actuel = Console.BackgroundColor;
             ConsoleColor couleur_actuel = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.DarkGreen;   //en vert foncé pour la visibilité
-            //Console.CursorVisible = false; ------------------------------------------------------------réactiver quand la méthode est débugé
+            Console.CursorVisible = false; //évite un glitch visuel
             Console.SetCursorPosition(0, 3);
             for (int i = 0; i < Console.WindowWidth * coefficient_barre_de_vie; i++)
             {
@@ -439,6 +439,7 @@ namespace jeu
                     Option_SauvegarderEtQuitter();
                     break;
                 default:
+                    Curseur_repos();
                     break;
             }
         }

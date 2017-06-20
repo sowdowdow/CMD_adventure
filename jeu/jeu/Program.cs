@@ -9,7 +9,6 @@ namespace jeu
 
             //on instancie affiche
             jeu Jeu = new jeu();
-            statistix.vie_joueur = Jeu.stat.Vie_max_joueur;
 
             //on déclare l'éxecution du timer
             Jeu.update_temps_jeu.Elapsed += Jeu.Update_temps;
