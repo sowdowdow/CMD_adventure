@@ -9,7 +9,6 @@ namespace jeu
 
             //on instancie affiche
             jeu Jeu = new jeu();
-            Jeu.stat.Date_premiere_partie = DateTime.UtcNow; // la valeur prise ici sera remplacé si une sauvegarde existe
             statistix.vie_joueur = Jeu.stat.Vie_max_joueur;
 
             //on déclare l'éxecution du timer
@@ -24,7 +23,6 @@ namespace jeu
             Jeu.Choix_action();
             }
 
-            Jeu.Wait(1500);
         }
     }
 }

@@ -24,7 +24,15 @@ namespace jeu
             //défini l'emplacement de la sauvegarde
             string pathString = @"C: \Users\Public\SAVE_CMD_adventure";
             System.IO.Directory.CreateDirectory(pathString);
-            string[] attributs_sauvegarde = { taptaptap.ToString(), temps_de_jeu.ToString(), money.ToString(), vie_max_joueur.ToString(), nom_joueur.ToString(), Joueur_ATK.ToString(), Niveau_progression.ToString(), date_premiere_partie.ToString() };
+            string[] attributs_sauvegarde = {
+                Taptaptap.ToString(),
+                Temps_de_jeu.ToString(),
+                Money.ToString(),
+                Vie_max_joueur.ToString(),
+                Nom_joueur.ToString(),
+                Joueur_ATK.ToString(),
+                Niveau_progression.ToString(),
+                Date_premiere_partie.ToString() };
             try
             {
                 System.IO.File.WriteAllLines(@"C:\Users\Public\SAVE_CMD_adventure\save.txt", attributs_sauvegarde);
@@ -42,17 +50,32 @@ namespace jeu
             string pathString = @"C: \Users\Public\SAVE_CMD_adventure";
             System.IO.Directory.CreateDirectory(pathString);
             string[] lines = null;
-            if (System.IO.File.Exists(@"C: \Users\Public\SAVE_CMD_adventure"))
+            if (System.IO.File.Exists(@"C: \Users\Public\SAVE_CMD_adventure\save.txt"))
             {
+                //lecture du fichier
                 lines = System.IO.File.ReadAllLines(@"C:\Users\Public\SAVE_CMD_adventure\save.txt");
-                taptaptap = int.Parse(lines[0]);
-                date_premiere_partie = DateTime.Parse(lines[1]);
-                money = int.Parse(lines[2]);
-                vie_max_joueur = int.Parse(lines[3]);
-                lines[4] = nom_joueur;
-                joueur_ATK = int.Parse(lines[4]);
-                niveau_progression = int.Parse(lines[5]);
-                temps_de_jeu = int.Parse(lines[6]);
+                //lecture des variables
+                try
+                {
+                    Taptaptap = int.Parse(lines[0]);
+                    Temps_de_jeu = int.Parse(lines[1]);
+                    Money = int.Parse(lines[2]);
+                    Vie_max_joueur = int.Parse(lines[3]);
+                    Nom_joueur = lines[4];
+                    Joueur_ATK = int.Parse(lines[5]);
+                    Niveau_progression = int.Parse(lines[6]);
+                    Date_premiere_partie = DateTime.Parse(lines[7]);
+                }
+                catch (Exception e)
+                {
+                    Console.Write("Sauvegarde corrompue : \n" + e.Message);
+                    
+                    for (int i = 0; i < 6; i++) //temps de visibilité du message en secondes
+                    {
+                        System.Threading.Thread.Sleep(1000);
+                        Console.Write(".");
+                    }
+                }
             }
             else
             {
@@ -82,6 +105,9 @@ namespace jeu
         //Constructeur
         public statistix()
         {
+            // la valeur prise ici sera remplacé si une sauvegarde existe
+            Date_premiere_partie = DateTime.UtcNow;
+
             //La lecture de la sauvegarde = automatique --> au démarrage du jeu appel de ce constructeur
             Lecture_Sauvegarde();
         }
