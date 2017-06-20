@@ -6,6 +6,9 @@ namespace jeu
 {
     internal class jeu
     {
+        //couleur UI
+        ConsoleColor couleurUI = ConsoleColor.DarkYellow;
+
         //instance des monstres (NOM / SKIN / HP / ATK / EXP)
         monstre lapin = new monstre("lapin", "°o'", 1, 0, 1);
         monstre tortue = new monstre("tortue", "°,o,", 10, 2, 5);
@@ -27,7 +30,7 @@ namespace jeu
         {
             Console.Title = "CMD_ adventure";   //défini le titre de la console
             //Jeu.Crazy_Console_Random_Number(); //<--------------------------------réactiver a la fin du dev.
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = couleurUI;
             //Jeu.Ecran_titre();            //<--------------------------------------idem
         }
 
@@ -391,8 +394,8 @@ namespace jeu
                 Console.Write(' '); //on colorie le fond
             }
             Centrage(3, vie);
-            Console.ForegroundColor = couleur_actuel;
-            Console.BackgroundColor = fond_actuel;
+            Console.ForegroundColor = couleurUI;
+            Console.BackgroundColor = ConsoleColor.Black;
             Console.CursorVisible = true;
             Curseur_repos();
         }
