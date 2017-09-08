@@ -405,37 +405,72 @@ namespace jeu
             switch (Console.ReadKey().Key)
             {
                 case ConsoleKey.A:
+                    if (stat.onglet != "Carte")
+                    {
                     stat.onglet = "Carte";
                     Barre_menu(stat.onglet);
                     DeleteLig(4, Console.WindowHeight - 1);
                     Action_Carte();
+                    }
+                    else
+                    {
+                        Curseur_repos();
+                    }
                     break;
                 case ConsoleKey.Z:
+                    if (stat.onglet != "Inventaire")
+                    {
                     stat.onglet = "Inventaire";
                     Barre_menu(stat.onglet);
                     DeleteLig(4, Console.WindowHeight - 1);
                     Action_Inventaire();
                     Console.Write("Vous ouvrez votre inventaire");
+                    }
+                    else
+                    {
+                        Curseur_repos();
+                    }
                     break;
                 case ConsoleKey.E:
-                    stat.onglet = "Magasin";
-                    Barre_menu(stat.onglet);
-                    DeleteLig(4, Console.WindowHeight - 1);
-                    Action_Magasin();
-                    Console.Write("Vous ouvrez le magasin");
+                    if (stat.onglet != "Magasin")
+                    {
+                        stat.onglet = "Magasin";
+                        Barre_menu(stat.onglet);
+                        DeleteLig(4, Console.WindowHeight - 1);
+                        Action_Magasin();
+                        Console.Write("Vous ouvrez le magasin");
+                    }
+                    else
+                    {
+                        Curseur_repos();
+                    }
                     break;
                 case ConsoleKey.R:
-                    stat.onglet = "???";
-                    Barre_menu(stat.onglet);
-                    DeleteLig(4, Console.WindowHeight - 1);
-                    Action_What();
-                    Console.Write("???");
+                    if (stat.onglet != "???")
+                    {
+                        stat.onglet = "???";
+                        Barre_menu(stat.onglet);
+                        DeleteLig(4, Console.WindowHeight - 1);
+                        Action_What();
+                        Console.Write("???");
+                    }
+                    else
+                    {
+                        Curseur_repos();
+                    }
                     break;
                 case ConsoleKey.T:
-                    stat.onglet = "Options";
-                    Barre_menu(stat.onglet);
-                    DeleteLig(4, Console.WindowHeight - 1);
-                    Action_Option();
+                    if (stat.onglet != "Options")
+                    {
+                        stat.onglet = "Options";
+                        Barre_menu(stat.onglet);
+                        DeleteLig(4, Console.WindowHeight - 1);
+                        Action_Option();
+                    }
+                    else
+                    {
+                        Curseur_repos();
+                    }
                     break;
                 case ConsoleKey.Escape:
                     DeleteLig(4, Console.WindowHeight - 1);
