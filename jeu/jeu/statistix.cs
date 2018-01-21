@@ -3,21 +3,21 @@ using System.Collections.Generic;
 
 namespace jeu
 {
-    internal class statistix
+    public static class Stats
     {
         //attributs a sauvegarder
-        private int taptaptap;
-        private DateTime date_premiere_partie;
-        private int money;
-        private int vie_max_joueur = 10;
-        private string nom_joueur = "nameless";
-        private int joueur_ATK = 1; //puissance d'attaque du joueur
-        private int niveau_progression = 0;
-        private int temps_de_jeu = 0;   //temps de jeu en secondes
+        private static int taptaptap;
+        private static DateTime date_premiere_partie;
+        private static int money;
+        private static int vie_max_joueur = 10;
+        private static string nom_joueur = "nameless";
+        private static int joueur_ATK = 1; //puissance d'attaque du joueur
+        private static int niveau_progression = 0;
+        private static int temps_de_jeu = 0;   //temps de jeu en secondes
         #region liste_de_sauvegarde
         //a faire
         #endregion liste_de_sauvegarde
-        public void Ecriture_Sauvegarde()
+        public static void Ecriture_Sauvegarde()
         {
             //efface la console
             Console.Clear();
@@ -45,7 +45,7 @@ namespace jeu
             System.Threading.Thread.Sleep(1000);
 
         }
-        public void Lecture_Sauvegarde()
+        public static void Lecture_Sauvegarde()
         {
             string pathString = @"C: \Users\Public\SAVE_CMD_adventure";
             System.IO.Directory.CreateDirectory(pathString);
@@ -85,37 +85,30 @@ namespace jeu
         }
 
         //attribut sans sauvegarde
-        public int vie_joueur = 1;
-        public bool fin_du_jeu = false;
-        public string onglet = "onglet par defaut";
+        public static int vie_joueur = 1;
+        public static bool fin_du_jeu = false;
+        public static string onglet = "onglet par defaut";
 
 
         #region accesseurs
-        public int Taptaptap { get => taptaptap; set => taptaptap = value; }
-        public int Temps_de_jeu { get => temps_de_jeu; set => temps_de_jeu = value; } //gestion du temps total joué
-        public int Money { get => money; set => money = value; }
-        public int Vie_max_joueur { get => vie_max_joueur; set => vie_max_joueur = value; }
-        public string Nom_joueur { get => nom_joueur; set => nom_joueur = value; }
-        public int Joueur_ATK { get => joueur_ATK; set => joueur_ATK = value; }
-        public int Niveau_progression { get => niveau_progression; set => niveau_progression = value; }
-        public DateTime Date_premiere_partie { get => date_premiere_partie; set => date_premiere_partie = value; } //date de la premiere partie
+        public static int Taptaptap { get => taptaptap; set => taptaptap = value; }
+        public static int Temps_de_jeu { get => temps_de_jeu; set => temps_de_jeu = value; } //gestion du temps total joué
+        public static int Money { get => money; set => money = value; }
+        public static int Vie_max_joueur { get => vie_max_joueur; set => vie_max_joueur = value; }
+        public static string Nom_joueur { get => nom_joueur; set => nom_joueur = value; }
+        public static int Joueur_ATK { get => joueur_ATK; set => joueur_ATK = value; }
+        public static int Niveau_progression { get => niveau_progression; set => niveau_progression = value; }
+        public static DateTime Date_premiere_partie { get => date_premiere_partie; set => date_premiere_partie = value; } //date de la premiere partie
         #endregion accesseurs
 
 
         //Constructeur
-        public statistix()
+        public static void Initializer()
         {
             // la valeur prise ici sera remplacé si une sauvegarde existe
             Date_premiere_partie = DateTime.UtcNow;
-
             //La lecture de la sauvegarde = automatique --> au démarrage du jeu appel de ce constructeur
             Lecture_Sauvegarde();
-        }
-        //Destructeur
-        ~statistix()
-        {
-            //L'écriture de la sauvegarde = automatique --> appel de ce destructeur
-            Ecriture_Sauvegarde();
         }
     }
 }
