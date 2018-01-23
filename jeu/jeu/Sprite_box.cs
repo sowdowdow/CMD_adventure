@@ -27,7 +27,7 @@ namespace jeu
                 @"|       | ,|   |",
                 @"|_______|__|___|"
             };
-            public string[] Maison2 = {
+        public string[] Maison2 = {
                 @"  _____\ \_",
                 @" /         \",
                 @"/  __       \",

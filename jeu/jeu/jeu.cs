@@ -10,7 +10,7 @@ namespace jeu
         public static ConsoleColor couleurUI = ConsoleColor.DarkYellow;
 
         //mutex barre de vie empêche l'activation simultanée de l'affichage de la barre de vie et d'une action 
-        bool mutexLifeBar = false;
+        public static bool mutexLifeBar = false;
 
         //instance des monstres (NOM / SKIN / HP / ATK / EXP)
         monstre lapin = new monstre("lapin", "°o'", 1, 0, 1);
@@ -21,8 +21,8 @@ namespace jeu
         //Constructeur
         public Jeu()
         {
-            Stats.Initializer();
-            Console.Title = "CMD_ adventure";   //défini le titre de la console
+            Stats.Initializer(); //loading save
+            Console.Title = "CMD_ adventure";   //define console title
             //Crazy_Console_Random_Number(); //<--------------------------------réactiver a la fin du dev.
             Console.ForegroundColor = couleurUI;
             //Ecran_titre();            //<--------------------------------------idem
@@ -39,12 +39,11 @@ namespace jeu
         public void UpdateGameTime(object source, ElapsedEventArgs e)
         {
             //1 seconde de plus au temps de jeu
-            Stats.Temps_de_jeu++;
+            Stats.GameTime++;
             //boucle de régéneration de la vie du joueur
-            if (Stats.vie_joueur < Stats.Vie_max_joueur && mutexLifeBar == true)
+            if (Stats.vie_joueur < Stats.MaxPlayerLife && mutexLifeBar == true)
             {
                 Stats.vie_joueur++;
-                LifeBar.Display();
             }
         }
         #endregion timer
@@ -85,11 +84,11 @@ namespace jeu
             Console.Clear();
             Console.CursorLeft = 0;
             string[] titre = {
-                "   ___  __  __  ___       _      _                 _                   ",
-                "  / __||  \\/  ||   \\     /_\\  __| |__ __ ___  _ _ | |_  _  _  _ _  ___ ",
-                " | (__ | |\\/| || |) |   / _ \\/ _` |\\ V // -_)| ' \\|  _|| || || '_|/ -_)",
-                "  \\___||_|  |_||___/___/_/ \\_\\__,_| \\_/ \\___||_||_|\\__| \\_,_||_|  \\___|",
-                "                   |___|                                                "};
+                @"   ___  __  __  ___       _      _                 _                   ",
+                @"  / __||  \/  ||   \     /_\  __| |__ __ ___  _ _ | |_  _  _  _ _  ___ ",
+                @" | (__ | |\/| || |) |   / _ \/ _` |\ V // -_)| ' \|  _|| || || '_|/ -_)",
+                @"  \___||_|  |_||___/___/_/ \_\__,_| \_/ \___||_||_|\__| \_,_||_|  \___|",
+                @"                   |___|                                                "};
             string appuyez = "appuyez pour continuer...";
             Console.CursorTop = (Console.WindowHeight / 2) - titre.Length;
             for (int i = 0; i < Console.BufferWidth; i++)
@@ -138,7 +137,7 @@ namespace jeu
             Console.CursorLeft = Console.BufferWidth / 2 - taille_obj;
             Console.Write(obj);
         }//affiche un objet au centre de la ligne actuelle
-        public void Wait(int temps)
+        public static void Wait(int temps)
         {
             System.Threading.Thread.Sleep(temps);
         }//met en pause la console (en MilliSec)
@@ -329,7 +328,7 @@ namespace jeu
             Console.ReadKey();
             Console.Clear();
         }//mini jeu de début de partie
-        public void Barre_menu(string onglet)
+        public void DisplayBarreMenu(string onglet)
         {
             String[] menu = { "Carte (a)", "Inventaire (z)", "Magasin (e)", "??? (r)", "Options (t)" };
             int longeur_texte_menu = 0;
@@ -378,7 +377,6 @@ namespace jeu
                 Console.Write('-');
             }
             Console.SetCursorPosition(0, 3);    //ligne 4
-            LifeBar.Display();     //appel de la méthode barre de vie
         }
 
         #region actions
@@ -390,10 +388,10 @@ namespace jeu
                     if (Stats.onglet != "Carte")
                     {
                         mutexLifeBar = false;
-                    Stats.onglet = "Carte";
-                    Barre_menu(Stats.onglet);
-                    DeleteLig(4, Console.WindowHeight - 1);
-                    Action_Carte();
+                        Stats.onglet = "Carte";
+                        DisplayBarreMenu(Stats.onglet);
+                        DeleteLig(4, Console.WindowHeight - 1);
+                        Action_Carte();
                         mutexLifeBar = true;
                     }
                     else
@@ -406,10 +404,10 @@ namespace jeu
                     {
                         mutexLifeBar = false;
                         Stats.onglet = "Inventaire";
-                    Barre_menu(Stats.onglet);
-                    DeleteLig(4, Console.WindowHeight - 1);
-                    Action_Inventaire();
-                    Console.Write("Vous ouvrez votre inventaire");
+                        DisplayBarreMenu(Stats.onglet);
+                        DeleteLig(4, Console.WindowHeight - 1);
+                        Action_Inventaire();
+                        Console.Write("Vous ouvrez votre inventaire");
                         mutexLifeBar = true;
                     }
                     else
@@ -422,7 +420,7 @@ namespace jeu
                     {
                         mutexLifeBar = false;
                         Stats.onglet = "Magasin";
-                        Barre_menu(Stats.onglet);
+                        DisplayBarreMenu(Stats.onglet);
                         DeleteLig(4, Console.WindowHeight - 1);
                         Action_Magasin();
                         Console.Write("Vous ouvrez le magasin");
@@ -438,7 +436,7 @@ namespace jeu
                     {
                         mutexLifeBar = false;
                         Stats.onglet = "???";
-                        Barre_menu(Stats.onglet);
+                        DisplayBarreMenu(Stats.onglet);
                         DeleteLig(4, Console.WindowHeight - 1);
                         Action_What();
                         Console.Write("???");
@@ -454,7 +452,7 @@ namespace jeu
                     {
                         mutexLifeBar = false;
                         Stats.onglet = "Options";
-                        Barre_menu(Stats.onglet);
+                        DisplayBarreMenu(Stats.onglet);
                         DeleteLig(4, Console.WindowHeight - 1);
                         Action_Option();
                         mutexLifeBar = true;
@@ -625,13 +623,13 @@ namespace jeu
         public void Option_Aide()
         {
             DeleteLig(4, Console.WindowHeight - 1);
-            switch (Stats.Niveau_progression)
+            switch (Stats.ProgressLevel)
             {
                 case 0:
                     Centrage(Console.WindowHeight / 2, "Allez voir la carte");
                     break;
                 default:
-                    Centrage(Console.WindowHeight / 2, "Vous avez triché");
+                    Centrage(Console.WindowHeight / 2, "Vous avez triché =_='");
                     break;
             }
         }
@@ -644,11 +642,11 @@ namespace jeu
         public void Option_Credit()
         {
             DeleteLig(4, Console.WindowHeight - 1);
-            string premiere_partie = "date de votre première partie : " + Stats.Date_premiere_partie.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR"));
+            string premiere_partie = "date de votre première partie : " + Stats.DateFirstGame.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR"));
 
             //heure minute seconde
             int h = 0, m = 0, s;
-            s = Stats.Temps_de_jeu;
+            s = Stats.GameTime;
             h = s / 3600;
             s = s % 3600;
             m = s / 60;

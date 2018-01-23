@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace jeu
 {
@@ -6,20 +7,23 @@ namespace jeu
     {
         static void Main(string[] args)
         {
-
-            //on instancie affiche
             Jeu Jeu = new Jeu();
+
+            Jeu.DisplayBarreMenu(Stats.onglet); //refresh menu bar before thread start to prevent visual glitch
+            Thread thread1 = new Thread(LifeBar.Display);
+            thread1.Start();
 
             //on déclare l'éxecution du timer
             Jeu.update_temps_jeu.Elapsed += Jeu.UpdateGameTime;
             Jeu.update_temps_jeu.Enabled = true;
             //Jeu.Taptaptap_game();    //<--------------------------------------réactiver a la fin du dev.			lance le jeu tap tap tap
-            Jeu.Barre_menu(Stats.onglet); //on actualise l'affichage de la barre de menu une premiere fois
             while (!Stats.fin_du_jeu)
             {
-            Jeu.Choix_action();
+                if (Jeu.mutexLifeBar)
+                {
+                    Jeu.Choix_action();
+                }
             }
-
         }
     }
 }

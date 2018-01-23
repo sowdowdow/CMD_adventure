@@ -7,13 +7,20 @@ namespace jeu
     {
         //attributs a sauvegarder
         private static int taptaptap;
-        private static DateTime date_premiere_partie;
+        private static DateTime dateFirstGame;
         private static int money;
-        private static int vie_max_joueur = 10;
-        private static string nom_joueur = "nameless";
-        private static int joueur_ATK = 1; //puissance d'attaque du joueur
-        private static int niveau_progression = 0;
-        private static int temps_de_jeu = 0;   //temps de jeu en secondes
+        private static int maxPlayerLife = 10;
+        private static string playerName = "nameless";
+        private static int player_ATK = 1; //puissance d'attaque du joueur
+        private static int progressLevel = 0;
+        private static int gameTime = 0;   //temps de jeu en secondes
+
+        //attribut sans sauvegarde
+        public static int vie_joueur = 1;
+        public static bool fin_du_jeu = false;
+        public static string onglet = "onglet par defaut";
+        private static string SavePathString = @"%APPDATA%\CMD_adventure";
+
         #region liste_de_sauvegarde
         //a faire
         #endregion liste_de_sauvegarde
@@ -22,20 +29,19 @@ namespace jeu
             //efface la console
             Console.Clear();
             //défini l'emplacement de la sauvegarde
-            string pathString = @"C: \Users\Public\SAVE_CMD_adventure";
-            System.IO.Directory.CreateDirectory(pathString);
+            System.IO.Directory.CreateDirectory(SavePathString);
             string[] attributs_sauvegarde = {
                 Taptaptap.ToString(),
-                Temps_de_jeu.ToString(),
+                GameTime.ToString(),
                 Money.ToString(),
-                Vie_max_joueur.ToString(),
-                Nom_joueur.ToString(),
-                Joueur_ATK.ToString(),
-                Niveau_progression.ToString(),
-                Date_premiere_partie.ToString() };
+                MaxPlayerLife.ToString(),
+                PlayerName.ToString(),
+                Player_ATK.ToString(),
+                ProgressLevel.ToString(),
+                DateFirstGame.ToString() };
             try
             {
-                System.IO.File.WriteAllLines(@"C:\Users\Public\SAVE_CMD_adventure\save.save", attributs_sauvegarde);
+                System.IO.File.WriteAllLines(SavePathString+@"\save.save", attributs_sauvegarde);
                 Console.Write("Partie sauvegardée");
             }
             catch (Exception)
@@ -47,24 +53,23 @@ namespace jeu
         }
         public static void Lecture_Sauvegarde()
         {
-            string pathString = @"C: \Users\Public\SAVE_CMD_adventure";
-            System.IO.Directory.CreateDirectory(pathString);
+            System.IO.Directory.CreateDirectory(SavePathString);
             string[] lines = null;
-            if (System.IO.File.Exists(@"C: \Users\Public\SAVE_CMD_adventure\save.save"))
+            if (System.IO.File.Exists(SavePathString + @"\save.save"))
             {
                 //lecture du fichier
-                lines = System.IO.File.ReadAllLines(@"C:\Users\Public\SAVE_CMD_adventure\save.save");
+                lines = System.IO.File.ReadAllLines(SavePathString + @"\save.save");
                 //lecture des variables
                 try
                 {
                     Taptaptap = int.Parse(lines[0]);
-                    Temps_de_jeu = int.Parse(lines[1]);
+                    GameTime = int.Parse(lines[1]);
                     Money = int.Parse(lines[2]);
-                    Vie_max_joueur = int.Parse(lines[3]);
-                    Nom_joueur = lines[4];
-                    Joueur_ATK = int.Parse(lines[5]);
-                    Niveau_progression = int.Parse(lines[6]);
-                    Date_premiere_partie = DateTime.Parse(lines[7]);
+                    MaxPlayerLife = int.Parse(lines[3]);
+                    PlayerName = lines[4];
+                    Player_ATK = int.Parse(lines[5]);
+                    ProgressLevel = int.Parse(lines[6]);
+                    DateFirstGame = DateTime.Parse(lines[7]);
                 }
                 catch (Exception e)
                 {
@@ -84,21 +89,17 @@ namespace jeu
             }
         }
 
-        //attribut sans sauvegarde
-        public static int vie_joueur = 1;
-        public static bool fin_du_jeu = false;
-        public static string onglet = "onglet par defaut";
 
 
         #region accesseurs
         public static int Taptaptap { get => taptaptap; set => taptaptap = value; }
-        public static int Temps_de_jeu { get => temps_de_jeu; set => temps_de_jeu = value; } //gestion du temps total joué
+        public static int GameTime { get => gameTime; set => gameTime = value; } //gestion du temps total joué
         public static int Money { get => money; set => money = value; }
-        public static int Vie_max_joueur { get => vie_max_joueur; set => vie_max_joueur = value; }
-        public static string Nom_joueur { get => nom_joueur; set => nom_joueur = value; }
-        public static int Joueur_ATK { get => joueur_ATK; set => joueur_ATK = value; }
-        public static int Niveau_progression { get => niveau_progression; set => niveau_progression = value; }
-        public static DateTime Date_premiere_partie { get => date_premiere_partie; set => date_premiere_partie = value; } //date de la premiere partie
+        public static int MaxPlayerLife { get => maxPlayerLife; set => maxPlayerLife = value; }
+        public static string PlayerName { get => playerName; set => playerName = value; }
+        public static int Player_ATK { get => player_ATK; set => player_ATK = value; }
+        public static int ProgressLevel { get => progressLevel; set => progressLevel = value; }
+        public static DateTime DateFirstGame { get => dateFirstGame; set => dateFirstGame = value; } //date de la premiere partie
         #endregion accesseurs
 
 
@@ -106,7 +107,7 @@ namespace jeu
         public static void Initializer()
         {
             // la valeur prise ici sera remplacé si une sauvegarde existe
-            Date_premiere_partie = DateTime.UtcNow;
+            DateFirstGame = DateTime.UtcNow;
             //La lecture de la sauvegarde = automatique --> au démarrage du jeu appel de ce constructeur
             Lecture_Sauvegarde();
         }

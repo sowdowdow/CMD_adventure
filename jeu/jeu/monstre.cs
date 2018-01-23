@@ -9,11 +9,11 @@
         private int _exp;
         public monstre(string nom, string skin,int hp, int atk, int exp)
         {
-            this._nom = nom;
-            this._skin = skin;
-            this._hp = hp;
-            this._atk = atk;
-            this._exp = exp;
+            _nom = nom;
+            _skin = skin;
+            _hp = hp;
+            _atk = atk;
+            _exp = exp;
         }
         public string Nom
         {
