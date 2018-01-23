@@ -14,9 +14,8 @@ namespace jeu
             thread1.Start();
 
             //on déclare l'éxecution du timer
-            Jeu.update_temps_jeu.Elapsed += Jeu.UpdateGameTime;
-            Jeu.update_temps_jeu.Enabled = true;
-            //Jeu.Taptaptap_game();    //<--------------------------------------réactiver a la fin du dev.			lance le jeu tap tap tap
+            Jeu.gameTimeTimer.Elapsed += Jeu.UpdateGameTime;
+            Jeu.gameTimeTimer.Enabled = true;
             while (!Stats.fin_du_jeu)
             {
                 if (Jeu.mutexLifeBar)

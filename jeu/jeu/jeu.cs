@@ -23,15 +23,16 @@ namespace jeu
         {
             Stats.Initializer(); //loading save
             Console.Title = "CMD_ adventure";   //define console title
-            //Crazy_Console_Random_Number(); //<--------------------------------réactiver a la fin du dev.
+            //Crazy_Console_Random_Number();    //<--------------------------------réactiver a la fin du dev.
             Console.ForegroundColor = couleurUI;
-            //Ecran_titre();            //<--------------------------------------idem
+            //Ecran_titre();                    //<--------------------------------réactiver a la fin du dev.
+            //Taptaptap_game();                 //<--------------------------------réactiver a la fin du dev.
             mutexLifeBar = true;
         }
 
-        //Timer qui actualise le jeu
+        //Timer refresh game time every seconds
         #region timer
-        public Timer update_temps_jeu = new System.Timers.Timer(1000)  //on update toute les secondes
+        public Timer gameTimeTimer = new System.Timers.Timer(1000)
         {
             AutoReset = true
         };
@@ -247,7 +248,7 @@ namespace jeu
                 {
                     Console.SetCursorPosition(0, 5);
                     DeleteLig(5);
-                    Affiche("200 tap !!!");
+                    Affiche("200 tap !!! keep the key pressed ;)");
                 }
                 if (Stats.Taptaptap == 500)
                 {
