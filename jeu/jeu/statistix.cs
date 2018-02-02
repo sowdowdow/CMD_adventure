@@ -6,13 +6,13 @@ namespace jeu
     public static class Stats
     {
         //attributs a sauvegarder
-        private static int taptaptap;
+        private static ushort taptaptap;
         private static DateTime dateFirstGame;
         private static int money;
-        private static int maxPlayerLife = 10;
+        private static ushort maxPlayerLife = 10;
         private static string playerName = "nameless";
         private static int player_ATK = 1; //puissance d'attaque du joueur
-        private static int progressLevel = 0;
+        private static byte progressLevel = 0;
         private static int gameTime = 0;   //temps de jeu en secondes
 
         //attribut sans sauvegarde
@@ -22,7 +22,7 @@ namespace jeu
         private static string SavePathString = @"%APPDATA%\CMD_adventure";
 
         #region liste_de_sauvegarde
-        //a faire
+        //a faire        
         #endregion liste_de_sauvegarde
         public static void Ecriture_Sauvegarde()
         {
@@ -62,13 +62,13 @@ namespace jeu
                 //lecture des variables
                 try
                 {
-                    Taptaptap = int.Parse(lines[0]);
+                    Taptaptap = ushort.Parse(lines[0]);
                     GameTime = int.Parse(lines[1]);
                     Money = int.Parse(lines[2]);
-                    MaxPlayerLife = int.Parse(lines[3]);
+                    MaxPlayerLife = ushort.Parse(lines[3]);
                     PlayerName = lines[4];
                     Player_ATK = int.Parse(lines[5]);
-                    ProgressLevel = int.Parse(lines[6]);
+                    ProgressLevel = byte.Parse(lines[6]);
                     DateFirstGame = DateTime.Parse(lines[7]);
                 }
                 catch (Exception e)
@@ -92,13 +92,13 @@ namespace jeu
 
 
         #region accesseurs
-        public static int Taptaptap { get => taptaptap; set => taptaptap = value; }
+        public static ushort Taptaptap { get => taptaptap; set => taptaptap = value; }
         public static int GameTime { get => gameTime; set => gameTime = value; } //gestion du temps total joué
         public static int Money { get => money; set => money = value; }
-        public static int MaxPlayerLife { get => maxPlayerLife; set => maxPlayerLife = value; }
+        public static ushort MaxPlayerLife { get => maxPlayerLife; set => maxPlayerLife = value; }
         public static string PlayerName { get => playerName; set => playerName = value; }
         public static int Player_ATK { get => player_ATK; set => player_ATK = value; }
-        public static int ProgressLevel { get => progressLevel; set => progressLevel = value; }
+        public static byte ProgressLevel { get => progressLevel; set => progressLevel = value; }
         public static DateTime DateFirstGame { get => dateFirstGame; set => dateFirstGame = value; } //date de la premiere partie
         #endregion accesseurs
 
