@@ -13,8 +13,8 @@ namespace jeu
         public static bool mutexLifeBar = false;
 
         //instance des monstres (NOM / SKIN / HP / ATK / EXP)
-        monstre lapin = new monstre("lapin", "°o'", 1, 0, 1);
-        monstre tortue = new monstre("tortue", "°,o,", 10, 2, 5);
+        monstre lapin = new monstre("rabbit", "°o'", 1, 0, 1);
+        monstre tortue = new monstre("turtle", "°,o,", 10, 2, 5);
         
         public Sprite_box sprite = new Sprite_box();
 
