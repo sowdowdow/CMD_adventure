@@ -31,7 +31,7 @@ namespace jeu
                     Console.ForegroundColor = Jeu.couleurUI;
                     Console.BackgroundColor = ConsoleColor.Black;
                     Console.CursorVisible = true;
-                    Jeu.Curseur_repos();
+                    Jeu.Cursor_StandBy();
                     Jeu.mutexLifeBar = true;
                     Jeu.Wait(1000);
                 }

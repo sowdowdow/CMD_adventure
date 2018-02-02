@@ -51,8 +51,9 @@ namespace jeu
 
         //methodes et fonctions
         #region METHODE_AFFICHAGE
-        public static void Curseur_repos()
+        public static void Cursor_StandBy()
         {
+            //place the cursor down right the console in pause
             Console.SetCursorPosition(Console.WindowWidth - 2, Console.WindowHeight - 1);
         }
         public void Affiche(string text)
@@ -63,6 +64,11 @@ namespace jeu
         {
             Console.Write(nb);
         }//console.write(int)
+        public void Affiche(int x_LeftToRightm, int y_TopToBottom, string textToDisplay)
+        {
+            Console.SetCursorPosition(x_LeftToRightm, y_TopToBottom);
+            Console.Write(textToDisplay);
+        }
         public void LigH(int hauteur, char car)
         {
             Console.SetCursorPosition(0, hauteur);
@@ -208,13 +214,13 @@ namespace jeu
             LigH(4, '=');
             for (int i = Console.CursorTop + 1; i < Console.WindowHeight; i++)
             {
-                Centrage(sprite.perso_base);
+                Centrage(sprite.player_base);
                 Wait(1000 / Console.WindowHeight);  //gestion relative dynamique de la vitesse de descente (1 sec au total)
                 Console.Write("\r");
                 Centrage("   ");
                 Console.Write("\n");
             }
-            Centrage(sprite.perso_base);
+            Centrage(sprite.player_base);
 
 
             //Boucle du jeu ttt (il faut arriver a 1000 ttt)
@@ -328,7 +334,7 @@ namespace jeu
             }
             Console.ReadKey();
             Console.Clear();
-        }//mini jeu de début de partie
+        }//mini-game at the beginning of the party
         public void DisplayBarreMenu(string onglet)
         {
             String[] menu = { "Carte (a)", "Inventaire (z)", "Magasin (e)", "??? (r)", "Options (t)" };
@@ -397,7 +403,7 @@ namespace jeu
                     }
                     else
                     {
-                        Curseur_repos();
+                        Cursor_StandBy();
                     }
                     break;
                 case ConsoleKey.Z:
@@ -413,7 +419,7 @@ namespace jeu
                     }
                     else
                     {
-                        Curseur_repos();
+                        Cursor_StandBy();
                     }
                     break;
                 case ConsoleKey.E:
@@ -429,7 +435,7 @@ namespace jeu
                     }
                     else
                     {
-                        Curseur_repos();
+                        Cursor_StandBy();
                     }
                     break;
                 case ConsoleKey.R:
@@ -445,7 +451,7 @@ namespace jeu
                     }
                     else
                     {
-                        Curseur_repos();
+                        Cursor_StandBy();
                     }
                     break;
                 case ConsoleKey.T:
@@ -460,7 +466,7 @@ namespace jeu
                     }
                     else
                     {
-                        Curseur_repos();
+                        Cursor_StandBy();
                     }
                     break;
                 case ConsoleKey.Escape:
@@ -470,15 +476,24 @@ namespace jeu
                     mutexLifeBar = true;
                     break;
                 default:
-                    Curseur_repos();
+                    Cursor_StandBy();
                     break;
             }
         }
         public void Action_Carte()
         {
-            sprite.Affiche_sprite(0, 4, sprite.Maison1);
-            sprite.Affiche_sprite(30, 5, sprite.Maison2);
+            ChoosingPlayerName();
         }
+
+        private void ChoosingPlayerName()
+        {
+            sprite.Affiche_sprite(0, 4, sprite.House1);
+            sprite.Affiche_sprite(30, 5, sprite.House2);
+            sprite.Affiche_sprite(28, 15, sprite.Dynosaur);
+            Affiche(28, 12, "Hey You !");
+            Cursor_StandBy();
+        }
+
         public void Action_Inventaire()
         {
         }
@@ -492,11 +507,11 @@ namespace jeu
         public void Action_Option()
         {
             bool option_active = false;
-            bool changement_onglet = false;
+            bool changingOfTab = false;
             int pos_curseur = 0;
-            int offset = 4; //on ne doit pas afficher par dessus la barre de menu
+            int offset = 4; //prevent from displaying over the menu bar
             String[] options = { "Contrôles", "Aide", "Langue", "Crédit", "Sauvegarder & quitter" };
-            string curseur = "=>";
+            string curseur = "»";
             ConsoleColor actuel = Console.ForegroundColor;  //change la couleur
 
             void affichage_des_options()
@@ -512,20 +527,20 @@ namespace jeu
 
                 Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + 4);                          //on positionne le curseur sur la première ligne
                 Console.Write(curseur);                                                         //afficher le curseur dès le départ
-                Curseur_repos();   //évite de ré-écrire sur l'affichage
+                Cursor_StandBy();   //évite de ré-écrire sur l'affichage
             }
 
             affichage_des_options();    //on lance la boucle
 
-            while (!changement_onglet)
+            while (!changingOfTab)
             {
-                switch (Console.ReadKey().Key)  //switch pour le choix de l'option a choisir.
+                switch (Console.ReadKey().Key)  //switch for the option to select
                 {
                     case ConsoleKey.DownArrow:
                         if (pos_curseur < options.Length - 1 && option_active == false)
                         {
                             Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset); //...
-                            Console.Write("  ");    //on efface le curseur courant
+                            Console.Write("  ");    //erease current cursor
                             pos_curseur++;
                             Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset);
                             Console.Write(curseur);
@@ -584,26 +599,26 @@ namespace jeu
                         break;
                     #region touches_vers_retour_choix_onglet
                     case ConsoleKey.A:
-                        changement_onglet = true;
+                        changingOfTab = true;
                         break;
                     case ConsoleKey.Z:
-                        changement_onglet = true;
+                        changingOfTab = true;
                         break;
                     case ConsoleKey.E:
-                        changement_onglet = true;
+                        changingOfTab = true;
                         break;
                     case ConsoleKey.R:
-                        changement_onglet = true;
+                        changingOfTab = true;
                         break;
                     case ConsoleKey.T:
-                        changement_onglet = true;
+                        changingOfTab = true;
                         break;
                     #endregion touches_vers_retour_choix_onglet
                     default:
-                        Curseur_repos();
+                        Cursor_StandBy();
                         break;
                 }
-                Curseur_repos();
+                Cursor_StandBy();
             }
             Console.ForegroundColor = actuel;
         }
@@ -669,7 +684,7 @@ namespace jeu
             i++;
             Centrage(i, premiere_partie);//...
 
-            Centrage(Console.WindowHeight - 1, sprite.perso_base);
+            Centrage(Console.WindowHeight - 1, sprite.player_base);
         }
         public void Option_SauvegarderEtQuitter()
         {
@@ -691,7 +706,7 @@ namespace jeu
                 Console.BackgroundColor = bg_actuel;
                 Console.ForegroundColor = fg_actuel;
                 Console.Write(espace + yesno[0]);
-                Curseur_repos();
+                Cursor_StandBy();
             }
             void Quit_False()
             {
@@ -704,7 +719,7 @@ namespace jeu
                 //On remet les couleurs originals
                 Console.BackgroundColor = bg_actuel;
                 Console.ForegroundColor = fg_actuel;
-                Curseur_repos();
+                Cursor_StandBy();
             }
             //Initialisation
             Quit_False();
@@ -754,7 +769,7 @@ namespace jeu
                         }
                         break;
                     default:
-                        Curseur_repos();
+                        Cursor_StandBy();
                         break;
                 }
             }
