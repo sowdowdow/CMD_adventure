@@ -472,7 +472,7 @@ namespace jeu
                 case ConsoleKey.Escape:
                     mutexLifeBar = false;
                     DeleteLig(4, Console.WindowHeight - 1);
-                    Option_SauvegarderEtQuitter();
+                    Option_SaveAndQuit();
                     mutexLifeBar = true;
                     break;
                 default:
@@ -511,26 +511,26 @@ namespace jeu
             int pos_curseur = 0;
             int offset = 4; //prevent from displaying over the menu bar
             String[] options = { "Contrôles", "Aide", "Langue", "Crédit", "Sauvegarder & quitter" };
-            string curseur = "»";
-            ConsoleColor actuel = Console.ForegroundColor;  //change la couleur
+            string curseur = "»»";
+            ConsoleColor actualColor = Console.ForegroundColor;  //saving actual color
 
             void affichage_des_options()
             {
                 DeleteLig(4, Console.WindowHeight - 1);
                 Console.SetCursorPosition(curseur.Length + Console.WindowWidth / 2, 4);
-                foreach (string option in options)  //affichage de chaque optin
+                foreach (string option in options)  //displaying each option
                 {
                     Affiche(option);
                     Console.SetCursorPosition(curseur.Length + Console.WindowWidth / 2, Console.CursorTop += 1);
                 }
                 Console.ForegroundColor = ConsoleColor.Yellow;   //...
 
-                Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + 4);                          //on positionne le curseur sur la première ligne
-                Console.Write(curseur);                                                         //afficher le curseur dès le départ
-                Cursor_StandBy();   //évite de ré-écrire sur l'affichage
+                Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + 4);                          //positionning cursor on the first line
+                Console.Write(curseur);                                                         //displaying cursor at start
+                Cursor_StandBy();   //prevent display glitch (override)
             }
 
-            affichage_des_options();    //on lance la boucle
+            affichage_des_options();    //Launching the method a first time
 
             while (!changingOfTab)
             {
@@ -557,7 +557,7 @@ namespace jeu
                         }
                         break;
                     case ConsoleKey.RightArrow:
-                        //on rentre dans l'option voulue
+                        //we go into the desired option
                         option_active = true;
                         switch (pos_curseur)
                         {
@@ -579,7 +579,7 @@ namespace jeu
                                 break;
                             case 4:
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                Option_SauvegarderEtQuitter();
+                                Option_SaveAndQuit();
                                 break;
                             default:
                                 //si jamais on rencontre une erreur
@@ -620,7 +620,7 @@ namespace jeu
                 }
                 Cursor_StandBy();
             }
-            Console.ForegroundColor = actuel;
+            Console.ForegroundColor = actualColor;
         }
         #endregion actions
         #region Option_
@@ -670,9 +670,9 @@ namespace jeu
 
             string temps_jeu_formate = h + "h" + m + "m" + s + "s";
             string temps_de_jeu = "temps de jeu : " + temps_jeu_formate;
-            int i = Console.WindowHeight / 2 - 5; //n° ligne
-            DeleteLig(i, Console.WindowHeight - 1); //on efface la console
-            Centrage(i, "Imaginé, réalisé et codé par : Sowdowdow");    //on centre le texte a la ligne 4
+            int i = Console.WindowHeight / 2 - 5; //line n°
+            DeleteLig(i, Console.WindowHeight - 1); //clear console
+            Centrage(i, "Imaginé, réalisé et codé par : Sowdowdow");    //center the text at line 4
             i++;
             Centrage(i, "début dev. : 2017");      //...
             i++;
@@ -680,20 +680,20 @@ namespace jeu
             i++;
             Centrage(i, "inspiré de CandyBox2");      //...
             i += 2;
-            Centrage(temps_de_jeu); //on espace les statistiques
+            Centrage(temps_de_jeu); //space the statistics from other things displayed
             i++;
             Centrage(i, premiere_partie);//...
 
             Centrage(Console.WindowHeight - 1, sprite.player_base);
         }
-        public void Option_SauvegarderEtQuitter()
+        public void Option_SaveAndQuit()
         {
             ConsoleColor bg_actuel = Console.BackgroundColor;
             ConsoleColor fg_actuel = Console.ForegroundColor;
 
             int centre_horizontal = Console.WindowWidth / 2;
             int centre_vertical = Console.WindowHeight / 2;
-            string[] yesno = { "NON", "OUI" };
+            string[] yesNo = { "NON", "OUI" };
             string espace = "             ";
             void Quit_True()
             {
@@ -701,71 +701,73 @@ namespace jeu
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.SetCursorPosition(centre_horizontal - espace.Length / 2, centre_vertical);
-                Console.Write(yesno[1]);
+                Console.Write(yesNo[1]);
                 //On remet les couleurs originals
                 Console.BackgroundColor = bg_actuel;
                 Console.ForegroundColor = fg_actuel;
-                Console.Write(espace + yesno[0]);
+                Console.Write(espace + yesNo[0]);
                 Cursor_StandBy();
             }
             void Quit_False()
             {
                 Centrage((Console.WindowHeight / 2) - 2, "Voulez-vous vraiment quitter ?");
                 Console.SetCursorPosition(centre_horizontal - espace.Length / 2, centre_vertical);
-                Console.Write(yesno[1] + espace);
+                Console.Write(yesNo[1] + espace);
+
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
-                Console.Write(yesno[0]);
-                //On remet les couleurs originals
+
+                Console.Write(yesNo[0]);
+                //Put back the original colors
                 Console.BackgroundColor = bg_actuel;
                 Console.ForegroundColor = fg_actuel;
                 Cursor_StandBy();
             }
             //Initialisation
             Quit_False();
-            //si la valeur quitter = VRAI et touche entrée => on quitte
-            bool quitter = false;
-            bool sortie_boucle = false;
+            //if Quit = TRUE and Enter Key => Quit the game
+            bool Quit = false;
+            bool exitLoop = false;
 
-            while (sortie_boucle == false)
+            while (exitLoop == false)
             {
                 centre_horizontal = Console.WindowWidth / 2;
                 switch (Console.ReadKey().Key)
                 {
                     case ConsoleKey.LeftArrow:
-                        if (quitter == true)
+                        if (Quit == true)
                         {
-                            quitter = false;
+                            Quit = false;
                             Quit_False();
                         }
                         else
                         {
-                            quitter = true;
+                            Quit = true;
                             Quit_True();
                         }
                         break;
                     case ConsoleKey.RightArrow:
-                        if (quitter == true)
+                        if (Quit == true)
                         {
-                            quitter = false;
+                            Quit = false;
                             Quit_False();
                         }
                         else
                         {
-                            quitter = true;
+                            Quit = true;
                             Quit_True();
                         }
                         break;
                     case ConsoleKey.Enter:
-                        if (quitter == true)
+                        if (Quit == true)
                         {
                             Stats.fin_du_jeu = true;
                             Stats.Ecriture_Sauvegarde();
-                            sortie_boucle = true;
+                            exitLoop = true;
                         }
                         else
                         {
-                            sortie_boucle = true;
+                            exitLoop = true;
                         }
                         break;
                     default:
