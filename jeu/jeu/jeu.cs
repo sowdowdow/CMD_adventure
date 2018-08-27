@@ -7,24 +7,26 @@ namespace jeu
     class Jeu
     {
         //couleur UI
-        public static ConsoleColor couleurUI = ConsoleColor.DarkYellow;
+        public static ConsoleColor UIcolor = ConsoleColor.DarkYellow;
 
         //mutex barre de vie empêche l'activation simultanée de l'affichage de la barre de vie et d'une action 
         public static bool mutexLifeBar = false;
 
         //instance des monstres (NOM / SKIN / HP / ATK / EXP)
-        monstre lapin = new monstre("rabbit", "°o'", 1, 0, 1);
-        monstre tortue = new monstre("turtle", "°,o,", 10, 2, 5);
+        Monstre lapin = new Monstre("rabbit", "°o'", 1, 0, 1);
+        Monstre tortue = new Monstre("turtle", "°,o,", 10, 2, 5);
         
         public Sprite_box sprite = new Sprite_box();
+        public Graphic_tools drawer = new Graphic_tools();
+        public Option_menu options = new Option_menu();
 
         //Constructeur
         public Jeu()
         {
             Stats.Initializer(); //loading save
-            Console.Title = "CMD_ adventure";   //define console title
+            Console.Title = "CMD_ Adventure";   //define console title
             //Crazy_Console_Random_Number();    //<--------------------------------réactiver a la fin du dev.
-            Console.ForegroundColor = couleurUI;
+            Console.ForegroundColor = UIcolor;
             //Ecran_titre();                    //<--------------------------------réactiver a la fin du dev.
             //Taptaptap_game();                 //<--------------------------------réactiver a la fin du dev.
             mutexLifeBar = true;
@@ -49,132 +51,7 @@ namespace jeu
         }
         #endregion timer
 
-        //methodes et fonctions
-        #region METHODE_AFFICHAGE
-        public static void Cursor_StandBy()
-        {
-            //place the cursor down right the console in pause
-            Console.SetCursorPosition(Console.WindowWidth - 2, Console.WindowHeight - 1);
-        }
-        public void Affiche(string text)
-        {
-            Console.Write(text);
-        }//console.write()
-        public void Affiche(int nb)
-        {
-            Console.Write(nb);
-        }//console.write(int)
-        public void Affiche(int x_LeftToRightm, int y_TopToBottom, string textToDisplay)
-        {
-            Console.SetCursorPosition(x_LeftToRightm, y_TopToBottom);
-            Console.Write(textToDisplay);
-        }
-        public void LigH(int hauteur, char car)
-        {
-            Console.SetCursorPosition(0, hauteur);
-            for (int i = 0; i < Console.BufferWidth; i++)
-            {
-                Console.Write(car);
-            }
-        }//affiche une ligne de 1 caractères
-        public void LigH(int hauteur, char car, char car2)
-        {
-            Console.SetCursorPosition(0, hauteur);
-            for (int i = 0; i < Console.BufferWidth / 2; i++)
-            {
-                Console.Write(car);
-                Console.Write(car2);
-            }
-        }//affiche une ligne de 2 caractères
-        public void Ecran_titre()
-        {
-            Console.Clear();
-            Console.CursorLeft = 0;
-            string[] titre = {
-                @"   ___  __  __  ___       _      _                 _                   ",
-                @"  / __||  \/  ||   \     /_\  __| |__ __ ___  _ _ | |_  _  _  _ _  ___ ",
-                @" | (__ | |\/| || |) |   / _ \/ _` |\ V // -_)| ' \|  _|| || || '_|/ -_)",
-                @"  \___||_|  |_||___/___/_/ \_\__,_| \_/ \___||_||_|\__| \_,_||_|  \___|",
-                @"                   |___|                                                "};
-            string appuyez = "appuyez pour continuer...";
-            Console.CursorTop = (Console.WindowHeight / 2) - titre.Length;
-            for (int i = 0; i < Console.BufferWidth; i++)
-            {
-                Wait(1000 / Console.WindowWidth);
-                Console.Write('-');
-            }
-            for (int i = 0; i < Console.BufferWidth / 2 - (titre.Length / 2); i++)
-            {
-                Console.Write(" ");
-            }
-            ConsoleColor fg = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Red;
-            for (int i = 0; i < titre.Length; i++)  //on affiche le titre
-            {
-                Wait(200);
-                Centrage(titre[i]);
-                Console.CursorTop++;
-            }
-            Console.ForegroundColor = fg;
-            Wait(1000);
-            Console.Write("\n");
-            for (int i = 0; i < Console.BufferWidth; i++)
-            {
-                Wait(1000 / Console.WindowWidth);
-                Console.Write('-');
-            }
-            for (int i = 0; i < appuyez.Length; i++)
-            {
-                Wait(20);
-                Console.Write(appuyez[i]);
-            }
-            Console.ReadKey(true);  // attend la saisie d'un appui sur clavier
-            Console.Clear(); //efface la console
-        }//affiche l'animation du Titre
-        public void Centrage(string obj)
-        {
-            int taille_obj = obj.Length / 2;
-            Console.CursorLeft = Console.BufferWidth / 2 - taille_obj;
-            Console.Write(obj);
-        }//affiche un objet au centre de la ligne actuelle
-        public static void Centrage(int ligne, string obj)
-        {
-            Console.CursorTop = ligne;
-            int taille_obj = obj.Length / 2;
-            Console.CursorLeft = Console.BufferWidth / 2 - taille_obj;
-            Console.Write(obj);
-        }//affiche un objet au centre de la ligne actuelle
-        public static void Wait(int temps)
-        {
-            System.Threading.Thread.Sleep(temps);
-        }//met en pause la console (en MilliSec)
-        public void DeleteLig(int ligne)
-        { //suppression de ligne
-            Console.SetCursorPosition(0, ligne);
-            Console.CursorVisible = false;
-            for (int i = 0; i < Console.WindowWidth; i++)
-            {
-                Console.Write(" ");
-            }
-            Console.CursorVisible = true;
-            Console.SetCursorPosition(0, ligne);
-        }//supprime une ligne a l'ordonné souhaité
-        public void DeleteLig(int ligne_d, int ligne_f)
 
-        {   //suppression de ligne d -> f
-            for (int j = ligne_d; j < ligne_f; j++)
-            {
-                Console.SetCursorPosition(0, j);
-                for (int i = 0; i < Console.WindowWidth; i++)
-                {
-                    Console.CursorVisible = false;
-                    Console.Write(" ");
-                }
-            }
-            Console.CursorVisible = true;
-            Console.SetCursorPosition(0, ligne_d);
-        }//supprime toutes les lignes de D a F
-        #endregion METHODE_AFFICHAGE
         public void Crazy_Console_Random_Number()
         {
             Random lol = new Random();
@@ -205,64 +82,64 @@ namespace jeu
         public void Taptaptap_game()
         {
             Console.Clear();
-            LigH(0, '=');
+            drawer.LigH(0, '=');
             Console.SetCursorPosition(0, 2);
             ConsoleColor fg_actuel = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.White;
-            Centrage("tap tap tap !");
+            drawer.CenterWrite("tap tap tap !");
             Console.ForegroundColor = fg_actuel;
-            LigH(4, '=');
+            drawer.LigH(4, '=');
             for (int i = Console.CursorTop + 1; i < Console.WindowHeight; i++)
             {
-                Centrage(sprite.player_base);
-                Wait(1000 / Console.WindowHeight);  //gestion relative dynamique de la vitesse de descente (1 sec au total)
+                drawer.CenterWrite(sprite.Player_base);
+                drawer.Wait(1000 / Console.WindowHeight);  //gestion relative dynamique de la vitesse de descente (1 sec au total)
                 Console.Write("\r");
-                Centrage("   ");
+                drawer.CenterWrite("   ");
                 Console.Write("\n");
             }
-            Centrage(sprite.player_base);
+            drawer.CenterWrite(sprite.Player_base);
 
 
             //Boucle du jeu ttt (il faut arriver a 1000 ttt)
             while (Stats.Taptaptap < 1000)
             {
                 Console.SetCursorPosition(0, 3);
-                DeleteLig(3);
+                drawer.DeleteLine(3);
                 Console.ReadKey();
                 Stats.Taptaptap++;
                 Console.SetCursorPosition(Console.WindowWidth - 10, Console.WindowHeight - 2);
-                Affiche("ttt: " + Stats.Taptaptap);
+                drawer.Write("ttt: " + Stats.Taptaptap);
                 switch (Stats.Taptaptap)
                 {
                     case 10:
                         Console.SetCursorPosition(0, 5);
-                        DeleteLig(5);
-                        Affiche("Woaw 10 tap !");
+                        drawer.DeleteLine(5);
+                        drawer.Write("Woaw 10 tap !");
                         break;
                     case 50:
                         Console.SetCursorPosition(0, 5);
-                        DeleteLig(5);
-                        Affiche("50 tap !");
+                        drawer.DeleteLine(5);
+                        drawer.Write("50 tap !");
                         break;
                     case 100:
                         Console.SetCursorPosition(0, 5);
-                        DeleteLig(5);
-                        Affiche("100 tap !!");
+                        drawer.DeleteLine(5);
+                        drawer.Write("100 tap !!");
                         break;
                     case 200:
                         Console.SetCursorPosition(0, 5);
-                        DeleteLig(5);
-                        Affiche("100 tap !!");
+                        drawer.DeleteLine(5);
+                        drawer.Write("100 tap !!");
                         break;
                     case 500:
                         Console.SetCursorPosition(0, 5);
-                        DeleteLig(5);
-                        Affiche("500 tap !!!! some more for a gift :)");
+                        drawer.DeleteLine(5);
+                        drawer.Write("500 tap !!!! some more for a gift :)");
                         break;
                     case 1000:
                         Console.SetCursorPosition(0, 5);
-                        DeleteLig(5);
-                        Affiche("1000 tap :o");
+                        drawer.DeleteLine(5);
+                        drawer.Write("1000 tap :o");
                         break;
                     default:
                         break;
@@ -281,14 +158,14 @@ namespace jeu
                 {
                     case ConsoleKey.O:
                         YES = true;
-                        DeleteLig(6);
-                        DeleteLig(5);
-                        DeleteLig(Console.WindowHeight - 2);
+                        drawer.DeleteLine(6);
+                        drawer.DeleteLine(5);
+                        drawer.DeleteLine(Console.WindowHeight - 2);
                         Console.SetCursorPosition(0, 5);
                         Console.Write("Conversion !");
                         break;
                     case ConsoleKey.N:
-                        DeleteLig(6);
+                        drawer.DeleteLine(6);
                         switch (emoji)
                         {
                             case 0:
@@ -325,7 +202,7 @@ namespace jeu
                         }
                         break;
                     default:
-                        DeleteLig(6);
+                        drawer.DeleteLine(6);
                         Console.Write("Vous n'avez pas choisi :/");
                         break;
                 }
@@ -396,13 +273,13 @@ namespace jeu
                         mutexLifeBar = false;
                         Stats.onglet = "Carte";
                         DisplayBarreMenu(Stats.onglet);
-                        DeleteLig(4, Console.WindowHeight - 1);
+                        drawer.DeleteLine(4, Console.WindowHeight - 1);
                         Action_Carte();
                         mutexLifeBar = true;
                     }
                     else
                     {
-                        Cursor_StandBy();
+                        drawer.Cursor_StandBy();
                     }
                     break;
                 case ConsoleKey.Z:
@@ -411,14 +288,14 @@ namespace jeu
                         mutexLifeBar = false;
                         Stats.onglet = "Inventaire";
                         DisplayBarreMenu(Stats.onglet);
-                        DeleteLig(4, Console.WindowHeight - 1);
+                        drawer.DeleteLine(4, Console.WindowHeight - 1);
                         Action_Inventaire();
                         Console.Write("Vous ouvrez votre inventaire");
                         mutexLifeBar = true;
                     }
                     else
                     {
-                        Cursor_StandBy();
+                        drawer.Cursor_StandBy();
                     }
                     break;
                 case ConsoleKey.E:
@@ -427,14 +304,14 @@ namespace jeu
                         mutexLifeBar = false;
                         Stats.onglet = "Magasin";
                         DisplayBarreMenu(Stats.onglet);
-                        DeleteLig(4, Console.WindowHeight - 1);
+                        drawer.DeleteLine(4, Console.WindowHeight - 1);
                         Action_Magasin();
                         Console.Write("Vous ouvrez le magasin");
                         mutexLifeBar = true;
                     }
                     else
                     {
-                        Cursor_StandBy();
+                        drawer.Cursor_StandBy();
                     }
                     break;
                 case ConsoleKey.R:
@@ -443,14 +320,14 @@ namespace jeu
                         mutexLifeBar = false;
                         Stats.onglet = "???";
                         DisplayBarreMenu(Stats.onglet);
-                        DeleteLig(4, Console.WindowHeight - 1);
+                        drawer.DeleteLine(4, Console.WindowHeight - 1);
                         Action_What();
                         Console.Write("???");
                         mutexLifeBar = true;
                     }
                     else
                     {
-                        Cursor_StandBy();
+                        drawer.Cursor_StandBy();
                     }
                     break;
                 case ConsoleKey.T:
@@ -459,23 +336,23 @@ namespace jeu
                         mutexLifeBar = false;
                         Stats.onglet = "Options";
                         DisplayBarreMenu(Stats.onglet);
-                        DeleteLig(4, Console.WindowHeight - 1);
+                        drawer.DeleteLine(4, Console.WindowHeight - 1);
                         Action_Option();
                         mutexLifeBar = true;
                     }
                     else
                     {
-                        Cursor_StandBy();
+                        drawer.Cursor_StandBy();
                     }
                     break;
                 case ConsoleKey.Escape:
                     mutexLifeBar = false;
-                    DeleteLig(4, Console.WindowHeight - 1);
-                    Option_SaveAndQuit();
+                    drawer.DeleteLine(4, Console.WindowHeight - 1);
+                    options.SaveAndQuit();
                     mutexLifeBar = true;
                     break;
                 default:
-                    Cursor_StandBy();
+                    drawer.Cursor_StandBy();
                     break;
             }
         }
@@ -486,11 +363,11 @@ namespace jeu
 
         private void ChoosingPlayerName()
         {
-            sprite.Affiche_sprite(0, 4, sprite.House1);
-            sprite.Affiche_sprite(30, 5, sprite.House2);
-            sprite.Affiche_sprite(28, 15, sprite.Dynosaur);
-            Affiche(28, 12, "Hey You !");
-            Cursor_StandBy();
+            sprite.display_sprite(0, 4, sprite.House1);
+            sprite.display_sprite(30, 5, sprite.House2);
+            sprite.display_sprite(28, 15, sprite.Dynosaur);
+            drawer.Write(28, 12, "Hey You !");
+            drawer.Cursor_StandBy();
         }
 
         public void Action_Inventaire()
@@ -515,18 +392,18 @@ namespace jeu
 
             void affichage_des_options()
             {
-                DeleteLig(4, Console.WindowHeight - 1);
+                drawer.DeleteLine(4, Console.WindowHeight - 1);
                 Console.SetCursorPosition(curseur.Length + Console.WindowWidth / 2, 4);
                 foreach (string option in options)  //displaying each option
                 {
-                    Affiche(option);
+                    drawer.Write(option);
                     Console.SetCursorPosition(curseur.Length + Console.WindowWidth / 2, Console.CursorTop += 1);
                 }
                 Console.ForegroundColor = ConsoleColor.Yellow;   //...
 
                 Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + 4);                          //positionning cursor on the first line
                 Console.Write(curseur);                                                         //displaying cursor at start
-                Cursor_StandBy();   //prevent display glitch (override)
+                drawer.Cursor_StandBy();   //prevent display glitch (override)
             }
 
             affichage_des_options();    //Launching the method a first time
@@ -562,23 +439,23 @@ namespace jeu
                         {
                             case 0:
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                Option_Controles();
+                                this.options.Controls();
                                 break;
                             case 1:
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                Option_Aide();
+                                this.options.Help();
                                 break;
                             case 2:
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                Option_Langue();
+                                this.options.Language();
                                 break;
                             case 3:
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                Option_Credit();
+                                this.options.Credit();
                                 break;
                             case 4:
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                Option_SaveAndQuit();
+                                this.options.SaveAndQuit();
                                 break;
                             default:
                                 //si jamais on rencontre une erreur
@@ -614,170 +491,14 @@ namespace jeu
                         break;
                     #endregion touches_vers_retour_choix_onglet
                     default:
-                        Cursor_StandBy();
+                        drawer.Cursor_StandBy();
                         break;
                 }
-                Cursor_StandBy();
+                drawer.Cursor_StandBy();
             }
             Console.ForegroundColor = actualColor;
         }
         #endregion actions
-        #region Option_
-        public void Option_Controles()
-        {
-            DeleteLig(4, Console.WindowHeight - 1);
-            Centrage(4, "Pour changer d'onglet :");
-            Centrage(5, "A Z E R T");
-            LigH(6, '+');
-            Centrage(7, "Pour vous déplacer dans les menus :");
-            Centrage(8, "/\\");
-            Centrage(9, "<  >");
-            Centrage(9, "\\/");
-            LigH(10, '+');
-        }
-        public void Option_Aide()
-        {
-            DeleteLig(4, Console.WindowHeight - 1);
-            switch (Stats.ProgressLevel)
-            {
-                case 0:
-                    Centrage(Console.WindowHeight / 2, "Allez voir la carte");
-                    break;
-                default:
-                    Centrage(Console.WindowHeight / 2, "Vous avez triché =_='");
-                    break;
-            }
-        }
-        public void Option_Langue()
-        {
-            DeleteLig(4, Console.WindowHeight - 1);
-            Centrage(Console.WindowHeight / 2, "en cours de developpement");
-        }
-
-        public void Option_Credit()
-        {
-            DeleteLig(4, Console.WindowHeight - 1);
-            string premiere_partie = "date de votre première partie : " + Stats.DateFirstGame.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR"));
-
-            //heure minute seconde
-            int h = 0, m = 0, s;
-            s = Stats.GameTime;
-            h = s / 3600;
-            s = s % 3600;
-            m = s / 60;
-            s = s % 60;
-
-            string temps_jeu_formate = h + "h" + m + "m" + s + "s";
-            string temps_de_jeu = "temps de jeu : " + temps_jeu_formate;
-            int i = Console.WindowHeight / 2 - 5; //line n°
-            DeleteLig(i, Console.WindowHeight - 1); //clear console
-            Centrage(i, "Imaginé, réalisé et codé par : Sowdowdow");    //center the text at line 4
-            i++;
-            Centrage(i, "début dev. : 2017");      //...
-            i++;
-            Centrage(i, "fin dev. : ~");      //...
-            i++;
-            Centrage(i, "inspiré de CandyBox2");      //...
-            i += 2;
-            Centrage(temps_de_jeu); //space the statistics from other things displayed
-            i++;
-            Centrage(i, premiere_partie);//...
-
-            Centrage(Console.WindowHeight - 1, sprite.player_base);
-        }
-        public void Option_SaveAndQuit()
-        {
-            ConsoleColor bg_actuel = Console.BackgroundColor;
-            ConsoleColor fg_actuel = Console.ForegroundColor;
-
-            int centre_horizontal = Console.WindowWidth / 2;
-            int centre_vertical = Console.WindowHeight / 2;
-            string[] yesNo = { "NON", "OUI" };
-            string espace = "             ";
-            void Quit_True()
-            {
-                Centrage((Console.WindowHeight / 2) - 2, "Voulez-vous vraiment quitter ?");
-                Console.BackgroundColor = ConsoleColor.White;
-                Console.ForegroundColor = ConsoleColor.Black;
-                Console.SetCursorPosition(centre_horizontal - espace.Length / 2, centre_vertical);
-                Console.Write(yesNo[1]);
-                //On remet les couleurs originals
-                Console.BackgroundColor = bg_actuel;
-                Console.ForegroundColor = fg_actuel;
-                Console.Write(espace + yesNo[0]);
-                Cursor_StandBy();
-            }
-            void Quit_False()
-            {
-                Centrage((Console.WindowHeight / 2) - 2, "Voulez-vous vraiment quitter ?");
-                Console.SetCursorPosition(centre_horizontal - espace.Length / 2, centre_vertical);
-                Console.Write(yesNo[1] + espace);
-
-                Console.BackgroundColor = ConsoleColor.White;
-                Console.ForegroundColor = ConsoleColor.Black;
-
-                Console.Write(yesNo[0]);
-                //Put back the original colors
-                Console.BackgroundColor = bg_actuel;
-                Console.ForegroundColor = fg_actuel;
-                Cursor_StandBy();
-            }
-            //Initialisation
-            Quit_False();
-            //if Quit = TRUE and Enter Key => Quit the game
-            bool Quit = false;
-            bool exitLoop = false;
-
-            while (exitLoop == false)
-            {
-                centre_horizontal = Console.WindowWidth / 2;
-                switch (Console.ReadKey().Key)
-                {
-                    case ConsoleKey.LeftArrow:
-                        if (Quit == true)
-                        {
-                            Quit = false;
-                            Quit_False();
-                        }
-                        else
-                        {
-                            Quit = true;
-                            Quit_True();
-                        }
-                        break;
-                    case ConsoleKey.RightArrow:
-                        if (Quit == true)
-                        {
-                            Quit = false;
-                            Quit_False();
-                        }
-                        else
-                        {
-                            Quit = true;
-                            Quit_True();
-                        }
-                        break;
-                    case ConsoleKey.Enter:
-                        if (Quit == true)
-                        {
-                            Stats.fin_du_jeu = true;
-                            Stats.Ecriture_Sauvegarde();
-                            exitLoop = true;
-                        }
-                        else
-                        {
-                            exitLoop = true;
-                        }
-                        break;
-                    default:
-                        Cursor_StandBy();
-                        break;
-                }
-            }
-            Console.BackgroundColor = bg_actuel;
-            Console.ForegroundColor = fg_actuel;
-        }
-        #endregion Option_
 
     }
 }

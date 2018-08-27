@@ -47,9 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Graphic_tools.cs" />
     <Compile Include="jeu.cs" />
     <Compile Include="lifeBar.cs" />
     <Compile Include="monstre.cs" />
+    <Compile Include="Option_menu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sprite_box.cs" />

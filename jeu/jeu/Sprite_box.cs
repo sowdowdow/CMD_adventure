@@ -2,9 +2,9 @@
 
 namespace jeu
 {
-    internal class Sprite_box
+    public class Sprite_box
     {
-        public void Affiche_sprite(int x_TopToBottom, int y_LeftToRight,string[] sprite)
+        public void display_sprite(int x_TopToBottom, int y_LeftToRight,string[] sprite)
         {
             Console.SetCursorPosition(x_TopToBottom, y_LeftToRight);
             foreach (var line in sprite) //display each line of the sprite + jumpline
@@ -15,9 +15,9 @@ namespace jeu
             Console.SetCursorPosition(Console.WindowWidth - 3,Console.WindowHeight - 2);
         }
         //skin du joueur
-        public string player_base = "°v°";
-        public string player_wow = "*v*";
-        public string player_depressed = "-v-";
+        public string Player_base = "°v°";
+        public string Player_wow = "*v*";
+        public string Player_depressed = "-v-";
         //sprite des objets
         public string[] House1 = {
                 @"  _______| |__",

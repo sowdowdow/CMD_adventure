@@ -3,11 +3,11 @@
   <Class Name="jeu.Jeu">
     <Position X="4.75" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>BAEAABAACgAAAAACQCAIIAAEqBYhAAAgAAAACABAMIE=</HashCode>
+      <HashCode>AGAAABAACgAAAAAAACAIAAAEoRIBQAAAAAAACABAIIA=</HashCode>
       <FileName>jeu.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="jeu.monstre">
+  <Class Name="jeu.Monstre">
     <Position X="7.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAABCCgAAAAAAAgCAQAQAA=</HashCode>
@@ -24,15 +24,29 @@
   <Class Name="jeu.Sprite_box">
     <Position X="3" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAAAAAEAAAAAAAAAAAAAAAAxAAAACAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAABAAAAiAgAAAAAAAAAAAAAIAAAAQAAA=</HashCode>
       <FileName>Sprite_box.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="jeu.Stats">
     <Position X="9.25" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAEQEYAQABAAAAgAAAEIgEEEABAAAAAUgAAAiAAAFAk=</HashCode>
+      <HashCode>AAEQEYAQABAAAAgAAAEIgEEEABAAAAAUgAAACAACFAk=</HashCode>
       <FileName>statistix.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jeu.Option_menu">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAIAABBAAAAAAAAAQAAAAAAAAAgAACAAAA=</HashCode>
+      <FileName>Option_menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jeu.Graphic_tools">
+    <Position X="1" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAgAAQAAAQAAAAgAAABAAEAAAA=</HashCode>
+      <FileName>Graphic_tools.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

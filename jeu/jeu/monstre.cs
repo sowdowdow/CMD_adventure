@@ -1,13 +1,13 @@
 ﻿namespace jeu
 {
-	class monstre
+	class Monstre
     {
         private string _nom;
         private string _skin;
         private int _hp;
         private int _atk;
         private int _exp;
-        public monstre(string nom, string skin,int hp, int atk, int exp)
+        public Monstre(string nom, string skin,int hp, int atk, int exp)
         {
             _nom = nom;
             _skin = skin;
