@@ -232,41 +232,40 @@ namespace jeu
                 Stats.Taptaptap++;
                 Console.SetCursorPosition(Console.WindowWidth - 10, Console.WindowHeight - 2);
                 Affiche("ttt: " + Stats.Taptaptap);
-                if (Stats.Taptaptap == 10)
+                switch (Stats.Taptaptap)
                 {
-                    Console.SetCursorPosition(0, 5);
-                    DeleteLig(5);
-                    Affiche("Woaw 10 tap !");
-                }
-                if (Stats.Taptaptap == 50)
-                {
-                    Console.SetCursorPosition(0, 5);
-                    DeleteLig(5);
-                    Affiche("50 tap !");
-                }
-                if (Stats.Taptaptap == 100)
-                {
-                    Console.SetCursorPosition(0, 5);
-                    DeleteLig(5);
-                    Affiche("100 tap !!");
-                }
-                if (Stats.Taptaptap == 200)
-                {
-                    Console.SetCursorPosition(0, 5);
-                    DeleteLig(5);
-                    Affiche("200 tap !!! keep the key pressed ;)");
-                }
-                if (Stats.Taptaptap == 500)
-                {
-                    Console.SetCursorPosition(0, 5);
-                    DeleteLig(5);
-                    Affiche("500 tap !!!! some more for a gift :)");
-                }
-                if (Stats.Taptaptap >= 1000)
-                {
-                    Console.SetCursorPosition(0, 5);
-                    DeleteLig(5);
-                    Affiche("1000 tap :o");
+                    case 10:
+                        Console.SetCursorPosition(0, 5);
+                        DeleteLig(5);
+                        Affiche("Woaw 10 tap !");
+                        break;
+                    case 50:
+                        Console.SetCursorPosition(0, 5);
+                        DeleteLig(5);
+                        Affiche("50 tap !");
+                        break;
+                    case 100:
+                        Console.SetCursorPosition(0, 5);
+                        DeleteLig(5);
+                        Affiche("100 tap !!");
+                        break;
+                    case 200:
+                        Console.SetCursorPosition(0, 5);
+                        DeleteLig(5);
+                        Affiche("100 tap !!");
+                        break;
+                    case 500:
+                        Console.SetCursorPosition(0, 5);
+                        DeleteLig(5);
+                        Affiche("500 tap !!!! some more for a gift :)");
+                        break;
+                    case 1000:
+                        Console.SetCursorPosition(0, 5);
+                        DeleteLig(5);
+                        Affiche("1000 tap :o");
+                        break;
+                    default:
+                        break;
                 }
                 Console.SetCursorPosition(0, 5);
             };
