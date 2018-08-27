@@ -5,7 +5,7 @@ using System.Text;
 
 namespace jeu
 {
-    public class Graphic_tools
+    public class GraphicTools
     {
         //methodes et fonctions
         #region METHODE_AFFICHAGE
@@ -27,7 +27,7 @@ namespace jeu
             Console.SetCursorPosition(x_LeftToRightm, y_TopToBottom);
             Console.Write(textToDisplay);
         }
-        public void LigH(int hauteur, char car)
+        public void HorizontalLine(int hauteur, char car)
         {
             Console.SetCursorPosition(0, hauteur);
             for (int i = 0; i < Console.BufferWidth; i++)
@@ -35,7 +35,7 @@ namespace jeu
                 Console.Write(car);
             }
         }//affiche une ligne de 1 caractères
-        public void LigH(int hauteur, char car, char car2)
+        public void HorizontalLine(int hauteur, char car, char car2)
         {
             Console.SetCursorPosition(0, hauteur);
             for (int i = 0; i < Console.BufferWidth / 2; i++)
@@ -132,6 +132,11 @@ namespace jeu
             Console.CursorVisible = true;
             Console.SetCursorPosition(0, ligne_d);
         }//supprime toutes les lignes de D a F
+
+        public void ClearInterface()
+        {
+            DeleteLine(4, Console.WindowHeight - 1);
+        }
         #endregion METHODE_AFFICHAGE
     }
 }

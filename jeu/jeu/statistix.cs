@@ -22,18 +22,18 @@ namespace jeu
         public static int vie_joueur = 1;
         public static bool fin_du_jeu = false;
         public static string onglet = "onglet par defaut";
-        private static string SavePathString = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CMD_adventure");
-        private static string SaveName = @"\save.json";
+        private static string savePathString = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CMD_adventure");
+        private static string saveName = @"\save.json";
 
         #region liste_de_sauvegarde
         //a faire        
         #endregion liste_de_sauvegarde
-        public static void Ecriture_Sauvegarde()
+        public static void WriteSave()
         {
             //efface la console
             Console.Clear();
             //défini l'emplacement de la sauvegarde
-            System.IO.Directory.CreateDirectory(SavePathString);
+            System.IO.Directory.CreateDirectory(savePathString);
 
             JObject attributs_sauvegarde = new JObject(
                 new JProperty("Taptaptap", Taptaptap),
@@ -48,7 +48,7 @@ namespace jeu
 
             try
             {
-                File.WriteAllText(SavePathString + SaveName, attributs_sauvegarde.ToString(Formatting.Indented));
+                File.WriteAllText(savePathString + saveName, attributs_sauvegarde.ToString(Formatting.Indented));
                 Console.Write("Partie sauvegardée");
             }
             catch (Exception)
@@ -58,14 +58,14 @@ namespace jeu
             System.Threading.Thread.Sleep(1000);
 
         }
-        public static void Lecture_Sauvegarde()
+        public static void ReadSave()
         {
-            System.IO.Directory.CreateDirectory(SavePathString);
+            System.IO.Directory.CreateDirectory(savePathString);
             string json = null;
-            if (System.IO.File.Exists(SavePathString + SaveName))
+            if (System.IO.File.Exists(savePathString + saveName))
             {
                 //lecture du fichier
-                json = File.ReadAllText(SavePathString + SaveName);
+                json = File.ReadAllText(savePathString + saveName);
                  JObject parsedJson = JObject.Parse(json);
                 //lecture des variables
                 try
@@ -118,7 +118,7 @@ namespace jeu
             // la valeur prise ici sera remplacé si une sauvegarde existe
             DateFirstGame = DateTime.UtcNow;
             //La lecture de la sauvegarde = automatique --> au démarrage du jeu appel de ce constructeur
-            Lecture_Sauvegarde();
+            ReadSave();
         }
     }
 }

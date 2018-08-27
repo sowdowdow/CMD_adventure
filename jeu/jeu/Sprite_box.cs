@@ -4,7 +4,7 @@ namespace jeu
 {
     public class Sprite_box
     {
-        public void display_sprite(int x_TopToBottom, int y_LeftToRight,string[] sprite)
+        public void DisplaySprite(int x_TopToBottom, int y_LeftToRight,string[] sprite)
         {
             Console.SetCursorPosition(x_TopToBottom, y_LeftToRight);
             foreach (var line in sprite) //display each line of the sprite + jumpline
@@ -15,11 +15,11 @@ namespace jeu
             Console.SetCursorPosition(Console.WindowWidth - 3,Console.WindowHeight - 2);
         }
         //skin du joueur
-        public string Player_base = "°v°";
-        public string Player_wow = "*v*";
-        public string Player_depressed = "-v-";
+        public string player_base = "°v°";
+        public string player_wow = "*v*";
+        public string player_depressed = "-v-";
         //sprite des objets
-        public string[] House1 = {
+        public string[] house1 = {
                 @"  _______| |__",
                 @" /            \",
                 @"/______________\",
@@ -27,18 +27,18 @@ namespace jeu
                 @"|       | ,|   |",
                 @"|_______|__|___|"
             };
-        public string[] House2 = {
+        public string[] house2 = {
                 @"  _____\ \_",
                 @" /         \",
                 @"/  __       \",
                 @"| | ,|      |",
                 @"|_|__|______|"
             };
-        public string[] Dynosaur = {
-                @"      .――――. ",
-                @"    ./     0\",
-                @"   ././  . \ ",
-                @".__/_|―――|_| ",
+        public string[] dynosaur = {
+                @"      _______ ",
+                @"    ./     [°\",
+                @"   ././   \ \ ",
+                @".__/_|————|_| ",
             };
     }
 }

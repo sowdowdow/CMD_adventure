@@ -47,15 +47,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Action.cs" />
     <Compile Include="Graphic_tools.cs" />
+    <Compile Include="Inventory.cs" />
     <Compile Include="jeu.cs" />
     <Compile Include="lifeBar.cs" />
+    <Compile Include="Map.cs" />
     <Compile Include="monstre.cs" />
     <Compile Include="Option_menu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shop.cs" />
     <Compile Include="Sprite_box.cs" />
     <Compile Include="statistix.cs" />
+    <Compile Include="What.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

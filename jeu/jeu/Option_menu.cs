@@ -6,32 +6,142 @@ using System.Text;
 
 namespace jeu
 {
-    public class Option_menu
+    public class Options : Action
     {
-        Graphic_tools drawer;
-        Sprite_box sprites;
-        public Option_menu()
+        public Options()
         {
-            drawer = new Graphic_tools();
-            sprites = new Sprite_box();
+            bool option_active = false;
+            bool changingOfTab = false;
+            int pos_curseur = 0;
+            int offset = 4; //prevent from displaying over the menu bar
+            String[] options = { "Contrôles", "Aide", "Langue", "Crédit", "Sauvegarder & quitter" };
+            string curseur = ">>";
+            ConsoleColor actualColor = Console.ForegroundColor;  //saving actual color
+
+            void affichage_des_options()
+            {
+                Console.SetCursorPosition(curseur.Length + Console.WindowWidth / 2, 4);
+                foreach (string option in options)  //displaying each option
+                {
+                    drawer.Write(option);
+                    Console.SetCursorPosition(curseur.Length + Console.WindowWidth / 2, Console.CursorTop += 1);
+                }
+                Console.ForegroundColor = ConsoleColor.Yellow;   //...
+
+                Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + 4);                          //positionning cursor on the first line
+                Console.Write(curseur);                                                         //displaying cursor at start
+                drawer.Cursor_StandBy();   //prevent display glitch (override)
+            }
+
+            affichage_des_options();    //Launching the method a first time
+
+            while (!changingOfTab)
+            {
+                switch (Console.ReadKey().Key)  //switch for the option to select
+                {
+                    case ConsoleKey.DownArrow:
+                        if (pos_curseur < options.Length - 1 && option_active == false)
+                        {
+                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset); //...
+                            Console.Write("  ");    //erease current cursor
+                            pos_curseur++;
+                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset);
+                            Console.Write(curseur);
+                        }
+                        break;
+                    case ConsoleKey.UpArrow:
+                        if (pos_curseur > 0 && option_active == false)
+                        {
+                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset); //...
+                            Console.Write("  ");    //on efface le curseur courant
+                            pos_curseur--;
+                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset);
+                            Console.Write(curseur);
+                        }
+                        break;
+                    case ConsoleKey.RightArrow:
+                        //we go into the desired option
+                        option_active = true;
+                        switch (pos_curseur)
+                        {
+                            case 0:
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Controls();
+                                break;
+                            case 1:
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Help();
+                                break;
+                            case 2:
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Language();
+                                break;
+                            case 3:
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                Credit();
+                                break;
+                            case 4:
+                                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                SaveAndQuit();
+                                break;
+                            default:
+                                //si jamais on rencontre une erreur
+                                option_active = false;
+                                Console.Write("situation impossible rencontré");
+                                break;
+                        }
+                        break;
+                    case ConsoleKey.LeftArrow:
+                        option_active = false;
+                        affichage_des_options();
+                        break;
+                    case ConsoleKey.Enter:
+                        Console.SetCursorPosition(0, 4);
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        break;
+                    #region touches_vers_retour_choix_onglet
+                    case ConsoleKey.A:
+                        changingOfTab = true;
+                        break;
+                    case ConsoleKey.Z:
+                        changingOfTab = true;
+                        break;
+                    case ConsoleKey.E:
+                        changingOfTab = true;
+                        break;
+                    case ConsoleKey.R:
+                        changingOfTab = true;
+                        break;
+                    case ConsoleKey.T:
+                        changingOfTab = true;
+                        break;
+                    #endregion touches_vers_retour_choix_onglet
+                    default:
+                        drawer.Cursor_StandBy();
+                        break;
+                }
+                drawer.Cursor_StandBy();
+            }
+            Console.ForegroundColor = actualColor;
         }
 
 
         public void Controls()
         {
-            drawer.DeleteLine(4, Console.WindowHeight - 1);
+            drawer.ClearInterface();
             drawer.CenterWrite(4, "Pour changer d'onglet :");
             drawer.CenterWrite(5, "A Z E R T");
-            drawer.LigH(6, '+');
+            drawer.HorizontalLine(6, '+');
             drawer.CenterWrite(7, "Pour vous déplacer dans les menus :");
             drawer.CenterWrite(8, "/\\");
             drawer.CenterWrite(9, "<  >");
             drawer.CenterWrite(9, "\\/");
-            drawer.LigH(10, '+');
+            drawer.HorizontalLine(10, '+');
         }
         public void Help()
         {
-            drawer.DeleteLine(4, Console.WindowHeight - 1);
+            drawer.ClearInterface();
             switch (Stats.ProgressLevel)
             {
                 case 0:
@@ -44,13 +154,13 @@ namespace jeu
         }
         public void Language()
         {
-            drawer.DeleteLine(4, Console.WindowHeight - 1);
+            drawer.ClearInterface();
             drawer.CenterWrite(Console.WindowHeight / 2, "en cours de developpement");
         }
 
         public void Credit()
         {
-            drawer.DeleteLine(4, Console.WindowHeight - 1);
+            drawer.ClearInterface();
             string premiere_partie = "date de votre première partie : " + Stats.DateFirstGame.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR"));
 
             //heure minute seconde
@@ -77,7 +187,7 @@ namespace jeu
             i++;
             drawer.CenterWrite(i, premiere_partie);//...
 
-            drawer.CenterWrite(Console.WindowHeight - 1, sprites.Player_base);
+            drawer.CenterWrite(Console.WindowHeight - 1, sprites.player_base);
         }
         public void SaveAndQuit()
         {
@@ -155,7 +265,7 @@ namespace jeu
                         if (Quit == true)
                         {
                             Stats.fin_du_jeu = true;
-                            Stats.Ecriture_Sauvegarde();
+                            Stats.WriteSave();
                             exitLoop = true;
                         }
                         else

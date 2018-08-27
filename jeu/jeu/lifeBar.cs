@@ -10,12 +10,12 @@ namespace jeu
     {
         public static void Display()
         {
-            Graphic_tools drawer = new Graphic_tools();
+            GraphicTools drawer = new GraphicTools();
             while (true)
             {
-                if (Jeu.mutexLifeBar)
+                if (Game.mutexLifeBar)
                 {
-                    Jeu.mutexLifeBar = false;
+                    Game.mutexLifeBar = false;
                     string vie = "Vie: " + Stats.vie_joueur + "/" + Stats.MaxPlayerLife;
                     double coefficient_barre_de_vie = 1 + ((Stats.MaxPlayerLife - Stats.vie_joueur) / Stats.MaxPlayerLife);
 
@@ -31,11 +31,11 @@ namespace jeu
                         Console.Write(' '); //on colorie le fond
                     }
                     drawer.CenterWrite(3, vie);
-                    Console.ForegroundColor = Jeu.UIcolor;
+                    Console.ForegroundColor = Game.UIcolor;
                     Console.BackgroundColor = ConsoleColor.Black;
                     Console.CursorVisible = true;
                     drawer.Cursor_StandBy();
-                    Jeu.mutexLifeBar = true;
+                    Game.mutexLifeBar = true;
                     drawer.Wait(1000);
                 }
             }

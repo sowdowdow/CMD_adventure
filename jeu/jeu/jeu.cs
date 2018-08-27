@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Globalization;
+using System.Text;
 using System.Timers;
 
 namespace jeu
 {
-    class Jeu
+    class Game
     {
         //couleur UI
         public static ConsoleColor UIcolor = ConsoleColor.DarkYellow;
@@ -13,16 +14,17 @@ namespace jeu
         public static bool mutexLifeBar = false;
 
         //instance des monstres (NOM / SKIN / HP / ATK / EXP)
-        Monstre lapin = new Monstre("rabbit", "°o'", 1, 0, 1);
-        Monstre tortue = new Monstre("turtle", "°,o,", 10, 2, 5);
+        Monster lapin = new Monster("rabbit", "°o'", 1, 0, 1);
+        Monster tortue = new Monster("turtle", "°,o,", 10, 2, 5);
         
         public Sprite_box sprite = new Sprite_box();
-        public Graphic_tools drawer = new Graphic_tools();
-        public Option_menu options = new Option_menu();
+        public GraphicTools drawer = new GraphicTools();
+        public Options options = new Options();
 
         //Constructeur
-        public Jeu()
+        public Game()
         {
+            Console.OutputEncoding = Encoding.UTF8;
             Stats.Initializer(); //loading save
             Console.Title = "CMD_ Adventure";   //define console title
             //Crazy_Console_Random_Number();    //<--------------------------------réactiver a la fin du dev.
@@ -52,7 +54,7 @@ namespace jeu
         #endregion timer
 
 
-        public void Crazy_Console_Random_Number()
+        public void CrazyConsoleRandomNumber()
         {
             Random lol = new Random();
             int rnd;
@@ -82,22 +84,22 @@ namespace jeu
         public void Taptaptap_game()
         {
             Console.Clear();
-            drawer.LigH(0, '=');
+            drawer.HorizontalLine(0, '=');
             Console.SetCursorPosition(0, 2);
             ConsoleColor fg_actuel = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.White;
             drawer.CenterWrite("tap tap tap !");
             Console.ForegroundColor = fg_actuel;
-            drawer.LigH(4, '=');
+            drawer.HorizontalLine(4, '=');
             for (int i = Console.CursorTop + 1; i < Console.WindowHeight; i++)
             {
-                drawer.CenterWrite(sprite.Player_base);
+                drawer.CenterWrite(sprite.player_base);
                 drawer.Wait(1000 / Console.WindowHeight);  //gestion relative dynamique de la vitesse de descente (1 sec au total)
                 Console.Write("\r");
                 drawer.CenterWrite("   ");
                 Console.Write("\n");
             }
-            drawer.CenterWrite(sprite.Player_base);
+            drawer.CenterWrite(sprite.player_base);
 
 
             //Boucle du jeu ttt (il faut arriver a 1000 ttt)
@@ -263,7 +265,7 @@ namespace jeu
         }
 
         #region actions
-        public void Choix_action()
+        public void ActionChoice()
         {
             switch (Console.ReadKey().Key)
             {
@@ -273,8 +275,7 @@ namespace jeu
                         mutexLifeBar = false;
                         Stats.onglet = "Carte";
                         DisplayBarreMenu(Stats.onglet);
-                        drawer.DeleteLine(4, Console.WindowHeight - 1);
-                        Action_Carte();
+                        Map map = new Map();
                         mutexLifeBar = true;
                     }
                     else
@@ -288,9 +289,7 @@ namespace jeu
                         mutexLifeBar = false;
                         Stats.onglet = "Inventaire";
                         DisplayBarreMenu(Stats.onglet);
-                        drawer.DeleteLine(4, Console.WindowHeight - 1);
-                        Action_Inventaire();
-                        Console.Write("Vous ouvrez votre inventaire");
+                        Inventory inventory = new Inventory();
                         mutexLifeBar = true;
                     }
                     else
@@ -304,9 +303,7 @@ namespace jeu
                         mutexLifeBar = false;
                         Stats.onglet = "Magasin";
                         DisplayBarreMenu(Stats.onglet);
-                        drawer.DeleteLine(4, Console.WindowHeight - 1);
-                        Action_Magasin();
-                        Console.Write("Vous ouvrez le magasin");
+                        Shop shop = new Shop();
                         mutexLifeBar = true;
                     }
                     else
@@ -320,9 +317,7 @@ namespace jeu
                         mutexLifeBar = false;
                         Stats.onglet = "???";
                         DisplayBarreMenu(Stats.onglet);
-                        drawer.DeleteLine(4, Console.WindowHeight - 1);
-                        Action_What();
-                        Console.Write("???");
+                        What what = new What();
                         mutexLifeBar = true;
                     }
                     else
@@ -336,8 +331,7 @@ namespace jeu
                         mutexLifeBar = false;
                         Stats.onglet = "Options";
                         DisplayBarreMenu(Stats.onglet);
-                        drawer.DeleteLine(4, Console.WindowHeight - 1);
-                        Action_Option();
+                        Options options = new Options();
                         mutexLifeBar = true;
                     }
                     else
@@ -347,7 +341,6 @@ namespace jeu
                     break;
                 case ConsoleKey.Escape:
                     mutexLifeBar = false;
-                    drawer.DeleteLine(4, Console.WindowHeight - 1);
                     options.SaveAndQuit();
                     mutexLifeBar = true;
                     break;
@@ -355,148 +348,6 @@ namespace jeu
                     drawer.Cursor_StandBy();
                     break;
             }
-        }
-        public void Action_Carte()
-        {
-            ChoosingPlayerName();
-        }
-
-        private void ChoosingPlayerName()
-        {
-            sprite.display_sprite(0, 4, sprite.House1);
-            sprite.display_sprite(30, 5, sprite.House2);
-            sprite.display_sprite(28, 15, sprite.Dynosaur);
-            drawer.Write(28, 12, "Hey You !");
-            drawer.Cursor_StandBy();
-        }
-
-        public void Action_Inventaire()
-        {
-        }
-        public void Action_Magasin()
-        {
-
-        }
-        public void Action_What()
-        {
-        }
-        public void Action_Option()
-        {
-            bool option_active = false;
-            bool changingOfTab = false;
-            int pos_curseur = 0;
-            int offset = 4; //prevent from displaying over the menu bar
-            String[] options = { "Contrôles", "Aide", "Langue", "Crédit", "Sauvegarder & quitter" };
-            string curseur = "»»";
-            ConsoleColor actualColor = Console.ForegroundColor;  //saving actual color
-
-            void affichage_des_options()
-            {
-                drawer.DeleteLine(4, Console.WindowHeight - 1);
-                Console.SetCursorPosition(curseur.Length + Console.WindowWidth / 2, 4);
-                foreach (string option in options)  //displaying each option
-                {
-                    drawer.Write(option);
-                    Console.SetCursorPosition(curseur.Length + Console.WindowWidth / 2, Console.CursorTop += 1);
-                }
-                Console.ForegroundColor = ConsoleColor.Yellow;   //...
-
-                Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + 4);                          //positionning cursor on the first line
-                Console.Write(curseur);                                                         //displaying cursor at start
-                drawer.Cursor_StandBy();   //prevent display glitch (override)
-            }
-
-            affichage_des_options();    //Launching the method a first time
-
-            while (!changingOfTab)
-            {
-                switch (Console.ReadKey().Key)  //switch for the option to select
-                {
-                    case ConsoleKey.DownArrow:
-                        if (pos_curseur < options.Length - 1 && option_active == false)
-                        {
-                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset); //...
-                            Console.Write("  ");    //erease current cursor
-                            pos_curseur++;
-                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset);
-                            Console.Write(curseur);
-                        }
-                        break;
-                    case ConsoleKey.UpArrow:
-                        if (pos_curseur > 0 && option_active == false)
-                        {
-                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset); //...
-                            Console.Write("  ");    //on efface le curseur courant
-                            pos_curseur--;
-                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset);
-                            Console.Write(curseur);
-                        }
-                        break;
-                    case ConsoleKey.RightArrow:
-                        //we go into the desired option
-                        option_active = true;
-                        switch (pos_curseur)
-                        {
-                            case 0:
-                                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                this.options.Controls();
-                                break;
-                            case 1:
-                                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                this.options.Help();
-                                break;
-                            case 2:
-                                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                this.options.Language();
-                                break;
-                            case 3:
-                                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                this.options.Credit();
-                                break;
-                            case 4:
-                                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                                this.options.SaveAndQuit();
-                                break;
-                            default:
-                                //si jamais on rencontre une erreur
-                                option_active = false;
-                                Console.Write("situation impossible rencontré");
-                                break;
-                        }
-                        break;
-                    case ConsoleKey.LeftArrow:
-                        option_active = false;
-                        affichage_des_options();
-                        break;
-                    case ConsoleKey.Enter:
-                        Console.SetCursorPosition(0, 4);
-                        Console.ForegroundColor = ConsoleColor.Gray;
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        break;
-                    #region touches_vers_retour_choix_onglet
-                    case ConsoleKey.A:
-                        changingOfTab = true;
-                        break;
-                    case ConsoleKey.Z:
-                        changingOfTab = true;
-                        break;
-                    case ConsoleKey.E:
-                        changingOfTab = true;
-                        break;
-                    case ConsoleKey.R:
-                        changingOfTab = true;
-                        break;
-                    case ConsoleKey.T:
-                        changingOfTab = true;
-                        break;
-                    #endregion touches_vers_retour_choix_onglet
-                    default:
-                        drawer.Cursor_StandBy();
-                        break;
-                }
-                drawer.Cursor_StandBy();
-            }
-            Console.ForegroundColor = actualColor;
         }
         #endregion actions
 

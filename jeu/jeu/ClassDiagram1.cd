@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="jeu.Jeu">
+  <Class Name="jeu.Game">
     <Position X="4.75" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AGAAABAACgAAAAAAACAIAAAEoRIBQAAAAAAACABAIIA=</HashCode>
+      <HashCode>AOAAAAAAAgAAAAAAAAAIAAAAoRABAAAAAQAAAABAAIA=</HashCode>
       <FileName>jeu.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="jeu.Monstre">
+  <Class Name="jeu.Monster">
     <Position X="7.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAABCCgAAAAAAAgCAQAQAA=</HashCode>
@@ -24,29 +24,50 @@
   <Class Name="jeu.Sprite_box">
     <Position X="3" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAABAAAAiAgAAAAAAAAAAAAAIAAAAQAAA=</HashCode>
+      <HashCode>AAAAAAIAAAAAAAAAAAAQAAAAAAAAAAAAAAiAAAICAAA=</HashCode>
       <FileName>Sprite_box.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="jeu.Stats">
     <Position X="9.25" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAEQEYAQABAAAAgAAAEIgEEEABAAAAAUgAAACAACFAk=</HashCode>
+      <HashCode>AAEQEYAQABAAAAgAAAUIAEEACBAAAAAQgAIACAAAFAk=</HashCode>
       <FileName>statistix.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="jeu.Option_menu">
-    <Position X="1" Y="0.5" Width="1.5" />
+  <Class Name="jeu.Options">
+    <Position X="1" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAACAAIAABBAAAAAAAAAQAAAAAAAAAgAACAAAA=</HashCode>
+      <HashCode>AAAAAAAACAAIAABBAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
       <FileName>Option_menu.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="jeu.Graphic_tools">
-    <Position X="1" Y="3.5" Width="2.25" />
+  <Class Name="jeu.GraphicTools">
+    <Position X="0.5" Y="1" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>EAAAAAAAAAAAAAAAAAAgAAQAAAQAAAAgAAABAAEAAAA=</HashCode>
+      <HashCode>EAAAAAAAAAAAAAAAABAgAAQAAAQAAAAAAAIBAAEAAAA=</HashCode>
       <FileName>Graphic_tools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jeu.Map">
+    <Position X="5" Y="5.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Map.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jeu.Action">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Action.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jeu.Inventory">
+    <Position X="3" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Inventory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

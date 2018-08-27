@@ -7,7 +7,7 @@ namespace jeu
     {
         static void Main(string[] args)
         {
-            Jeu Jeu = new Jeu();
+            Game Jeu = new Game();
 
             Jeu.DisplayBarreMenu(Stats.onglet); //refresh menu bar before thread start to prevent visual glitch
             Thread thread1 = new Thread(LifeBar.Display);
@@ -18,9 +18,9 @@ namespace jeu
             Jeu.gameTimeTimer.Enabled = true;
             while (!Stats.fin_du_jeu)
             {
-                if (Jeu.mutexLifeBar)
+                if (Game.mutexLifeBar)
                 {
-                    Jeu.Choix_action();
+                    Jeu.ActionChoice();
                 }
             }
         }
