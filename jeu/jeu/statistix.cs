@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace jeu
 {
@@ -19,7 +22,8 @@ namespace jeu
         public static int vie_joueur = 1;
         public static bool fin_du_jeu = false;
         public static string onglet = "onglet par defaut";
-        private static string SavePathString = @"%APPDATA%\CMD_adventure";
+        private static string SavePathString = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CMD_adventure");
+        private static string SaveName = @"\save.json";
 
         #region liste_de_sauvegarde
         //a faire        
@@ -30,18 +34,21 @@ namespace jeu
             Console.Clear();
             //défini l'emplacement de la sauvegarde
             System.IO.Directory.CreateDirectory(SavePathString);
-            string[] attributs_sauvegarde = {
-                Taptaptap.ToString(),
-                GameTime.ToString(),
-                Money.ToString(),
-                MaxPlayerLife.ToString(),
-                PlayerName.ToString(),
-                Player_ATK.ToString(),
-                ProgressLevel.ToString(),
-                DateFirstGame.ToString() };
+
+            JObject attributs_sauvegarde = new JObject(
+                new JProperty("Taptaptap", Taptaptap),
+                new JProperty("GameTime", GameTime),
+                new JProperty("Money", Money),
+                new JProperty("MaxPlayerLife", MaxPlayerLife),
+                new JProperty("PlayerName", PlayerName),
+                new JProperty("Player_ATK", Player_ATK),
+                new JProperty("ProgressLevel", ProgressLevel),
+                new JProperty("DateFirstGame", DateFirstGame)
+             );
+
             try
             {
-                System.IO.File.WriteAllLines(SavePathString+@"\save.save", attributs_sauvegarde);
+                File.WriteAllText(SavePathString + SaveName, attributs_sauvegarde.ToString(Formatting.Indented));
                 Console.Write("Partie sauvegardée");
             }
             catch (Exception)
@@ -54,22 +61,24 @@ namespace jeu
         public static void Lecture_Sauvegarde()
         {
             System.IO.Directory.CreateDirectory(SavePathString);
-            string[] lines = null;
-            if (System.IO.File.Exists(SavePathString + @"\save.save"))
+            string json = null;
+            if (System.IO.File.Exists(SavePathString + SaveName))
             {
                 //lecture du fichier
-                lines = System.IO.File.ReadAllLines(SavePathString + @"\save.save");
+                json = File.ReadAllText(SavePathString + SaveName);
+                 JObject parsedJson = JObject.Parse(json);
                 //lecture des variables
                 try
                 {
-                    Taptaptap = ushort.Parse(lines[0]);
-                    GameTime = int.Parse(lines[1]);
-                    Money = int.Parse(lines[2]);
-                    MaxPlayerLife = ushort.Parse(lines[3]);
-                    PlayerName = lines[4];
-                    Player_ATK = int.Parse(lines[5]);
-                    ProgressLevel = byte.Parse(lines[6]);
-                    DateFirstGame = DateTime.Parse(lines[7]);
+
+                    Taptaptap = ushort.Parse(parsedJson["Taptaptap"].ToString());
+                    GameTime = int.Parse(parsedJson["GameTime"].ToString());
+                    Money = int.Parse(parsedJson["Money"].ToString());
+                    MaxPlayerLife = ushort.Parse(parsedJson["MaxPlayerLife"].ToString());
+                    PlayerName = parsedJson["PlayerName"].ToString();
+                    Player_ATK = int.Parse(parsedJson["Player_ATK"].ToString());
+                    ProgressLevel = byte.Parse(parsedJson["ProgressLevel"].ToString());
+                    DateFirstGame = DateTime.Parse(parsedJson["DateFirstGame"].ToString());
                 }
                 catch (Exception e)
                 {
