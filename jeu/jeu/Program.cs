@@ -8,8 +8,7 @@ namespace jeu
         static void Main(string[] args)
         {
             Game Jeu = new Game();
-
-            MenuBar.Display(); //refresh menu bar before thread start to prevent visual glitch
+            
             Thread thread1 = new Thread(LifeBar.Display);
             thread1.Start();
 

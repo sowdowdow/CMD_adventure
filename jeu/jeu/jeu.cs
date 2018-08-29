@@ -12,10 +12,6 @@ namespace jeu
 
         //mutex barre de vie empêche l'activation simultanée de l'affichage de la barre de vie et d'une action 
         public static bool mutexLifeBar = false;
-
-        //instance des monstres (NOM / SKIN / HP / ATK / EXP)
-        Monster lapin = new Monster("rabbit", "°o'", 1, 0, 1);
-        Monster tortue = new Monster("turtle", "°,o,", 10, 2, 5);
         
         public Sprite_box sprite = new Sprite_box();
         public GraphicTools drawer = new GraphicTools();

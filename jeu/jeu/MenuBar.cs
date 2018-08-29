@@ -7,10 +7,9 @@ namespace jeu
 {
     public static class MenuBar
     {
-
+        private static String[] menu = { "Carte (a)", "Inventaire (z)", "Magasin (e)", "??? (r)", "Options (t)" };
         public static void Display()
         {
-            String[] menu = { "Carte (a)", "Inventaire (z)", "Magasin (e)", "??? (r)", "Options (t)" };
             int NumberOfTabs = menu.Length;
             int TotalStringLengthOfMenu = String.Join("", menu).Length;
             int AvailableSpace = (Console.WindowWidth - TotalStringLengthOfMenu);
