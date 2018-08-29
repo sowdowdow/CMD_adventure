@@ -9,7 +9,7 @@ namespace jeu
         {
             Game Jeu = new Game();
 
-            Jeu.DisplayBarreMenu(Stats.onglet); //refresh menu bar before thread start to prevent visual glitch
+            MenuBar.Display(); //refresh menu bar before thread start to prevent visual glitch
             Thread thread1 = new Thread(LifeBar.Display);
             thread1.Start();
 

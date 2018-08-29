@@ -53,6 +53,7 @@
     <Compile Include="jeu.cs" />
     <Compile Include="lifeBar.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="MenuBar.cs" />
     <Compile Include="monstre.cs" />
     <Compile Include="Option_menu.cs" />
     <Compile Include="Program.cs" />

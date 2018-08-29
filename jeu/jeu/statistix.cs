@@ -21,7 +21,7 @@ namespace jeu
         //attribut sans sauvegarde
         public static int vie_joueur = 1;
         public static bool fin_du_jeu = false;
-        public static string onglet = "onglet par defaut";
+        public static string activeTab = "onglet par defaut";
         private static string savePathString = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CMD_adventure");
         private static string saveName = @"\save.json";
 

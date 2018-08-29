@@ -213,56 +213,6 @@ namespace jeu
             Console.ReadKey();
             Console.Clear();
         }//mini-game at the beginning of the party
-        public void DisplayBarreMenu(string onglet)
-        {
-            String[] menu = { "Carte (a)", "Inventaire (z)", "Magasin (e)", "??? (r)", "Options (t)" };
-            int longeur_texte_menu = 0;
-            int nombre_obj_menu = 0;
-            foreach (string value in menu)
-            {
-                longeur_texte_menu += value.Length;
-                nombre_obj_menu++;
-            }
-            Console.SetCursorPosition(0, 0);    // Ligne 1
-            for (int i = 0; i < Console.WindowWidth; i++)
-            {
-                Console.Write('-');
-            }
-            Console.SetCursorPosition(0, 1);    //Ligne 2
-            for (int i = 0; i < nombre_obj_menu; i++)
-            {
-                //epacement entre les onglets
-                for (int j = 0; j < (Console.WindowWidth - longeur_texte_menu) / (nombre_obj_menu * 2); j++)  //divise par 2 car 2x la même opération
-                {
-                    Console.Write(" ");
-                }
-                ConsoleColor actuel = Console.ForegroundColor;
-                Console.ForegroundColor = ConsoleColor.White;
-                //test de l'onglet actif
-                if (menu[i].Contains(onglet))
-                {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                }
-                Console.Write(menu[i]);
-                Console.ForegroundColor = actuel;
-                //epacement entre les onglets
-                for (int j = 1; j < (Console.WindowWidth - longeur_texte_menu) / (nombre_obj_menu * 2); j++)    // <-----------
-                {
-                    Console.Write(" ");
-                }
-                if (i < nombre_obj_menu - 1)
-                {
-                    Console.Write("|");
-                }
-            }
-            // Ligne 3
-            Console.SetCursorPosition(0, 2);
-            for (int i = 0; i < Console.WindowWidth; i++)
-            {
-                Console.Write('-');
-            }
-            Console.SetCursorPosition(0, 3);    //ligne 4
-        }
 
         #region actions
         public void ActionChoice()
@@ -270,11 +220,11 @@ namespace jeu
             switch (Console.ReadKey().Key)
             {
                 case ConsoleKey.A:
-                    if (Stats.onglet != "Carte")
+                    if (Stats.activeTab != "Carte")
                     {
                         mutexLifeBar = false;
-                        Stats.onglet = "Carte";
-                        DisplayBarreMenu(Stats.onglet);
+                        Stats.activeTab = "Carte";
+                        MenuBar.Display();
                         Map map = new Map();
                         mutexLifeBar = true;
                     }
@@ -284,11 +234,11 @@ namespace jeu
                     }
                     break;
                 case ConsoleKey.Z:
-                    if (Stats.onglet != "Inventaire")
+                    if (Stats.activeTab != "Inventaire")
                     {
                         mutexLifeBar = false;
-                        Stats.onglet = "Inventaire";
-                        DisplayBarreMenu(Stats.onglet);
+                        Stats.activeTab = "Inventaire";
+                        MenuBar.Display();
                         Inventory inventory = new Inventory();
                         mutexLifeBar = true;
                     }
@@ -298,11 +248,11 @@ namespace jeu
                     }
                     break;
                 case ConsoleKey.E:
-                    if (Stats.onglet != "Magasin")
+                    if (Stats.activeTab != "Magasin")
                     {
                         mutexLifeBar = false;
-                        Stats.onglet = "Magasin";
-                        DisplayBarreMenu(Stats.onglet);
+                        Stats.activeTab = "Magasin";
+                        MenuBar.Display();
                         Shop shop = new Shop();
                         mutexLifeBar = true;
                     }
@@ -312,11 +262,11 @@ namespace jeu
                     }
                     break;
                 case ConsoleKey.R:
-                    if (Stats.onglet != "???")
+                    if (Stats.activeTab != "???")
                     {
                         mutexLifeBar = false;
-                        Stats.onglet = "???";
-                        DisplayBarreMenu(Stats.onglet);
+                        Stats.activeTab = "???";
+                        MenuBar.Display();
                         What what = new What();
                         mutexLifeBar = true;
                     }
@@ -326,11 +276,11 @@ namespace jeu
                     }
                     break;
                 case ConsoleKey.T:
-                    if (Stats.onglet != "Options")
+                    if (Stats.activeTab != "Options")
                     {
                         mutexLifeBar = false;
-                        Stats.onglet = "Options";
-                        DisplayBarreMenu(Stats.onglet);
+                        Stats.activeTab = "Options";
+                        MenuBar.Display();
                         Options options = new Options();
                         mutexLifeBar = true;
                     }

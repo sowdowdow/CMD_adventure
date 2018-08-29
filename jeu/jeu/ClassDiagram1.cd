@@ -31,7 +31,7 @@
   <Class Name="jeu.Stats">
     <Position X="9.25" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAEQEYAQABAAAAgAAAUIAEEACBAAAAAQgAIACAAAFAk=</HashCode>
+      <HashCode>AAEQEYAAABAAAAgAAAUIAEEACBAAAAAQgEIACAAAFAk=</HashCode>
       <FileName>statistix.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -68,6 +68,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Inventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jeu.MenuBar">
+    <Position X="12.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MenuBar.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
