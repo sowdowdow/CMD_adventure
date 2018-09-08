@@ -12,76 +12,83 @@ namespace jeu
         {
             bool option_active = false;
             bool changingOfTab = false;
-            int pos_curseur = 0;
+            int activeOptionNumber = 0;
             int offset = 4; //prevent from displaying over the menu bar
             String[] options = { "Contrôles", "Aide", "Langue", "Crédit", "Sauvegarder & quitter" };
-            string curseur = ">>";
+            int numberOfOptions = options.Length;
+            int longestOption = options.OrderByDescending(s => s.Length).First().Length;
+            string verticalSeparator = "";
+            // 4 is the size of the menu bar
+            int freeVerticalSpace = Console.WindowHeight - 4;
+            int freeHorizontalSpace = Console.WindowWidth;
+            string cursor = ">>";
             ConsoleColor actualColor = Console.ForegroundColor;  //saving actual color
 
-            void affichage_des_options()
+
+            void displayOptions()
             {
-                Console.SetCursorPosition(curseur.Length + Console.WindowWidth / 2, 4);
+                // initial cursor position
+                Console.SetCursorPosition(freeHorizontalSpace / 2, (freeVerticalSpace - numberOfOptions) / 2);
                 foreach (string option in options)  //displaying each option
                 {
-                    drawer.Write(option);
-                    Console.SetCursorPosition(curseur.Length + Console.WindowWidth / 2, Console.CursorTop += 1);
+                    Console.SetCursorPosition((option.Length + Console.WindowWidth) / 2, Console.CursorTop += 2);
+                    if (option == options[activeOptionNumber])
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        //displaying cursor at start
+                        drawer.CenterWrite(cursor+option);
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = actualColor;
+                        drawer.CenterWrite(option);
+                    }
                 }
-                Console.ForegroundColor = ConsoleColor.Yellow;   //...
-
-                Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + 4);                          //positionning cursor on the first line
-                Console.Write(curseur);                                                         //displaying cursor at start
                 drawer.Cursor_StandBy();   //prevent display glitch (override)
             }
 
-            affichage_des_options();    //Launching the method a first time
+            displayOptions();    //Launching the method a first time
 
+            // Loop until an input is encountered
             while (!changingOfTab)
             {
                 switch (Console.ReadKey().Key)  //switch for the option to select
                 {
                     case ConsoleKey.DownArrow:
-                        if (pos_curseur < options.Length - 1 && option_active == false)
+                        if (activeOptionNumber < options.Length - 1 && option_active == false)
                         {
-                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset); //...
-                            Console.Write("  ");    //erease current cursor
-                            pos_curseur++;
-                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset);
-                            Console.Write(curseur);
+                            drawer.ClearInterface();
+                            activeOptionNumber++;
+                            displayOptions();
                         }
                         break;
                     case ConsoleKey.UpArrow:
-                        if (pos_curseur > 0 && option_active == false)
+                        if (activeOptionNumber > 0 && option_active == false)
                         {
-                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset); //...
-                            Console.Write("  ");    //on efface le curseur courant
-                            pos_curseur--;
-                            Console.SetCursorPosition(Console.WindowWidth / 2, pos_curseur + offset);
-                            Console.Write(curseur);
+                            drawer.ClearInterface();
+                            activeOptionNumber--;
+                            displayOptions();
                         }
                         break;
                     case ConsoleKey.RightArrow:
                         //we go into the desired option
                         option_active = true;
-                        switch (pos_curseur)
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        switch (activeOptionNumber)
                         {
                             case 0:
-                                Console.ForegroundColor = ConsoleColor.DarkYellow;
                                 Controls();
                                 break;
                             case 1:
-                                Console.ForegroundColor = ConsoleColor.DarkYellow;
                                 Help();
                                 break;
                             case 2:
-                                Console.ForegroundColor = ConsoleColor.DarkYellow;
                                 Language();
                                 break;
                             case 3:
-                                Console.ForegroundColor = ConsoleColor.DarkYellow;
                                 Credit();
                                 break;
                             case 4:
-                                Console.ForegroundColor = ConsoleColor.DarkYellow;
                                 SaveAndQuit();
                                 break;
                             default:
@@ -93,7 +100,7 @@ namespace jeu
                         break;
                     case ConsoleKey.LeftArrow:
                         option_active = false;
-                        affichage_des_options();
+                        displayOptions();
                         break;
                     case ConsoleKey.Enter:
                         Console.SetCursorPosition(0, 4);

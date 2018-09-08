@@ -89,19 +89,23 @@ namespace jeu
             Console.ReadKey(true);  // attend la saisie d'un appui sur clavier
             Console.Clear(); //efface la console
         }//affiche l'animation du Titre
+
+        //display a string horizontally centered
         public void CenterWrite(string text)
         {
             int taille_obj = text.Length / 2;
             Console.CursorLeft = Console.BufferWidth / 2 - taille_obj;
             Console.Write(text);
-        }//affiche un objet au centre de la ligne actuelle
-        public void CenterWrite(int ligne, string obj)
+        }
+
+        //display a string horizontally centered on the specified line
+        public void CenterWrite(int ligne, string text)
         {
             Console.CursorTop = ligne;
-            int taille_obj = obj.Length / 2;
+            int taille_obj = text.Length / 2;
             Console.CursorLeft = Console.BufferWidth / 2 - taille_obj;
-            Console.Write(obj);
-        }//affiche un objet au centre de la ligne actuelle
+            Console.Write(text);
+        }
         public void Wait(int temps)
         {
             System.Threading.Thread.Sleep(temps);
