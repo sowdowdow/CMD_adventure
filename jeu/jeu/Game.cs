@@ -12,7 +12,7 @@ namespace game
 
         //mutex barre de vie empêche l'activation simultanée de l'affichage de la barre de vie et d'une action 
         public static bool mutexLifeBar = false;
-        
+
         public Sprite_box sprite = new Sprite_box();
         public GraphicTools drawer = new GraphicTools();
         public Options options = new Options();
@@ -50,7 +50,10 @@ namespace game
         }
         #endregion timer
 
-
+        /**fill the console with random numbers
+         * on random spots
+         * in red or Yellow color
+         */
         public void CrazyConsoleRandomNumber()
         {
             Random lol = new Random();
@@ -78,7 +81,7 @@ namespace game
                 Console.Write(' ');
             }
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-        }//remplie de nombres aléatoires la console
+        }
         public void Taptaptap_game()
         {
             Console.Clear();
@@ -303,3 +306,5 @@ namespace game
 
     }
 }
+
+

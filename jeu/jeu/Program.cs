@@ -3,12 +3,12 @@ using System.Threading;
 
 namespace game
 {
-	class Program
+    class Program
     {
         static void Main(string[] args)
         {
             Game Jeu = new Game();
-            
+
             Thread thread1 = new Thread(LifeBar.Display);
             thread1.Start();
 

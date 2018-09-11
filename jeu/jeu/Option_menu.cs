@@ -34,7 +34,7 @@ namespace game
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         //displaying cursor at start
-                        drawer.CenterWrite(cursor+option);
+                        drawer.CenterWrite(cursor + option);
                     }
                     else
                     {

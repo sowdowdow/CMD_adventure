@@ -1,6 +1,6 @@
 ﻿namespace game
 {
-	class Monster
+    class Monster
     {
         private string _nom;
         private string _skin;
@@ -12,7 +12,7 @@
         Monster lapin = new Monster("rabbit", "°o'", 1, 0, 1);
         Monster tortue = new Monster("turtle", "°,o,", 10, 2, 5);
 
-        public Monster(string nom, string skin,int hp, int atk, int exp)
+        public Monster(string nom, string skin, int hp, int atk, int exp)
         {
             _nom = nom;
             _skin = skin;

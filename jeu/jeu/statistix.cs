@@ -66,7 +66,7 @@ namespace game
             {
                 //lecture du fichier
                 json = File.ReadAllText(savePathString + saveName);
-                 JObject parsedJson = JObject.Parse(json);
+                JObject parsedJson = JObject.Parse(json);
                 //lecture des variables
                 try
                 {
@@ -83,7 +83,7 @@ namespace game
                 catch (Exception e)
                 {
                     Console.Write("Sauvegarde corrompue : \n" + e.Message);
-                    
+
                     for (int i = 0; i < 6; i++) //temps de visibilité du message en secondes
                     {
                         System.Threading.Thread.Sleep(1000);
