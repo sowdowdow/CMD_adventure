@@ -12,8 +12,8 @@ namespace game
 
         public Action()
         {
-            this.sprites = new Sprite_box();
-            this.drawer = new GraphicTools();
+            sprites = new Sprite_box();
+            drawer = new GraphicTools();
 
             //First: Clean the map
             drawer.ClearInterface();

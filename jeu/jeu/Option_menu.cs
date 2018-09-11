@@ -270,7 +270,7 @@ namespace game
                     case ConsoleKey.Enter:
                         if (Quit == true)
                         {
-                            Stats.fin_du_jeu = true;
+                            // This is the only case we can quit !
                             Stats.WriteSave();
                             exitLoop = true;
                         }
@@ -286,6 +286,8 @@ namespace game
             }
             Console.BackgroundColor = bg_actuel;
             Console.ForegroundColor = fg_actuel;
+
+            Environment.Exit(0);
         }
     }
 }
