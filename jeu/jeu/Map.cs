@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace jeu
+namespace game
 {
     public class Map : Action
     {

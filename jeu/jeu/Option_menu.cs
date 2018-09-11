@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace jeu
+namespace game
 {
     public class Options : Action
     {
@@ -13,11 +13,9 @@ namespace jeu
             bool option_active = false;
             bool changingOfTab = false;
             int activeOptionNumber = 0;
-            int offset = 4; //prevent from displaying over the menu bar
             String[] options = { "Contrôles", "Aide", "Langue", "Crédit", "Sauvegarder & quitter" };
             int numberOfOptions = options.Length;
             int longestOption = options.OrderByDescending(s => s.Length).First().Length;
-            string verticalSeparator = "";
             // 4 is the size of the menu bar
             int freeVerticalSpace = Console.WindowHeight - 4;
             int freeHorizontalSpace = Console.WindowWidth;
@@ -100,6 +98,7 @@ namespace jeu
                         break;
                     case ConsoleKey.LeftArrow:
                         option_active = false;
+                        drawer.ClearInterface();
                         displayOptions();
                         break;
                     case ConsoleKey.Enter:

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace jeu
+namespace game
 {
     static class LifeBar
     {
@@ -19,20 +19,28 @@ namespace jeu
                     string vie = "Vie: " + Stats.vie_joueur + "/" + Stats.MaxPlayerLife;
                     double coefficient_barre_de_vie = 1 + ((Stats.MaxPlayerLife - Stats.vie_joueur) / Stats.MaxPlayerLife);
 
-                    ConsoleColor fond_actuel = Console.BackgroundColor;
-                    ConsoleColor couleur_actuel = Console.ForegroundColor;
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.BackgroundColor = ConsoleColor.DarkGreen;   //en vert foncé pour la visibilité
-                    Console.CursorVisible = false; //évite un glitch visuel
-                    Console.SetCursorPosition(0, 3);
+                    ConsoleColor previousBackColor = Console.BackgroundColor;
+                    ConsoleColor previousForeColor = Console.ForegroundColor;
 
+                    Console.ForegroundColor = ConsoleColor.White;
+                    //dark green for visibility
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    //avoid visual glitch
+                    Console.CursorVisible = false;
+
+                    Console.SetCursorPosition(0, 3);
+                    string greenBackground = "";
                     for (int i = 0; i < Console.WindowWidth * coefficient_barre_de_vie; i++)
                     {
-                        Console.Write(' '); //on colorie le fond
+                        greenBackground += ' ';
                     }
+                    //coloring background
+                    Console.Write(greenBackground); 
                     drawer.CenterWrite(3, vie);
-                    Console.ForegroundColor = Game.UIcolor;
-                    Console.BackgroundColor = ConsoleColor.Black;
+
+                    Console.ForegroundColor = previousForeColor;
+                    Console.BackgroundColor = previousBackColor;
+
                     Console.CursorVisible = true;
                     drawer.Cursor_StandBy();
                     Game.mutexLifeBar = true;

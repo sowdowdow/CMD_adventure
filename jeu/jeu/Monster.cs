@@ -1,4 +1,4 @@
-﻿namespace jeu
+﻿namespace game
 {
 	class Monster
     {

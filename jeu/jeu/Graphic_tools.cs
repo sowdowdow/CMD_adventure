@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace jeu
+namespace game
 {
     public class GraphicTools
     {
@@ -14,19 +14,24 @@ namespace jeu
             //place the cursor down right the console in pause
             Console.SetCursorPosition(Console.WindowWidth - 2, Console.WindowHeight - 1);
         }
+
         public void Write(string text)
         {
             Console.Write(text);
-        }//console.write()
+        }
+
         public void Write(int nb)
         {
             Console.Write(nb);
-        }//console.write(int)
-        public void Write(int x_LeftToRightm, int y_TopToBottom, string textToDisplay)
-        {
-            Console.SetCursorPosition(x_LeftToRightm, y_TopToBottom);
-            Console.Write(textToDisplay);
         }
+
+        public void Write(int x, int y, string text)
+        {
+            Console.SetCursorPosition(x, y);
+            Console.Write(text);
+        }
+
+        //display a line of 1 character
         public void HorizontalLine(int hauteur, char car)
         {
             Console.SetCursorPosition(0, hauteur);
@@ -34,7 +39,9 @@ namespace jeu
             {
                 Console.Write(car);
             }
-        }//affiche une ligne de 1 caractères
+        }
+
+        //display a line with 2 characters alternated
         public void HorizontalLine(int hauteur, char car, char car2)
         {
             Console.SetCursorPosition(0, hauteur);
@@ -43,7 +50,9 @@ namespace jeu
                 Console.Write(car);
                 Console.Write(car2);
             }
-        }//affiche une ligne de 2 caractères
+        }
+
+        //Display the title animation
         public void TitleScreen()
         {
             Console.Clear();
@@ -88,7 +97,7 @@ namespace jeu
             }
             Console.ReadKey(true);  // attend la saisie d'un appui sur clavier
             Console.Clear(); //efface la console
-        }//affiche l'animation du Titre
+        }
 
         //display a string horizontally centered
         public void CenterWrite(string text)
@@ -106,10 +115,12 @@ namespace jeu
             Console.CursorLeft = Console.BufferWidth / 2 - taille_obj;
             Console.Write(text);
         }
+
         public void Wait(int temps)
         {
             System.Threading.Thread.Sleep(temps);
         }//met en pause la console (en MilliSec)
+
         public void DeleteLine(int ligne)
         { //suppression de ligne
             Console.SetCursorPosition(0, ligne);
@@ -121,10 +132,11 @@ namespace jeu
             Console.CursorVisible = true;
             Console.SetCursorPosition(0, ligne);
         }//supprime une ligne a l'ordonné souhaité
-        public void DeleteLine(int ligne_d, int ligne_f)
+
+        public void DeleteLine(int startLine, int endLine)
 
         {   //suppression de ligne d -> f
-            for (int j = ligne_d; j < ligne_f; j++)
+            for (int j = startLine; j < endLine; j++)
             {
                 Console.SetCursorPosition(0, j);
                 for (int i = 0; i < Console.WindowWidth; i++)
@@ -134,7 +146,7 @@ namespace jeu
                 }
             }
             Console.CursorVisible = true;
-            Console.SetCursorPosition(0, ligne_d);
+            Console.SetCursorPosition(0, startLine);
         }//supprime toutes les lignes de D a F
 
         public void ClearInterface()

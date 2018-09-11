@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace jeu
+namespace game
 {
     public class Sprite_box
     {

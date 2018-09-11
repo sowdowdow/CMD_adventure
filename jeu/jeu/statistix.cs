@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace jeu
+namespace game
 {
     public static class Stats
     {

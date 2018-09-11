@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Text;
 using System.Timers;
 
-namespace jeu
+namespace game
 {
     class Game
     {
@@ -21,11 +21,12 @@ namespace jeu
         public Game()
         {
             Console.OutputEncoding = Encoding.UTF8;
+            Console.SetWindowSize(120, 30);
             Stats.Initializer(); //loading save
             Console.Title = "CMD_ Adventure";   //define console title
-            //Crazy_Console_Random_Number();    //<--------------------------------réactiver a la fin du dev.
+            //CrazyConsoleRandomNumber();    //<--------------------------------réactiver a la fin du dev.
             Console.ForegroundColor = UIcolor;
-            //Ecran_titre();                    //<--------------------------------réactiver a la fin du dev.
+            //drawer.TitleScreen();                    //<--------------------------------réactiver a la fin du dev.
             //Taptaptap_game();                 //<--------------------------------réactiver a la fin du dev.
             mutexLifeBar = true;
         }
@@ -55,6 +56,7 @@ namespace jeu
             Random lol = new Random();
             int rnd;
             Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.BackgroundColor = ConsoleColor.Black;
             for (int i = 0; i < 10e3; i++)
             {
                 rnd = lol.Next(0, Console.WindowHeight);
@@ -87,6 +89,7 @@ namespace jeu
             drawer.CenterWrite("tap tap tap !");
             Console.ForegroundColor = fg_actuel;
             drawer.HorizontalLine(4, '=');
+            Console.CursorVisible = false;
             for (int i = Console.CursorTop + 1; i < Console.WindowHeight; i++)
             {
                 drawer.CenterWrite(sprite.player_base);
@@ -96,6 +99,7 @@ namespace jeu
                 Console.Write("\n");
             }
             drawer.CenterWrite(sprite.player_base);
+            Console.CursorVisible = true;
 
 
             //Boucle du jeu ttt (il faut arriver a 1000 ttt)
