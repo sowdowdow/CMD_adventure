@@ -40,5 +40,35 @@ namespace game
                 @"   ././   \ \ ",
                 @".__/_|————|_| ",
             };
+        //=~=~=~=~=~=~=~=~=~=~=~=~=~=~
+        //          Weapons
+        //=~=~=~=~=~=~=~=~=~=~=~=~=~=~
+        /**
+         * Weapons are
+         * 8 char. large and 4 char. height
+         */
+        public string[] woodenStick =
+        {
+                @"    / / ",
+                @" ()/-/  ",
+                @" |/ /   ",
+                @" /_/    ",
+        };
+
+        public string[] sharpenedStick =
+        {
+                @"    /|  ",
+                @"   / /  ",
+                @"  / /   ",
+                @" / /    ",
+        };
+
+        public string[] stove =
+{
+                @"  ____  ",
+                @" /    \\",
+                @" \_  _//",
+                @"   ||   ",
+        };
     }
 }
