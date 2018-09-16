@@ -207,80 +207,57 @@ namespace game
         {
             ConsoleColor bg_actuel = Console.BackgroundColor;
             ConsoleColor fg_actuel = Console.ForegroundColor;
+            int horizontalCenter = Console.WindowWidth / 2;
+            int verticalCenter = Console.WindowHeight / 2;
 
-            int centre_horizontal = Console.WindowWidth / 2;
-            int centre_vertical = Console.WindowHeight / 2;
-            string[] yesNo = { "NON", "OUI" };
-            string espace = "             ";
-            void Quit_True()
+            void drawQuitDialogBox(bool isSelected)
             {
-                drawer.CenterWrite((Console.WindowHeight / 2) - 2, "Voulez-vous vraiment quitter ?");
+                //align center
+                string yesSelected = "║      >OUI<         NON       ║";
+                string noSelected =  "║       OUI         >NON<      ║";
+                string[] dialogBox =
+                {
+                    "╔══════════════════════════════╗",
+                    "║Voulez-vous vraiment quitter ?║",
+                    (isSelected) ? yesSelected : noSelected,
+                    "╚══════════════════════════════╝"
+                };
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
-                Console.SetCursorPosition(centre_horizontal - espace.Length / 2, centre_vertical);
-                Console.Write(yesNo[1]);
+                drawer.CenterWrite(verticalCenter - (dialogBox.Length / 2), dialogBox);
                 //On remet les couleurs originals
                 Console.BackgroundColor = bg_actuel;
                 Console.ForegroundColor = fg_actuel;
-                Console.Write(espace + yesNo[0]);
                 drawer.Cursor_StandBy();
             }
-            void Quit_False()
-            {
-                drawer.CenterWrite((Console.WindowHeight / 2) - 2, "Voulez-vous vraiment quitter ?");
-                Console.SetCursorPosition(centre_horizontal - espace.Length / 2, centre_vertical);
-                Console.Write(yesNo[1] + espace);
 
-                Console.BackgroundColor = ConsoleColor.White;
-                Console.ForegroundColor = ConsoleColor.Black;
-
-                Console.Write(yesNo[0]);
-                //Put back the original colors
-                Console.BackgroundColor = bg_actuel;
-                Console.ForegroundColor = fg_actuel;
-                drawer.Cursor_StandBy();
-            }
             //Initialisation
-            Quit_False();
+            drawQuitDialogBox(false);
             //if Quit = TRUE and Enter Key => Quit the game
+
             bool Quit = false;
             bool exitLoop = false;
 
             while (exitLoop == false)
             {
-                centre_horizontal = Console.WindowWidth / 2;
+                horizontalCenter = Console.WindowWidth / 2;
+                drawQuitDialogBox(Quit);
                 switch (Console.ReadKey().Key)
                 {
+                    //When left and right arrow are used
+                    //the opposite option is selected
                     case ConsoleKey.LeftArrow:
-                        if (Quit == true)
-                        {
-                            Quit = false;
-                            Quit_False();
-                        }
-                        else
-                        {
-                            Quit = true;
-                            Quit_True();
-                        }
+                        Quit = !Quit;
                         break;
                     case ConsoleKey.RightArrow:
-                        if (Quit == true)
-                        {
-                            Quit = false;
-                            Quit_False();
-                        }
-                        else
-                        {
-                            Quit = true;
-                            Quit_True();
-                        }
+                        Quit = !Quit;
                         break;
                     case ConsoleKey.Enter:
                         if (Quit == true)
                         {
                             // This is the only case we can quit !
                             Stats.WriteSave();
-                            exitLoop = true;
+                            Environment.Exit(0);
                         }
                         else
                         {
@@ -294,8 +271,6 @@ namespace game
             }
             Console.BackgroundColor = bg_actuel;
             Console.ForegroundColor = fg_actuel;
-
-            Environment.Exit(0);
         }
     }
 }
