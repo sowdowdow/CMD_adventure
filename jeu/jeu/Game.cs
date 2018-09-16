@@ -45,7 +45,7 @@ namespace game
             //boucle de régéneration de la vie du joueur
             if (Stats.Player.Life < Stats.Player.MaxLife && mutexLifeBar == true)
             {
-                Stats.Player.Life++;
+                Stats.Player.Life += Stats.Player.RegenerationSpeed;
             }
         }
         #endregion timer
