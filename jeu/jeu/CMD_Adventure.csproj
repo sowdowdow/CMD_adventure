@@ -48,10 +48,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Action.cs" />
+    <Compile Include="Belt.cs" />
+    <Compile Include="Boots.cs" />
+    <Compile Include="Gear.cs" />
+    <Compile Include="Glove.cs" />
     <Compile Include="Graphic_tools.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="lifeBar.cs" />
+    <Compile Include="LifeBar.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MenuBar.cs" />
     <Compile Include="Monster.cs" />
@@ -59,14 +63,17 @@
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ring.cs" />
+    <Compile Include="Shield.cs" />
     <Compile Include="Shop.cs" />
     <Compile Include="Sprite_box.cs" />
     <Compile Include="Statistix.cs" />
+    <Compile Include="Weapon.cs" />
     <Compile Include="What.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -21,6 +21,7 @@ namespace jeu
         private int baseDefense;
         private int attack;
         private int defense;
+        private int musculationLevel;
 
         private DateTime dateFirstGame;
         private ushort taptaptapScore;
@@ -38,6 +39,7 @@ namespace jeu
             baseDefense = 0;
             attack = baseAttack;
             defense = baseDefense;
+            musculationLevel = 0;
             dateFirstGame = DateTime.Now;
             taptaptapScore = 0;
             progressLevel = 0;
@@ -45,7 +47,6 @@ namespace jeu
         }
 
         public static int BaseMaxLife => baseMaxLife;
-
         public string Name { get => name; set => name = value; }
         public int Money { get => money; set => money = value; }
         public int SpentMoney { get => spentMoney; set => spentMoney = value; }
@@ -59,5 +60,6 @@ namespace jeu
         public int GameTime { get => gameTime; set => gameTime = value; }
         public int Attack { get => attack; set => attack = value; }
         public int Defense { get => defense; set => defense = value; }
+        public int MusculationLevel { get => musculationLevel; set => musculationLevel = value; }
     }
 }
