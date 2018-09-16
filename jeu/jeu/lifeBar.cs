@@ -16,8 +16,8 @@ namespace game
                 if (Game.mutexLifeBar)
                 {
                     Game.mutexLifeBar = false;
-                    string vie = "Vie: " + Stats.vie_joueur + "/" + Stats.MaxPlayerLife;
-                    double coefficient_barre_de_vie = 1 + ((Stats.MaxPlayerLife - Stats.vie_joueur) / Stats.MaxPlayerLife);
+                    string vie = "Vie: " + Stats.Player.Life + "/" + Stats.Player.MaxLife;
+                    double coefficient_barre_de_vie = 1 + ((Stats.Player.MaxLife - Stats.Player.Life) / Stats.Player.MaxLife);
 
                     ConsoleColor previousBackColor = Console.BackgroundColor;
                     ConsoleColor previousForeColor = Console.ForegroundColor;

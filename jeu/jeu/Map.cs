@@ -9,7 +9,7 @@ namespace game
     {
         public Map()
         {
-            switch (Stats.ProgressLevel)
+            switch (Stats.Player.ProgressLevel)
             {
                 case 0:
                     ChoosingPlayerName();

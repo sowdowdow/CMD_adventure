@@ -10,7 +10,7 @@
   <Class Name="game.Monster" Collapsed="true">
     <Position X="7.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAAABCChAAAAAAAgCARAQAA=</HashCode>
+      <HashCode>AAACIAAAAAAAAAAAAAAAAAQEAgCgAAAAAAAgCAQAQAA=</HashCode>
       <FileName>Monster.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -28,10 +28,10 @@
       <FileName>Sprite_box.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="game.Stats" Collapsed="true">
+  <Class Name="game.Stats">
     <Position X="7.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEQEYAAABAAAAgAAAUIAEEACBAAAAAQgEIACAAAFAk=</HashCode>
+      <HashCode>AAEQAAAAABAAAAAAAAQIAEAACAAAAAARgEIACAAABAE=</HashCode>
       <FileName>Statistix.cs</FileName>
       <NewMemberFileName>statistix.cs</NewMemberFileName>
     </TypeIdentifier>
@@ -76,6 +76,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAQgAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MenuBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="jeu.Player">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAFQAAAAAAgAgAAACAAAAAAAAEAAAQgAAAQAAAEAA=</HashCode>
+      <FileName>Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

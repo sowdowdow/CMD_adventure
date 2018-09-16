@@ -41,11 +41,11 @@ namespace game
         public void UpdateGameTime(object source, ElapsedEventArgs e)
         {
             //1 seconde de plus au temps de jeu
-            Stats.GameTime++;
+            Stats.Player.GameTime++;
             //boucle de régéneration de la vie du joueur
-            if (Stats.vie_joueur < Stats.MaxPlayerLife && mutexLifeBar == true)
+            if (Stats.Player.Life < Stats.Player.MaxLife && mutexLifeBar == true)
             {
-                Stats.vie_joueur++;
+                Stats.Player.Life++;
             }
         }
         #endregion timer
@@ -106,15 +106,15 @@ namespace game
 
 
             //Boucle du jeu ttt (il faut arriver a 1000 ttt)
-            while (Stats.Taptaptap < 1000)
+            while (Stats.Player.TaptaptapScore < 1000)
             {
                 Console.SetCursorPosition(0, 3);
                 drawer.DeleteLine(3);
                 Console.ReadKey();
-                Stats.Taptaptap++;
+                Stats.Player.TaptaptapScore++;
                 Console.SetCursorPosition(Console.WindowWidth - 10, Console.WindowHeight - 2);
-                drawer.Write("ttt: " + Stats.Taptaptap);
-                switch (Stats.Taptaptap)
+                drawer.Write("ttt: " + Stats.Player.TaptaptapScore);
+                switch (Stats.Player.TaptaptapScore)
                 {
                     case 10:
                         Console.SetCursorPosition(0, 5);
@@ -152,7 +152,7 @@ namespace game
                 Console.SetCursorPosition(0, 5);
             };
             //après 1000 ttt le joueur obtient la barre de titre
-            Console.Write("réclamer quelque-chose contre {0} ttt ? (O/N)", Stats.Taptaptap);
+            Console.Write("réclamer quelque-chose contre {0} ttt ? (O/N)", Stats.Player.TaptaptapScore);
             bool YES = false;
             int emoji = 0;
 

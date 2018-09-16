@@ -156,7 +156,7 @@ namespace game
         public void Help()
         {
             drawer.ClearInterface();
-            switch (Stats.ProgressLevel)
+            switch (Stats.Player.ProgressLevel)
             {
                 case 0:
                     drawer.CenterWrite(Console.WindowHeight / 2, "Allez voir la carte");
@@ -175,11 +175,11 @@ namespace game
         public void Credit()
         {
             drawer.ClearInterface();
-            string firstPlay = "date de votre première partie : " + Stats.DateFirstGame.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR"));
+            string firstPlay = "date de votre première partie : " + Stats.Player.DateFirstGame.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR"));
 
             //heure minute seconde
             int h = 0, m = 0, s, totalSecondPlayed;
-            totalSecondPlayed = Stats.GameTime;
+            totalSecondPlayed = Stats.Player.GameTime;
             h = totalSecondPlayed / 3600;
             s = totalSecondPlayed % 3600;
             m = s / 60;
