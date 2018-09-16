@@ -22,6 +22,7 @@ namespace jeu
         private int attack;
         private int defense;
         private int musculationLevel;
+        private int totalMonstersKilled;
 
         private DateTime dateFirstGame;
         private ushort taptaptapScore;
@@ -40,6 +41,8 @@ namespace jeu
             attack = baseAttack;
             defense = baseDefense;
             musculationLevel = 0;
+            totalMonstersKilled = 0;
+
             dateFirstGame = DateTime.Now;
             taptaptapScore = 0;
             progressLevel = 0;
@@ -61,5 +64,6 @@ namespace jeu
         public int Attack { get => attack; set => attack = value; }
         public int Defense { get => defense; set => defense = value; }
         public int MusculationLevel { get => musculationLevel; set => musculationLevel = value; }
+        public int TotalMonstersKilled { get => totalMonstersKilled; set => totalMonstersKilled = value; }
     }
 }
