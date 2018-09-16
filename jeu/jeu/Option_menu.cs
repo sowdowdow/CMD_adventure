@@ -222,6 +222,7 @@ namespace game
                     (isSelected) ? yesSelected : noSelected,
                     "╚══════════════════════════════╝"
                 };
+
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
                 drawer.CenterWrite(verticalCenter - (dialogBox.Length / 2), dialogBox);
@@ -262,6 +263,7 @@ namespace game
                         else
                         {
                             exitLoop = true;
+                            // Here I need to clear the dialogBox
                         }
                         break;
                     default:

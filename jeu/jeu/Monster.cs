@@ -2,34 +2,34 @@
 {
     class Monster
     {
-        private string _nom;
+        private string _name;
         private string _skin;
         private int _hp;
         private int _atk;
         private int _exp;
 
-        //instance des monstres (NOM / SKIN / HP / ATK / EXP)
-        Monster lapin = new Monster("rabbit", "°o'", 1, 0, 1);
-        Monster tortue = new Monster("turtle", "°,o,", 10, 2, 5);
+        //instance of monsters (NOM / SKIN / HP / ATK / EXP)
+        Monster Rabbit = new Monster("rabbit", "°o'", 1, 0, 1);
+        Monster Turtle = new Monster("turtle", "°,o,", 10, 2, 5);
 
-        public Monster(string nom, string skin, int hp, int atk, int exp)
+        public Monster(string name, string skin, int hp, int atk, int exp)
         {
-            _nom = nom;
+            _name = name;
             _skin = skin;
             _hp = hp;
             _atk = atk;
             _exp = exp;
         }
-        public string Nom
+        public string Name
         {
             get
             {
-                return _nom;
+                return _name;
             }
 
             set
             {
-                _nom = value;
+                _name = value;
             }
         }
 
