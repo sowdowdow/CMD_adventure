@@ -116,6 +116,16 @@ namespace game
             Console.Write(text);
         }
 
+        //display strings horizontally centered from the specified line
+        public void CenterWrite(int line, String[] strings)
+        {
+            foreach (String text in strings)
+            {
+                CenterWrite(line, text);
+                line++;
+            }
+        }
+
         public void Wait(int temps)
         {
             System.Threading.Thread.Sleep(temps);

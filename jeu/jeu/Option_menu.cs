@@ -136,14 +136,22 @@ namespace game
         public void Controls()
         {
             drawer.ClearInterface();
-            drawer.CenterWrite(4, "Pour changer d'onglet :");
-            drawer.CenterWrite(5, "A Z E R T");
-            drawer.HorizontalLine(6, '+');
-            drawer.CenterWrite(7, "Pour vous déplacer dans les menus :");
-            drawer.CenterWrite(8, "/\\");
-            drawer.CenterWrite(9, "<  >");
-            drawer.CenterWrite(9, "\\/");
-            drawer.HorizontalLine(10, '+');
+            string[] informations = {
+                "",
+                "Pour changer d'onglet :",
+                "A Z E R T",
+                "",
+                "-------------------------------------",
+                "",
+                "Pour vous déplacer dans les menus :",
+                "/\\",
+                "<  >",
+                "\\/",
+                "",
+                "-------------------------------------",
+            };
+
+            drawer.CenterWrite(4, informations);
         }
         public void Help()
         {
@@ -167,32 +175,32 @@ namespace game
         public void Credit()
         {
             drawer.ClearInterface();
-            string premiere_partie = "date de votre première partie : " + Stats.DateFirstGame.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR"));
+            string firstPlay = "date de votre première partie : " + Stats.DateFirstGame.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR"));
 
             //heure minute seconde
-            int h = 0, m = 0, s;
-            s = Stats.GameTime;
-            h = s / 3600;
-            s = s % 3600;
+            int h = 0, m = 0, s, totalSecondPlayed;
+            totalSecondPlayed = Stats.GameTime;
+            h = totalSecondPlayed / 3600;
+            s = totalSecondPlayed % 3600;
             m = s / 60;
             s = s % 60;
 
             string temps_jeu_formate = h + "h" + m + "m" + s + "s";
             string temps_de_jeu = "temps de jeu : " + temps_jeu_formate;
-            int i = Console.WindowHeight / 2 - 5; //line n°
-            drawer.DeleteLine(i, Console.WindowHeight - 1); //clear console
-            drawer.CenterWrite(i, "Imaginé, réalisé et codé par : Sowdowdow");    //center the text at line 4
-            i++;
-            drawer.CenterWrite(i, "début dev. : 2017");      //...
-            i++;
-            drawer.CenterWrite(i, "fin dev. : ~");      //...
-            i++;
-            drawer.CenterWrite(i, "inspiré de CandyBox2");      //...
-            i += 2;
-            drawer.CenterWrite(temps_de_jeu); //space the statistics from other things displayed
-            i++;
-            drawer.CenterWrite(i, premiere_partie);//...
+            drawer.ClearInterface(); // clear interface
 
+            string[] informations = {
+                "Imaginé, réalisé et codé par : Sowdowdow",
+                "début dev. : 2017",
+                "fin dev. : ~",
+                "inspiré de CandyBox2",
+                "",
+                "",
+                temps_de_jeu,
+                firstPlay,
+            };
+
+            drawer.CenterWrite(Console.WindowHeight / 2 - 5, informations);
             drawer.CenterWrite(Console.WindowHeight - 1, sprites.player_base);
         }
         public void SaveAndQuit()
