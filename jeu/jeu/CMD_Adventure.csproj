@@ -50,6 +50,7 @@
     <Compile Include="Action.cs" />
     <Compile Include="Belt.cs" />
     <Compile Include="Boots.cs" />
+    <Compile Include="Dialog.cs" />
     <Compile Include="Gear.cs" />
     <Compile Include="Glove.cs" />
     <Compile Include="Graphic_tools.cs" />

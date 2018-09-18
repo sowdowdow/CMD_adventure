@@ -157,6 +157,29 @@ namespace geometry
             return "Left : " + Left + ",Top : " + Top + ", Width: " + Width + ", Height : " + Height;
         }
 
+        public bool IsInConsoleBoundaries()
+        {
+            if (Left >= 0 && Top >= 0 && Left <= Console.WindowLeft && Top <= Console.WindowTop)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        /**
+         * This function return the free area 
+         * of the rectangle in pixel square.
+         */
+        public int Area
+        {
+            get
+            {
+                return Height * Width;
+            }
+        }
+
         public void Draw(char borderChar)
         {
             //concatenate for display optimization
