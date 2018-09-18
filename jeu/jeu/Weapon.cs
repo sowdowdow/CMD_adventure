@@ -8,9 +8,10 @@ namespace jeu
     public class Weapon : Gear
     {
         protected int speed;
-        public Weapon(string p_name, int p_attack, int p_defense, int p_life, int p_speed) : base(p_name, p_attack, p_defense, p_life)
+
+        public Weapon(string name, int attack, int defense, int life, string[] sprite, int description, int speed) : base(name, attack, defense, life, sprite, description)
         {
-            speed = p_speed;
+            this.speed = speed;
         }
 
         public int Speed { get => speed;}

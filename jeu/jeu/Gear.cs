@@ -11,18 +11,24 @@ namespace jeu
         protected int attack;
         protected int defense;
         protected int life;
+        private string[] sprite;
+        private int description;
 
-        public Gear(string p_name, int p_attack, int p_defense, int p_life)
+        public Gear(string name, int attack, int defense, int life, string[] sprite, int description)
         {
-            name = p_name;
-            attack = p_attack;
-            defense = p_defense;
-            life = p_life;
+            this.name = name;
+            this.attack = attack;
+            this.defense = defense;
+            this.life = life;
+            this.sprite = sprite;
+            this.description = description;
         }
 
         public string Name { get => name; }
         public int Attack { get => attack; }
         public int Defense { get => defense; }
         public int Life { get => life; }
+        public string[] Sprite { get => sprite; }
+        public int Description { get => description; set => description = value; }
     }
 }
