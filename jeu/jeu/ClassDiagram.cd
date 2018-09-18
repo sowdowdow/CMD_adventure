@@ -8,14 +8,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="game.Monster" Collapsed="true">
-    <Position X="16" Y="1.5" Width="1.5" />
+    <Position X="14.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACIAAAAAAAAAAAAAAAAAQEAgCgAAAAAAAgCAQAQAA=</HashCode>
       <FileName>Monster.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="game.Program" Collapsed="true">
-    <Position X="14.25" Y="2.5" Width="1.5" />
+    <Position X="19.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
@@ -24,7 +24,7 @@
   <Class Name="game.Sprite_box" Collapsed="true">
     <Position X="16" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAQAAAAAAAAAAAAAAiAAAICAAA=</HashCode>
+      <HashCode>AAAAAAIAAAAAAAAgAAAQAAAAAAAAAAAQAAiAAAIGAAA=</HashCode>
       <FileName>Sprite_box.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -72,16 +72,16 @@
     </TypeIdentifier>
   </Class>
   <Class Name="game.MenuBar" Collapsed="true">
-    <Position X="14.25" Y="1.5" Width="1.5" />
+    <Position X="19.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAQgAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MenuBar.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="jeu.Player" Collapsed="true">
-    <Position X="17.75" Y="1.5" Width="1.5" />
+    <Position X="16" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEQFQAAAAAAgIgAAICIBAQAAJAEAACQgAAAQoABEEM=</HashCode>
+      <HashCode>AAEQFQAAAAAAgIgAAICIBAQAAJAEAACSgAAAQoABEEM=</HashCode>
       <FileName>Player.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -100,45 +100,59 @@
     </TypeIdentifier>
   </Class>
   <Class Name="jeu.Weapon">
-    <Position X="0.5" Y="4.25" Width="1.5" />
+    <Position X="0.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAA=</HashCode>
       <FileName>Weapon.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="jeu.Shield">
-    <Position X="2.75" Y="4.25" Width="1.5" />
+    <Position X="2.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Shield.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="jeu.Glove">
-    <Position X="5" Y="4.25" Width="1.5" />
+    <Position X="5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Glove.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="jeu.Belt">
-    <Position X="7.25" Y="4.25" Width="1.5" />
+    <Position X="7.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Belt.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="jeu.Ring">
-    <Position X="9.5" Y="4.25" Width="1.5" />
+    <Position X="9.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Ring.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="jeu.Boots">
-    <Position X="11.75" Y="4.25" Width="1.5" />
+    <Position X="11.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Boots.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="geometry.Point" Collapsed="true">
+    <Position X="17.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAACAAAAAAAAAAAAACAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Point.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="geometry.Rectangle">
+    <Position X="14.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACABAAAAgAEAAAAAEAAAAAIAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Rectangle.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

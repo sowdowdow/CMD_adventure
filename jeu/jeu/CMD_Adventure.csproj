@@ -61,8 +61,10 @@
     <Compile Include="Monster.cs" />
     <Compile Include="Option_menu.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rectangle.cs" />
     <Compile Include="Ring.cs" />
     <Compile Include="Shield.cs" />
     <Compile Include="Shop.cs" />

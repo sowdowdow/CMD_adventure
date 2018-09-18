@@ -32,12 +32,12 @@ namespace game
         }
 
         //display a line of 1 character
-        public void HorizontalLine(int hauteur, char car)
+        public void HorizontalLine(int hauteur, char printedChararcter)
         {
             Console.SetCursorPosition(0, hauteur);
             for (int i = 0; i < Console.BufferWidth; i++)
             {
-                Console.Write(car);
+                Console.Write(printedChararcter);
             }
         }
 

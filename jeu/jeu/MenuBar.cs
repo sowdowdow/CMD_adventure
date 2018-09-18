@@ -10,6 +10,7 @@ namespace game
         private static String[] menu = { "Carte (a)", "Inventaire (z)", "Magasin (e)", "??? (r)", "Options (t)" };
         public static void Display()
         {
+            GraphicTools drawer = new GraphicTools();
             int NumberOfTabs = menu.Length;
             int TotalStringLengthOfMenu = String.Join("", menu).Length;
             int AvailableSpace = (Console.WindowWidth - TotalStringLengthOfMenu);
@@ -17,12 +18,8 @@ namespace game
             int MarginsSize = AvailableSpace / (NumberOfTabs * 2);
 
             //Line 1 - Border
-            Console.SetCursorPosition(0, 0);
             Console.BackgroundColor = ConsoleColor.Black;
-            for (int i = 0; i < Console.WindowWidth; i++)
-            {
-                Console.Write('-');
-            }
+            drawer.HorizontalLine(0, '-');
 
             //Line 2 - Items + Separators
             Console.SetCursorPosition(0, 1);
@@ -35,11 +32,12 @@ namespace game
                     Console.Write(' ');
                 }
                 ConsoleColor previousColor = Console.ForegroundColor;
-                if(Stats.activeTab != null)
+                if (Stats.activeTab != null)
                 {
                     //Change the color for the active tab
                     Console.ForegroundColor = (menu[menuItem].Contains(Stats.activeTab)) ? ConsoleColor.Green : ConsoleColor.White;
-                } else
+                }
+                else
                 {
                     Console.ForegroundColor = ConsoleColor.White;
                 }
@@ -59,12 +57,7 @@ namespace game
             }
 
             // Line 3 - Border
-            Console.SetCursorPosition(0, 2);
-            for (int menuItem = 0; menuItem < Console.WindowWidth; menuItem++)
-            {
-                Console.Write('-');
-            }
-            GraphicTools drawer = new GraphicTools();
+            drawer.HorizontalLine(2, '-');
             drawer.Cursor_StandBy();
         }
     }
