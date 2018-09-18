@@ -13,9 +13,9 @@ namespace game
             GraphicTools drawer = new GraphicTools();
             while (true)
             {
-                if (Game.mutexLifeBar)
+                if (Game._mutexLifeBar)
                 {
-                    Game.mutexLifeBar = false;
+                    Game._mutexLifeBar = false;
                     string vie = "Vie: " + Stats.Player.Life + "/" + Stats.Player.MaxLife;
                     double coefficient_barre_de_vie = 1 + ((Stats.Player.MaxLife - Stats.Player.Life) / Stats.Player.MaxLife);
 
@@ -43,7 +43,7 @@ namespace game
 
                     Console.CursorVisible = true;
                     drawer.Cursor_StandBy();
-                    Game.mutexLifeBar = true;
+                    Game._mutexLifeBar = true;
                     drawer.Wait(1000);
                 }
             }

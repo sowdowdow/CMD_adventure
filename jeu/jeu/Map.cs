@@ -24,11 +24,11 @@ namespace game
         }
         private void ChoosingPlayerName()
         {
-            sprites.DisplaySprite(0, 4, sprites.house1);
-            sprites.DisplaySprite(30, 5, sprites.house2);
-            sprites.DisplaySprite(28, 15, sprites.dynosaur);
-            drawer.Write(28, 12, "Hey Toi !");
-            drawer.Cursor_StandBy();
+            _sprites.DisplaySprite(0, 4, _sprites._house1);
+            _sprites.DisplaySprite(30, 5, _sprites._house2);
+            _sprites.DisplaySprite(28, 15, _sprites._dynosaur);
+            _drawer.Write(28, 12, "Hey Toi !");
+            _drawer.Cursor_StandBy();
         }
         private void DiscoveringTheMap()
         {

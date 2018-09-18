@@ -34,15 +34,15 @@ namespace game
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         //displaying cursor at start
-                        drawer.CenterWrite(cursor + option);
+                        _drawer.CenterWrite(cursor + option);
                     }
                     else
                     {
                         Console.ForegroundColor = actualColor;
-                        drawer.CenterWrite(option);
+                        _drawer.CenterWrite(option);
                     }
                 }
-                drawer.Cursor_StandBy();   //prevent display glitch (override)
+                _drawer.Cursor_StandBy();   //prevent display glitch (override)
             }
 
             displayOptions();    //Launching the method a first time
@@ -55,7 +55,7 @@ namespace game
                     case ConsoleKey.DownArrow:
                         if (activeOptionNumber < options.Length - 1 && option_active == false)
                         {
-                            drawer.ClearInterface();
+                            _drawer.ClearInterface();
                             activeOptionNumber++;
                             displayOptions();
                         }
@@ -63,7 +63,7 @@ namespace game
                     case ConsoleKey.UpArrow:
                         if (activeOptionNumber > 0 && option_active == false)
                         {
-                            drawer.ClearInterface();
+                            _drawer.ClearInterface();
                             activeOptionNumber--;
                             displayOptions();
                         }
@@ -98,7 +98,7 @@ namespace game
                         break;
                     case ConsoleKey.LeftArrow:
                         option_active = false;
-                        drawer.ClearInterface();
+                        _drawer.ClearInterface();
                         displayOptions();
                         break;
                     case ConsoleKey.Enter:
@@ -124,10 +124,10 @@ namespace game
                         break;
                     #endregion touches_vers_retour_choix_onglet
                     default:
-                        drawer.Cursor_StandBy();
+                        _drawer.Cursor_StandBy();
                         break;
                 }
-                drawer.Cursor_StandBy();
+                _drawer.Cursor_StandBy();
             }
             Console.ForegroundColor = actualColor;
         }
@@ -135,7 +135,7 @@ namespace game
 
         public void Controls()
         {
-            drawer.ClearInterface();
+            _drawer.ClearInterface();
             string[] informations = {
                 "",
                 "Pour changer d'onglet :",
@@ -151,30 +151,30 @@ namespace game
                 "-------------------------------------",
             };
 
-            drawer.CenterWrite(4, informations);
+            _drawer.CenterWrite(4, informations);
         }
         public void Help()
         {
-            drawer.ClearInterface();
+            _drawer.ClearInterface();
             switch (Stats.Player.ProgressLevel)
             {
                 case 0:
-                    drawer.CenterWrite(Console.WindowHeight / 2, "Allez voir la carte");
+                    _drawer.CenterWrite(Console.WindowHeight / 2, "Allez voir la carte");
                     break;
                 default:
-                    drawer.CenterWrite(Console.WindowHeight / 2, "Vous avez triché =_='");
+                    _drawer.CenterWrite(Console.WindowHeight / 2, "Vous avez triché =_='");
                     break;
             }
         }
         public void Language()
         {
-            drawer.ClearInterface();
-            drawer.CenterWrite(Console.WindowHeight / 2, "en cours de developpement");
+            _drawer.ClearInterface();
+            _drawer.CenterWrite(Console.WindowHeight / 2, "en cours de developpement");
         }
 
         public void Credit()
         {
-            drawer.ClearInterface();
+            _drawer.ClearInterface();
             string firstPlay = "date de votre première partie : " + Stats.Player.DateFirstGame.ToString("d", CultureInfo.CreateSpecificCulture("fr-FR"));
 
             //heure minute seconde
@@ -187,7 +187,7 @@ namespace game
 
             string temps_jeu_formate = h + "h" + m + "m" + s + "s";
             string temps_de_jeu = "temps de jeu : " + temps_jeu_formate;
-            drawer.ClearInterface(); // clear interface
+            _drawer.ClearInterface(); // clear interface
 
             string[] informations = {
                 "Imaginé, réalisé et codé par : Sowdowdow",
@@ -200,8 +200,8 @@ namespace game
                 firstPlay,
             };
 
-            drawer.CenterWrite(Console.WindowHeight / 2 - 5, informations);
-            drawer.CenterWrite(Console.WindowHeight - 1, sprites.player_base);
+            _drawer.CenterWrite(Console.WindowHeight / 2 - 5, informations);
+            _drawer.CenterWrite(Console.WindowHeight - 1, _sprites._player_base);
         }
         public void SaveAndQuit()
         {
@@ -225,11 +225,11 @@ namespace game
 
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.ForegroundColor = ConsoleColor.Black;
-                drawer.CenterWrite(verticalCenter - (dialogBox.Length / 2), dialogBox);
+                _drawer.CenterWrite(verticalCenter - (dialogBox.Length / 2), dialogBox);
                 //On remet les couleurs originals
                 Console.BackgroundColor = bg_actuel;
                 Console.ForegroundColor = fg_actuel;
-                drawer.Cursor_StandBy();
+                _drawer.Cursor_StandBy();
             }
 
             //Initialisation
@@ -267,7 +267,7 @@ namespace game
                         }
                         break;
                     default:
-                        drawer.Cursor_StandBy();
+                        _drawer.Cursor_StandBy();
                         break;
                 }
             }

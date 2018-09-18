@@ -7,16 +7,16 @@ namespace game
 {
     public class Action
     {
-        protected Sprite_box sprites;
-        protected GraphicTools drawer;
+        protected Sprite_box _sprites;
+        protected GraphicTools _drawer;
 
         public Action()
         {
-            sprites = new Sprite_box();
-            drawer = new GraphicTools();
+            _sprites = new Sprite_box();
+            _drawer = new GraphicTools();
 
             //First: Clean the map
-            drawer.ClearInterface();
+            _drawer.ClearInterface();
         }
     }
 }

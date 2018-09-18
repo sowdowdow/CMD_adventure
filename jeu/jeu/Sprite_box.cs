@@ -15,11 +15,11 @@ namespace game
             Console.SetCursorPosition(Console.WindowWidth - 3, Console.WindowHeight - 2);
         }
         //skin du joueur
-        public string player_base = "°v°";
-        public string player_wow = "*v*";
-        public string player_depressed = "-v-";
+        public string _player_base = "°v°";
+        public string _player_wow = "*v*";
+        public string _player_depressed = "-v-";
         //sprite des objets
-        public string[] house1 = {
+        public string[] _house1 = {
                 @"  _______| |__",
                 @" /            \",
                 @"/______________\",
@@ -27,14 +27,14 @@ namespace game
                 @"|       | ,|   |",
                 @"|_______|__|___|"
             };
-        public string[] house2 = {
+        public string[] _house2 = {
                 @"  _____\ \_",
                 @" /         \",
                 @"/  __       \",
                 @"| | ,|      |",
                 @"|_|__|______|"
             };
-        public string[] dynosaur = {
+        public string[] _dynosaur = {
                 @"      _______ ",
                 @"    ./     [°\",
                 @"   ././   \ \ ",
@@ -47,7 +47,7 @@ namespace game
          * Weapons are
          * 8 char. large and 4 char. height
          */
-        public string[] woodenStick =
+        public string[] _woodenStick =
         {
                 @"    / / ",
                 @" ()/-/  ",
@@ -55,7 +55,7 @@ namespace game
                 @" /_/    ",
         };
 
-        public string[] sharpenedStick =
+        public string[] _sharpenedStick =
         {
                 @"    /|  ",
                 @"   / /  ",
@@ -63,7 +63,7 @@ namespace game
                 @" / /    ",
         };
 
-        public string[] stove =
+        public string[] _stove =
 {
                 @"  ____  ",
                 @" /    \\",

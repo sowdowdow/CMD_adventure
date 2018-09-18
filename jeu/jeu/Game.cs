@@ -8,14 +8,14 @@ namespace game
     class Game
     {
         //couleur UI
-        public static ConsoleColor UIcolor = ConsoleColor.DarkYellow;
+        public static ConsoleColor _UIcolor = ConsoleColor.DarkYellow;
 
         //mutex barre de vie empêche l'activation simultanée de l'affichage de la barre de vie et d'une action 
-        public static bool mutexLifeBar = false;
+        public static bool _mutexLifeBar = false;
 
-        public Sprite_box sprite = new Sprite_box();
-        public GraphicTools drawer = new GraphicTools();
-        public Options options = new Options();
+        public Sprite_box _sprite = new Sprite_box();
+        public GraphicTools _drawer = new GraphicTools();
+        public Options _options = new Options();
 
         //Constructeur
         public Game()
@@ -25,15 +25,15 @@ namespace game
             Stats.Initializer(); //loading save
             Console.Title = "CMD_ Adventure";   //define console title
             //CrazyConsoleRandomNumber();    //<--------------------------------réactiver a la fin du dev.
-            Console.ForegroundColor = UIcolor;
+            Console.ForegroundColor = _UIcolor;
             //drawer.TitleScreen();                    //<--------------------------------réactiver a la fin du dev.
             //Taptaptap_game();                 //<--------------------------------réactiver a la fin du dev.
-            mutexLifeBar = true;
+            _mutexLifeBar = true;
         }
 
         //Timer refresh game time every seconds
         #region timer
-        public Timer gameTimeTimer = new System.Timers.Timer(1000)
+        public Timer _gameTimeTimer = new System.Timers.Timer(1000)
         {
             AutoReset = true
         };
@@ -43,7 +43,7 @@ namespace game
             //1 seconde de plus au temps de jeu
             Stats.Player.GameTime++;
             //boucle de régéneration de la vie du joueur
-            if (Stats.Player.Life < Stats.Player.MaxLife && mutexLifeBar == true)
+            if (Stats.Player.Life < Stats.Player.MaxLife && _mutexLifeBar == true)
             {
                 Stats.Player.Life += Stats.Player.RegenerationSpeed;
             }
@@ -85,23 +85,23 @@ namespace game
         public void Taptaptap_game()
         {
             Console.Clear();
-            drawer.HorizontalLine(0, '=');
+            _drawer.HorizontalLine(0, '=');
             Console.SetCursorPosition(0, 2);
             ConsoleColor fg_actuel = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.White;
-            drawer.CenterWrite("tap tap tap !");
+            _drawer.CenterWrite("tap tap tap !");
             Console.ForegroundColor = fg_actuel;
-            drawer.HorizontalLine(4, '=');
+            _drawer.HorizontalLine(4, '=');
             Console.CursorVisible = false;
             for (int i = Console.CursorTop + 1; i < Console.WindowHeight; i++)
             {
-                drawer.CenterWrite(sprite.player_base);
-                drawer.Wait(1000 / Console.WindowHeight);  //gestion relative dynamique de la vitesse de descente (1 sec au total)
+                _drawer.CenterWrite(_sprite._player_base);
+                _drawer.Wait(1000 / Console.WindowHeight);  //gestion relative dynamique de la vitesse de descente (1 sec au total)
                 Console.Write("\r");
-                drawer.CenterWrite("   ");
+                _drawer.CenterWrite("   ");
                 Console.Write("\n");
             }
-            drawer.CenterWrite(sprite.player_base);
+            _drawer.CenterWrite(_sprite._player_base);
             Console.CursorVisible = true;
 
 
@@ -109,42 +109,42 @@ namespace game
             while (Stats.Player.TaptaptapScore < 1000)
             {
                 Console.SetCursorPosition(0, 3);
-                drawer.DeleteLine(3);
+                _drawer.DeleteLine(3);
                 Console.ReadKey();
                 Stats.Player.TaptaptapScore++;
                 Console.SetCursorPosition(Console.WindowWidth - 10, Console.WindowHeight - 2);
-                drawer.Write("ttt: " + Stats.Player.TaptaptapScore);
+                _drawer.Write("ttt: " + Stats.Player.TaptaptapScore);
                 switch (Stats.Player.TaptaptapScore)
                 {
                     case 10:
                         Console.SetCursorPosition(0, 5);
-                        drawer.DeleteLine(5);
-                        drawer.Write("Woaw 10 tap !");
+                        _drawer.DeleteLine(5);
+                        _drawer.Write("Woaw 10 tap !");
                         break;
                     case 50:
                         Console.SetCursorPosition(0, 5);
-                        drawer.DeleteLine(5);
-                        drawer.Write("50 tap !");
+                        _drawer.DeleteLine(5);
+                        _drawer.Write("50 tap !");
                         break;
                     case 100:
                         Console.SetCursorPosition(0, 5);
-                        drawer.DeleteLine(5);
-                        drawer.Write("100 tap !!");
+                        _drawer.DeleteLine(5);
+                        _drawer.Write("100 tap !!");
                         break;
                     case 200:
                         Console.SetCursorPosition(0, 5);
-                        drawer.DeleteLine(5);
-                        drawer.Write("100 tap !!");
+                        _drawer.DeleteLine(5);
+                        _drawer.Write("100 tap !!");
                         break;
                     case 500:
                         Console.SetCursorPosition(0, 5);
-                        drawer.DeleteLine(5);
-                        drawer.Write("500 tap !!!! some more for a gift :)");
+                        _drawer.DeleteLine(5);
+                        _drawer.Write("500 tap !!!! some more for a gift :)");
                         break;
                     case 1000:
                         Console.SetCursorPosition(0, 5);
-                        drawer.DeleteLine(5);
-                        drawer.Write("1000 tap :o");
+                        _drawer.DeleteLine(5);
+                        _drawer.Write("1000 tap :o");
                         break;
                     default:
                         break;
@@ -163,14 +163,14 @@ namespace game
                 {
                     case ConsoleKey.O:
                         YES = true;
-                        drawer.DeleteLine(6);
-                        drawer.DeleteLine(5);
-                        drawer.DeleteLine(Console.WindowHeight - 2);
+                        _drawer.DeleteLine(6);
+                        _drawer.DeleteLine(5);
+                        _drawer.DeleteLine(Console.WindowHeight - 2);
                         Console.SetCursorPosition(0, 5);
                         Console.Write("Conversion !");
                         break;
                     case ConsoleKey.N:
-                        drawer.DeleteLine(6);
+                        _drawer.DeleteLine(6);
                         switch (emoji)
                         {
                             case 0:
@@ -207,7 +207,7 @@ namespace game
                         }
                         break;
                     default:
-                        drawer.DeleteLine(6);
+                        _drawer.DeleteLine(6);
                         Console.Write("Vous n'avez pas choisi :/");
                         break;
                 }
@@ -223,82 +223,82 @@ namespace game
             switch (Console.ReadKey().Key)
             {
                 case ConsoleKey.A:
-                    if (Stats.activeTab != "Carte")
+                    if (Stats._activeTab != "Carte")
                     {
-                        mutexLifeBar = false;
-                        Stats.activeTab = "Carte";
+                        _mutexLifeBar = false;
+                        Stats._activeTab = "Carte";
                         MenuBar.Display();
                         Map map = new Map();
-                        mutexLifeBar = true;
+                        _mutexLifeBar = true;
                     }
                     else
                     {
-                        drawer.Cursor_StandBy();
+                        _drawer.Cursor_StandBy();
                     }
                     break;
                 case ConsoleKey.Z:
-                    if (Stats.activeTab != "Inventaire")
+                    if (Stats._activeTab != "Inventaire")
                     {
-                        mutexLifeBar = false;
-                        Stats.activeTab = "Inventaire";
+                        _mutexLifeBar = false;
+                        Stats._activeTab = "Inventaire";
                         MenuBar.Display();
                         Inventory inventory = new Inventory();
-                        mutexLifeBar = true;
+                        _mutexLifeBar = true;
                     }
                     else
                     {
-                        drawer.Cursor_StandBy();
+                        _drawer.Cursor_StandBy();
                     }
                     break;
                 case ConsoleKey.E:
-                    if (Stats.activeTab != "Magasin")
+                    if (Stats._activeTab != "Magasin")
                     {
-                        mutexLifeBar = false;
-                        Stats.activeTab = "Magasin";
+                        _mutexLifeBar = false;
+                        Stats._activeTab = "Magasin";
                         MenuBar.Display();
                         Shop shop = new Shop();
-                        mutexLifeBar = true;
+                        _mutexLifeBar = true;
                     }
                     else
                     {
-                        drawer.Cursor_StandBy();
+                        _drawer.Cursor_StandBy();
                     }
                     break;
                 case ConsoleKey.R:
-                    if (Stats.activeTab != "???")
+                    if (Stats._activeTab != "???")
                     {
-                        mutexLifeBar = false;
-                        Stats.activeTab = "???";
+                        _mutexLifeBar = false;
+                        Stats._activeTab = "???";
                         MenuBar.Display();
                         What what = new What();
-                        mutexLifeBar = true;
+                        _mutexLifeBar = true;
                     }
                     else
                     {
-                        drawer.Cursor_StandBy();
+                        _drawer.Cursor_StandBy();
                     }
                     break;
                 case ConsoleKey.T:
-                    if (Stats.activeTab != "Options")
+                    if (Stats._activeTab != "Options")
                     {
-                        mutexLifeBar = false;
-                        Stats.activeTab = "Options";
+                        _mutexLifeBar = false;
+                        Stats._activeTab = "Options";
                         MenuBar.Display();
                         Options options = new Options();
-                        mutexLifeBar = true;
+                        _mutexLifeBar = true;
                     }
                     else
                     {
-                        drawer.Cursor_StandBy();
+                        _drawer.Cursor_StandBy();
                     }
                     break;
                 case ConsoleKey.Escape:
-                    mutexLifeBar = false;
-                    options.SaveAndQuit();
-                    mutexLifeBar = true;
+                    _mutexLifeBar = false;
+                    _options.SaveAndQuit();
+                    _mutexLifeBar = true;
                     break;
                 default:
-                    drawer.Cursor_StandBy();
+                    _drawer.Cursor_StandBy();
                     break;
             }
         }

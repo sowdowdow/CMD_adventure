@@ -11,62 +11,62 @@ namespace jeu
      */
     public class Player
     {
-        private const int baseMaxLife = 10;
-        private string name;
-        private int money;
-        private int spentMoney;
-        private int maxLife;
-        private int life;
-        private int baseAttack;
-        private int baseDefense;
-        private int attack;
-        private int defense;
-        private int musculationLevel;
-        private int totalMonstersKilled;
-        private int regenerationSpeed;
+        private const int _baseMaxLife = 10;
+        private string _name;
+        private int _money;
+        private int _spentMoney;
+        private int _maxLife;
+        private int _life;
+        private int _baseAttack;
+        private int _baseDefense;
+        private int _attack;
+        private int _defense;
+        private int _musculationLevel;
+        private int _totalMonstersKilled;
+        private int _regenerationSpeed;
 
-        private DateTime dateFirstGame;
-        private ushort taptaptapScore;
-        private int progressLevel;
-        private int gameTime;
+        private DateTime _dateFirstGame;
+        private ushort _taptaptapScore;
+        private int _progressLevel;
+        private int _gameTime;
 
         public Player()
         {
-            name = "nameless";
-            money = 0;
-            spentMoney = 0;
-            maxLife = baseMaxLife;
-            life = 1;
-            baseAttack = 1;
-            baseDefense = 0;
-            attack = baseAttack;
-            defense = baseDefense;
-            musculationLevel = 0;
-            totalMonstersKilled = 0;
-            regenerationSpeed = 1;
+            _name = "nameless";
+            _money = 0;
+            _spentMoney = 0;
+            _maxLife = _baseMaxLife;
+            _life = 1;
+            _baseAttack = 1;
+            _baseDefense = 0;
+            _attack = _baseAttack;
+            _defense = _baseDefense;
+            _musculationLevel = 0;
+            _totalMonstersKilled = 0;
+            _regenerationSpeed = 1;
 
-            dateFirstGame = DateTime.Now;
-            taptaptapScore = 0;
-            progressLevel = 0;
-            gameTime = 0;
+            _dateFirstGame = DateTime.Now;
+            _taptaptapScore = 0;
+            _progressLevel = 0;
+            _gameTime = 0;
         }
 
-        public static int BaseMaxLife => baseMaxLife;
-        public string Name { get => name; set => name = value; }
-        public int Money { get => money; set => money = value; }
-        public int SpentMoney { get => spentMoney; set => spentMoney = value; }
-        public int MaxLife { get => maxLife; set => maxLife = value; }
-        public int Life { get => life; set => life = value; }
-        public int BaseAttack { get => baseAttack; set => baseAttack = value; }
-        public int BaseDefense { get => baseDefense; set => baseDefense = value; }
-        public DateTime DateFirstGame { get => dateFirstGame; set => dateFirstGame = value; }
-        public ushort TaptaptapScore { get => taptaptapScore; set => taptaptapScore = value; }
-        public int ProgressLevel { get => progressLevel; set => progressLevel = value; }
-        public int GameTime { get => gameTime; set => gameTime = value; }
-        public int Attack { get => attack; set => attack = value; }
-        public int Defense { get => defense; set => defense = value; }
-        public int MusculationLevel { get => musculationLevel; set => musculationLevel = value; }
-        public int TotalMonstersKilled { get => totalMonstersKilled; set => totalMonstersKilled = value; }
-        public int RegenerationSpeed { get => regenerationSpeed; set => regenerationSpeed = value; }
+        public static int BaseMaxLife => _baseMaxLife;
+        public string Name { get => _name; set => _name = value; }
+        public int Money { get => _money; set => _money = value; }
+        public int SpentMoney { get => _spentMoney; set => _spentMoney = value; }
+        public int MaxLife { get => _maxLife; set => _maxLife = value; }
+        public int Life { get => _life; set => _life = value; }
+        public int BaseAttack { get => _baseAttack; set => _baseAttack = value; }
+        public int BaseDefense { get => _baseDefense; set => _baseDefense = value; }
+        public DateTime DateFirstGame { get => _dateFirstGame; set => _dateFirstGame = value; }
+        public ushort TaptaptapScore { get => _taptaptapScore; set => _taptaptapScore = value; }
+        public int ProgressLevel { get => _progressLevel; set => _progressLevel = value; }
+        public int GameTime { get => _gameTime; set => _gameTime = value; }
+        public int Attack { get => _attack; set => _attack = value; }
+        public int Defense { get => _defense; set => _defense = value; }
+        public int MusculationLevel { get => _musculationLevel; set => _musculationLevel = value; }
+        public int TotalMonstersKilled { get => _totalMonstersKilled; set => _totalMonstersKilled = value; }
+        public int RegenerationSpeed { get => _regenerationSpeed; set => _regenerationSpeed = value; }
     }
 }

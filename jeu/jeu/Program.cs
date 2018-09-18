@@ -13,12 +13,12 @@ namespace game
             thread1.Start();
 
             //on déclare l'éxecution du timer
-            Jeu.gameTimeTimer.Elapsed += Jeu.UpdateGameTime;
-            Jeu.gameTimeTimer.Enabled = true;
+            Jeu._gameTimeTimer.Elapsed += Jeu.UpdateGameTime;
+            Jeu._gameTimeTimer.Enabled = true;
 
             while (true)
             {
-                if (Game.mutexLifeBar)
+                if (Game._mutexLifeBar)
                 {
                     Jeu.ActionChoice();
                 }

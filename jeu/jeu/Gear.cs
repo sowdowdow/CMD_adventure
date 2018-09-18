@@ -7,28 +7,28 @@ namespace jeu
 {
     public class Gear
     {
-        protected string name;
-        protected int attack;
-        protected int defense;
-        protected int life;
-        private string[] sprite;
-        private int description;
+        protected string _name;
+        protected int _attack;
+        protected int _defense;
+        protected int _life;
+        private string[] _sprite;
+        private int _description;
 
         public Gear(string name, int attack, int defense, int life, string[] sprite, int description)
         {
-            this.name = name;
-            this.attack = attack;
-            this.defense = defense;
-            this.life = life;
-            this.sprite = sprite;
-            this.description = description;
+            this._name = name;
+            this._attack = attack;
+            this._defense = defense;
+            this._life = life;
+            this._sprite = sprite;
+            this._description = description;
         }
 
-        public string Name { get => name; }
-        public int Attack { get => attack; }
-        public int Defense { get => defense; }
-        public int Life { get => life; }
-        public string[] Sprite { get => sprite; }
-        public int Description { get => description; set => description = value; }
+        public string Name { get => _name; }
+        public int Attack { get => _attack; }
+        public int Defense { get => _defense; }
+        public int Life { get => _life; }
+        public string[] Sprite { get => _sprite; }
+        public int Description { get => _description; set => _description = value; }
     }
 }

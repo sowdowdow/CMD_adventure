@@ -9,12 +9,12 @@ namespace game
     {
 
         //attributs a sauvegarder 
-        private static Player player = new Player();
+        private static Player _player = new Player();
 
         //attribut sans sauvegarde
-        public static string activeTab = "onglet par defaut";
-        private static string savePathString = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CMD_adventure");
-        private static string saveName = @"\save.json";
+        public static string _activeTab = "onglet par defaut";
+        private static string _savePathString = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CMD_adventure");
+        private static string _saveName = @"\save.json";
 
         #region liste_de_sauvegarde
         //a faire        
@@ -24,12 +24,12 @@ namespace game
             //efface la console
             Console.Clear();
             //défini l'emplacement de la sauvegarde
-            System.IO.Directory.CreateDirectory(savePathString);
+            System.IO.Directory.CreateDirectory(_savePathString);
             string json = JsonConvert.SerializeObject(Player, Formatting.Indented);
 
             try
             {
-                File.WriteAllText(savePathString + saveName, json);
+                File.WriteAllText(_savePathString + _saveName, json);
                 Console.Write("Partie sauvegardée");
             }
             catch (Exception)
@@ -42,11 +42,11 @@ namespace game
 
         public static void ReadSave()
         {
-            System.IO.Directory.CreateDirectory(savePathString);
-            if (System.IO.File.Exists(savePathString + saveName))
+            System.IO.Directory.CreateDirectory(_savePathString);
+            if (System.IO.File.Exists(_savePathString + _saveName))
             {
                 //read the file
-                string json = File.ReadAllText(savePathString + saveName);
+                string json = File.ReadAllText(_savePathString + _saveName);
 
                 //Json -> Object
                     Player = JsonConvert.DeserializeObject<Player>(json);
@@ -71,7 +71,7 @@ namespace game
             }
         }
 
-        public static Player Player { get => player; set => player = value; }
+        public static Player Player { get => _player; set => _player = value; }
 
 
         //Constructeur
