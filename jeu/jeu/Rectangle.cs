@@ -157,16 +157,20 @@ namespace geometry
             return "Left : " + Left + ",Top : " + Top + ", Width: " + Width + ", Height : " + Height;
         }
 
-        public bool IsInConsoleBoundaries()
+        public bool InConsoleBoundaries()
         {
-            if (Left >= 0 && Top >= 0 && Left <= Console.WindowLeft && Top <= Console.WindowTop)
-            {
-                return true;
-            }
-            else
+            //negation tests
+            if (Left < 0 || Left > Console.WindowWidth)
             {
                 return false;
             }
+            if (Top < 0 || Top > Console.WindowHeight)
+            {
+                return false;
+            }
+
+            //if all tests passed, it's true
+            return true;
         }
         /**
          * This function return the free area 

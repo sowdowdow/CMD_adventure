@@ -28,6 +28,12 @@ namespace jeu
             this._sentences = new List<string>();
         }
 
+        public Dialog(int Left, int Top, int Width, int Height)
+        {
+            this._rectangle = new Rectangle(Left, Top, Width, Height);
+            this._sentences = new List<string>();
+        }
+
         public void AddSentence(string sentence)
         {
             if (sentence == "")
@@ -75,7 +81,7 @@ namespace jeu
         {
             // Checking if the rectangle is inside
             // the Console area
-            if (!_rectangle.IsInConsoleBoundaries())
+            if (!_rectangle.InConsoleBoundaries())
             {
                 return false;
             }
@@ -93,7 +99,7 @@ namespace jeu
                 foreach (string line in lines)
                 {
                     Console.Write(line);
-                    Console.CursorTop++;
+                    Console.SetCursorPosition(_rectangle.Left, Console.CursorTop + 1);
                 }
                 _drawer.Cursor_StandBy();
             }
@@ -102,6 +108,26 @@ namespace jeu
 
 
             return true;
+        }
+
+        /**
+         * This function is used
+         * to clear the dialog interface
+         * by printing white spaces
+         */
+        public void Clear()
+        {
+            string lineCleaner = "";
+            for (int character = 0; character < _rectangle.Width; character++)
+            {
+                lineCleaner += " ";
+            }
+
+            for (int line = 0; line < _rectangle.Height; line++)
+            {
+                Console.SetCursorPosition(_rectangle.Left, _rectangle.Top + line);
+                _drawer.Write(lineCleaner);
+            }
         }
 
         /**
@@ -114,8 +140,10 @@ namespace jeu
         {
             foreach (string sentence in _sentences)
             {
+                this.Clear();
                 DisplaySentence(sentence);
                 _drawer.Cursor_StandBy();
+                Console.ReadKey();
             }
 
             // all is OK
@@ -124,12 +152,11 @@ namespace jeu
 
         public void Debug()
         {
-                Console.SetCursorPosition(0, 0);
+            Console.SetCursorPosition(0, 0);
             foreach (string sentence in _sentences)
             {
                 _drawer.Write(sentence);
-                Console.CursorLeft = 0;
-                Console.CursorTop++;
+                Console.SetCursorPosition(0, Console.CursorTop + 1);
             }
         }
     }
