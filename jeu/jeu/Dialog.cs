@@ -43,6 +43,14 @@ namespace jeu
             _sentences.Add(sentence);
         }
 
+        public void AddSentences(string[] sentences)
+        {
+            foreach (string sentence in sentences)
+            {
+                AddSentence(sentence);
+            }
+        }
+
         /**
          * This function return a List of lines
          * corresponding to a sentence of the dialog

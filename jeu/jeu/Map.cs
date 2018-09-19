@@ -29,10 +29,14 @@ namespace game
             _sprites.DisplaySprite(30, 5, _sprites._house2);
             _sprites.DisplaySprite(28, 15, _sprites._dynosaur);
 
+            string[] dialogContent =
+            {
+                "Hey Toi !",
+                "Je ne t'ai jamais vu ici. . .",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            };
             Dialog dialog = new Dialog(28, 12, 20, 4);
-            dialog.AddSentence("Hey Toi !");
-            dialog.AddSentence("Je ne t'ai jamais vu ici. . .");
-            dialog.AddSentence("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+            dialog.AddSentences(dialogContent);
             dialog.Display();
         }
         private void DiscoveringTheMap()
