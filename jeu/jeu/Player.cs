@@ -78,6 +78,12 @@ namespace jeu
                 }
             }
         }
+
+        internal void Regenerate()
+        {
+            Life += RegenerationSpeed;
+        }
+
         public int BaseAttack { get => _baseAttack; set => _baseAttack = value; }
         public int BaseDefense { get => _baseDefense; set => _baseDefense = value; }
         public DateTime DateFirstGame { get => _dateFirstGame; set => _dateFirstGame = value; }
