@@ -16,6 +16,7 @@ namespace game
                 if (Game._mutexLifeBar)
                 {
                     Game._mutexLifeBar = false;
+
                     string vie = "Vie: " + Stats.Player.Life + "/" + Stats.Player.MaxLife;
                     double coefficient_barre_de_vie = 1 + ((Stats.Player.MaxLife - Stats.Player.Life) / Stats.Player.MaxLife);
 

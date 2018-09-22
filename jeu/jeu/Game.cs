@@ -43,7 +43,7 @@ namespace game
             //1 seconde de plus au temps de jeu
             Stats.Player.GameTime++;
             //boucle de régéneration de la vie du joueur
-            if (Stats.Player.Life < Stats.Player.MaxLife && _mutexLifeBar == true)
+            if (_mutexLifeBar == true)
             {
                 Stats.Player.Life += Stats.Player.RegenerationSpeed;
             }

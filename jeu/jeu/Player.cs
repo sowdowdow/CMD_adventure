@@ -56,7 +56,28 @@ namespace jeu
         public int Money { get => _money; set => _money = value; }
         public int SpentMoney { get => _spentMoney; set => _spentMoney = value; }
         public int MaxLife { get => _maxLife; set => _maxLife = value; }
-        public int Life { get => _life; set => _life = value; }
+        public int Life {
+            get => _life;
+            set
+            {
+                if (value < 0)
+                {
+                    _life = 0;
+                }
+                else
+                {
+                    _life = value;
+                }
+                if (value > MaxLife)
+                {
+                    _life = MaxLife;
+                }
+                else
+                {
+                    _life = value;
+                }
+            }
+        }
         public int BaseAttack { get => _baseAttack; set => _baseAttack = value; }
         public int BaseDefense { get => _baseDefense; set => _baseDefense = value; }
         public DateTime DateFirstGame { get => _dateFirstGame; set => _dateFirstGame = value; }
