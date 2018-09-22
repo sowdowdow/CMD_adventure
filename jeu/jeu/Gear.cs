@@ -5,7 +5,7 @@ using System.Text;
 
 namespace jeu
 {
-    public class Gear
+    public abstract class Gear
     {
         protected string _name;
         protected int _attack;

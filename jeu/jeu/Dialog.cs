@@ -106,6 +106,13 @@ namespace jeu
                 Console.SetCursorPosition(_rectangle.Left, _rectangle.Top);
                 foreach (string line in lines)
                 {
+                    if (Console.CursorTop >= (_rectangle.Top + _rectangle.Height))
+                    {
+                        _drawer.Cursor_StandBy();
+                        Console.ReadKey();
+                        this.Clear();
+                        Console.SetCursorPosition(_rectangle.Left, _rectangle.Top);
+                    }
                     Console.Write(line);
                     Console.SetCursorPosition(_rectangle.Left, Console.CursorTop + 1);
                 }
