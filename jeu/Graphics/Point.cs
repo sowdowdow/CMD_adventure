@@ -26,6 +26,24 @@ namespace Graphics
             Ordinate = ordinate;
         }
 
+        public bool IsInConsole
+        {
+            get
+            {
+                if (abscissa >= 0 
+                    && abscissa <= Console.WindowWidth
+                    && ordinate >= 4 
+                    && ordinate <= Console.WindowHeight
+                    )
+                {
+                    return true;
+                } else
+                {
+                    return false;
+                }
+            }
+        }
+
         public int Abscissa { get => abscissa; set => abscissa = value; }
         public int Ordinate { get => ordinate; set => ordinate = value; }
     }

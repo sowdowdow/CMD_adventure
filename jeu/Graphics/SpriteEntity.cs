@@ -26,6 +26,14 @@ namespace Graphics
         //Display the spriteEntity on his coordinates
         public void Display()
         {
+            if (!IsInWindowBoundaries())
+            {
+                Console.SetCursorPosition(0,0);
+                Console.Write("The sprite is not in console boundaries" +
+                    "\nwindow resized");
+                Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+                return;
+            }
             Console.SetCursorPosition(Coordinates.Abscissa, Coordinates.Ordinate);
             foreach (var line in Sprite)
             {
@@ -33,6 +41,46 @@ namespace Graphics
                 Console.SetCursorPosition(Coordinates.Abscissa, Console.CursorTop + 1);
             }
             new GraphicTools().Cursor_StandBy();
+        }
+
+        private bool IsInWindowBoundaries()
+        {
+            int width = GetWidth();
+            int height = GetHeight();
+
+            if (!Coordinates.IsInConsole)
+            {
+                return false;
+            }
+            if (Coordinates.Abscissa + width > Console.WindowWidth)
+            {
+                return false;
+            }
+            if (Coordinates.Ordinate + height > Console.WindowHeight)
+            {
+                return false;
+            }
+
+
+            return true;
+        }
+
+        private int GetWidth()
+        {
+            int width = 0;
+            foreach (string line in Sprite)
+            {
+                if (line.Length > width)
+                {
+                    width = line.Length;
+                }
+            }
+            return width;
+        }
+
+        private int GetHeight()
+        {
+            return Sprite.Length;
         }
 
         public string[] Sprite { get => _Sprite; }

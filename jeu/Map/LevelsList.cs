@@ -2,6 +2,11 @@
 
 namespace levels
 {
+    /**
+     * The LevelsList class
+     * Contain the whole list of all 
+     * the available levels
+     */
     public class LevelsList
     {
         private List<Level> _Levels;
@@ -9,6 +14,7 @@ namespace levels
         public LevelsList()
         {
             Levels = new List<Level>();
+            // Here is the list of all the levels available
             Levels.Add(new ChooseName());
         }
 
