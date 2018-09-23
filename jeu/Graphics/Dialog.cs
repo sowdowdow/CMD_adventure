@@ -1,16 +1,14 @@
-﻿using game;
-using geometry;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace jeu
+namespace Graphics
 {
     /**
      * A Dialog correspond a List of Sentences
      * and each sentence can be divided in lines
      * for display purposes
      */
-    class Dialog
+    public class Dialog
     {
         private Rectangle _rectangle;
         private List<string> _sentences;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Graphics;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -201,7 +202,7 @@ namespace game
             };
 
             _drawer.CenterWrite(Console.WindowHeight / 2 - 5, informations);
-            _drawer.CenterWrite(Console.WindowHeight - 1, _sprites._player_base);
+            _drawer.CenterWrite(Console.WindowHeight - 1, Sprite_box._player_base);
         }
         public void SaveAndQuit()
         {

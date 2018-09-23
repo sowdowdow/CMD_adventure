@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Graphics;
+using System;
 using System.Globalization;
 using System.Text;
 using System.Timers;
@@ -13,7 +14,6 @@ namespace game
         //mutex barre de vie empêche l'activation simultanée de l'affichage de la barre de vie et d'une action 
         public static bool _mutexLifeBar = false;
 
-        public Sprite_box _sprite = new Sprite_box();
         public GraphicTools _drawer = new GraphicTools();
         public Options _options = new Options();
 
@@ -95,13 +95,13 @@ namespace game
             Console.CursorVisible = false;
             for (int i = Console.CursorTop + 1; i < Console.WindowHeight; i++)
             {
-                _drawer.CenterWrite(_sprite._player_base);
+                _drawer.CenterWrite(Sprite_box._player_base);
                 _drawer.Wait(1000 / Console.WindowHeight);  //gestion relative dynamique de la vitesse de descente (1 sec au total)
                 Console.Write("\r");
                 _drawer.CenterWrite("   ");
                 Console.Write("\n");
             }
-            _drawer.CenterWrite(_sprite._player_base);
+            _drawer.CenterWrite(Sprite_box._player_base);
             Console.CursorVisible = true;
 
 

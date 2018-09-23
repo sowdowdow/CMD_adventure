@@ -1,6 +1,6 @@
-﻿namespace game
+﻿namespace levels
 {
-    class Monster
+    public class Monster
     {
         private string _name;
         private string _skin;

@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace game
+namespace Graphics
 {
-    public class Sprite_box
+    public static class Sprite_box
     {
-        public void DisplaySprite(int x_TopToBottom, int y_LeftToRight, string[] sprite)
+        public static void DisplaySprite(int x_TopToBottom, int y_LeftToRight, string[] sprite)
         {
             Console.SetCursorPosition(x_TopToBottom, y_LeftToRight);
             foreach (var line in sprite) //display each line of the sprite + jumpline
@@ -15,11 +15,11 @@ namespace game
             Console.SetCursorPosition(Console.WindowWidth - 3, Console.WindowHeight - 2);
         }
         //skin du joueur
-        public string _player_base = "°v°";
-        public string _player_wow = "*v*";
-        public string _player_depressed = "-v-";
+        public static string _player_base = "°v°";
+        public static string _player_wow = "*v*";
+        public static string _player_depressed = "-v-";
         //sprite des objets
-        public string[] _house1 = {
+        public static string[] _house1 = {
                 @"  _______| |__",
                 @" /            \",
                 @"/______________\",
@@ -27,14 +27,14 @@ namespace game
                 @"|       | ,|   |",
                 @"|_______|__|___|"
             };
-        public string[] _house2 = {
+        public static string[] _house2 = {
                 @"  _____\ \_",
                 @" /         \",
                 @"/  __       \",
                 @"| | ,|      |",
                 @"|_|__|______|"
             };
-        public string[] _dynosaur = {
+        public static string[] _dynosaur = {
                 @"      _______ ",
                 @"    ./     [°\",
                 @"   ././   \ \ ",
@@ -47,7 +47,7 @@ namespace game
          * Weapons are
          * 8 char. large and 4 char. height
          */
-        public string[] _woodenStick =
+        public static string[] _woodenStick =
         {
                 @"    / / ",
                 @" ()/-/  ",
@@ -55,7 +55,7 @@ namespace game
                 @" /_/    ",
         };
 
-        public string[] _sharpenedStick =
+        public static string[] _sharpenedStick =
         {
                 @"    /|  ",
                 @"   / /  ",
@@ -63,7 +63,7 @@ namespace game
                 @" / /    ",
         };
 
-        public string[] _stove =
+        public static string[] _stove =
 {
                 @"  ____  ",
                 @" /    \\",
