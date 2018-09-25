@@ -22,7 +22,8 @@ namespace game
         {
             Console.OutputEncoding = Encoding.UTF8;
             Console.SetWindowSize(120, 30);
-            Stats.Initializer(); //loading save
+            // Loading the save
+            Stats.Initializer();
             Console.Title = "CMD_ Adventure";   //define console title
             //CrazyConsoleRandomNumber();    //<--------------------------------réactiver a la fin du dev.
             Console.ForegroundColor = _UIcolor;

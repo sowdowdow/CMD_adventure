@@ -131,34 +131,56 @@ namespace Graphics
             System.Threading.Thread.Sleep(temps);
         }//met en pause la console (en MilliSec)
 
-        public void DeleteLine(int ligne)
-        { //suppression de ligne
-            Console.SetCursorPosition(0, ligne);
+        // Clear the specified Line
+        public void DeleteLine(int line)
+        {
             Console.CursorVisible = false;
+
+            string lineCleaner = "";
             for (int i = 0; i < Console.WindowWidth; i++)
             {
-                Console.Write(" ");
+                lineCleaner += " ";
             }
+
+            Console.SetCursorPosition(0, line);
+            Console.Write(lineCleaner);
+            Console.SetCursorPosition(0, line);
+
             Console.CursorVisible = true;
-            Console.SetCursorPosition(0, ligne);
-        }//supprime une ligne a l'ordonné souhaité
+        }
+
 
         public void DeleteLine(int startLine, int endLine)
 
-        {   //suppression de ligne d -> f
-            for (int j = startLine; j < endLine; j++)
+        {
+            // suppressing multiple rows of lines
+            Console.CursorVisible = false;
+            string lineCleaner = "";
+            for (int i = 0; i < Console.WindowWidth; i++)
             {
-                Console.SetCursorPosition(0, j);
-                for (int i = 0; i < Console.WindowWidth; i++)
+                lineCleaner += " ";
+            }
+
+            Console.SetCursorPosition(0, startLine);
+            for (int j = startLine; j <= endLine; j++)
+            {
+                Console.Write(lineCleaner);
+                try
                 {
-                    Console.CursorVisible = false;
-                    Console.Write(" ");
+                    Console.SetCursorPosition(0, j);
+                }
+                catch (Exception e)
+                {
+                    Console.Title = e.Message;
+                    throw;
                 }
             }
-            Console.CursorVisible = true;
-            Console.SetCursorPosition(0, startLine);
-        }//supprime toutes les lignes de D a F
 
+            Console.SetCursorPosition(0, startLine);
+            Console.CursorVisible = true;
+        }
+        
+        //delete all the lines not in the UI bar
         public void ClearInterface()
         {
             DeleteLine(4, Console.WindowHeight - 1);

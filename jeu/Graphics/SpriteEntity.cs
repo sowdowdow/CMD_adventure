@@ -34,6 +34,8 @@ namespace Graphics
                 Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
                 return;
             }
+
+
             Console.SetCursorPosition(Coordinates.Abscissa, Coordinates.Ordinate);
             foreach (var line in Sprite)
             {
