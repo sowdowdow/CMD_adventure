@@ -7,8 +7,6 @@ namespace Graphics
 {
     public class GraphicTools
     {
-        //methodes et fonctions
-        #region METHODE_AFFICHAGE
         public void Cursor_StandBy()
         {
             //place the cursor down right the console in pause
@@ -144,7 +142,7 @@ namespace Graphics
 
             Console.SetCursorPosition(0, line);
             Console.Write(lineCleaner);
-            Console.SetCursorPosition(0, line);
+            Cursor_StandBy();
 
             Console.CursorVisible = true;
         }
@@ -179,12 +177,49 @@ namespace Graphics
             Console.SetCursorPosition(0, startLine);
             Console.CursorVisible = true;
         }
-        
+
         //delete all the lines not in the UI bar
         public void ClearInterface()
         {
             DeleteLine(4, Console.WindowHeight - 1);
         }
-        #endregion METHODE_AFFICHAGE
+
+        /**fill the console with random numbers
+ * on random spots
+ * in red or Yellow color
+ */
+        public void CrazyConsoleRandomNumber()
+        {
+            Random randNumber = new Random();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.BackgroundColor = ConsoleColor.Black;
+
+            Console.CursorVisible = false;
+
+            // write
+            for (int i = 0; i < 5000; i++)
+            {
+                Console.CursorTop = randNumber.Next(0, Console.WindowHeight - 1);
+                Console.Write('*');
+                if (Console.ForegroundColor == ConsoleColor.DarkYellow)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                }
+            }
+
+            // clean
+            for (int i = 0; i < 7000; i++)
+            {
+                Console.CursorTop = randNumber.Next(0, Console.WindowHeight - 1);
+                Console.Write(' ');
+            }
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.CursorVisible = false;
+        }
     }
 }

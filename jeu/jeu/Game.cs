@@ -24,10 +24,11 @@ namespace game
             Console.SetWindowSize(120, 30);
             // Loading the save
             Stats.Initializer();
+            GraphicTools _drawer = new GraphicTools();
             Console.Title = "CMD_ Adventure";   //define console title
-            //CrazyConsoleRandomNumber();    //<--------------------------------réactiver a la fin du dev.
+            //_drawer.CrazyConsoleRandomNumber();    //<--------------------------------réactiver a la fin du dev.
             Console.ForegroundColor = _UIcolor;
-            //drawer.TitleScreen();                    //<--------------------------------réactiver a la fin du dev.
+            //_drawer.TitleScreen();                    //<--------------------------------réactiver a la fin du dev.
             //Taptaptap_game();                 //<--------------------------------réactiver a la fin du dev.
             _mutexLifeBar = true;
         }
@@ -41,9 +42,10 @@ namespace game
 
         public void UpdateGameTime(object source, ElapsedEventArgs e)
         {
-            //1 seconde de plus au temps de jeu
+            //add 1 second to game time
             Stats.Player.GameTime++;
-            //boucle de régéneration de la vie du joueur
+
+            //player regeneration loop
             if (_mutexLifeBar == true)
             {
                 Stats.Player.Regenerate();
@@ -51,38 +53,11 @@ namespace game
         }
         #endregion timer
 
-        /**fill the console with random numbers
-         * on random spots
-         * in red or Yellow color
+        /**
+         * mini-game at the beginning of the party
+         * 
+         * Allow the player to get the UI
          */
-        public void CrazyConsoleRandomNumber()
-        {
-            Random lol = new Random();
-            int rnd;
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.BackgroundColor = ConsoleColor.Black;
-            for (int i = 0; i < 10e3; i++)
-            {
-                rnd = lol.Next(0, Console.WindowHeight);
-                Console.CursorTop = rnd;
-                Console.Write(rnd);
-                if (Console.ForegroundColor == ConsoleColor.DarkYellow)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                }
-            }
-            for (int i = 0; i < 10e3; i++)
-            {
-                rnd = lol.Next(0, Console.WindowHeight);
-                Console.CursorTop = rnd;
-                Console.Write(' ');
-            }
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-        }
         public void Taptaptap_game()
         {
             Console.Clear();
@@ -94,10 +69,15 @@ namespace game
             Console.ForegroundColor = fg_actuel;
             _drawer.HorizontalLine(4, '=');
             Console.CursorVisible = false;
+
+            // display the player sprite fall
             for (int i = Console.CursorTop + 1; i < Console.WindowHeight; i++)
             {
                 _drawer.CenterWrite(Sprite_box._player_base);
-                _drawer.Wait(1000 / Console.WindowHeight);  //gestion relative dynamique de la vitesse de descente (1 sec au total)
+                // the duration is 1 sec
+                // so each line last a division by
+                // the number of lines
+                _drawer.Wait(1000 / Console.WindowHeight);
                 Console.Write("\r");
                 _drawer.CenterWrite("   ");
                 Console.Write("\n");
@@ -106,11 +86,12 @@ namespace game
             Console.CursorVisible = true;
 
 
-            //Boucle du jeu ttt (il faut arriver a 1000 ttt)
+            // Mini-Game loop
+            // finish with a score of 1K
             while (Stats.Player.TaptaptapScore < 1000)
             {
-                Console.SetCursorPosition(0, 3);
                 _drawer.DeleteLine(3);
+                Console.SetCursorPosition(0, 3);
                 Console.ReadKey();
                 Stats.Player.TaptaptapScore++;
                 Console.SetCursorPosition(Console.WindowWidth - 10, Console.WindowHeight - 2);
@@ -150,9 +131,11 @@ namespace game
                     default:
                         break;
                 }
-                Console.SetCursorPosition(0, 5);
+                _drawer.Cursor_StandBy();
             };
-            //après 1000 ttt le joueur obtient la barre de titre
+
+            // After 1000ttt, the player can
+            // request the UI
             Console.Write("réclamer quelque-chose contre {0} ttt ? (O/N)", Stats.Player.TaptaptapScore);
             bool YES = false;
             int emoji = 0;
@@ -216,7 +199,7 @@ namespace game
             }
             Console.ReadKey();
             Console.Clear();
-        }//mini-game at the beginning of the party
+        }
 
         #region actions
         public void ActionChoice()
