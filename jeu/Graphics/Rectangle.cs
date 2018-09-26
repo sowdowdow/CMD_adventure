@@ -39,25 +39,25 @@ namespace Graphics
         {
             get
             {
-                if (point2.Abscissa >= point1.Abscissa)
+                if (point2.X >= point1.X)
                 {
-                    return point2.Abscissa - point1.Abscissa;
+                    return point2.X - point1.X;
                 }
                 else
                 {
-                    return point1.Abscissa - point2.Abscissa;
+                    return point1.X - point2.X;
                 }
             }
 
             set
             {
-                if (point2.Abscissa >= point1.Abscissa)
+                if (point2.X >= point1.X)
                 {
-                    point2.Abscissa = point1.Abscissa + value;
+                    point2.X = point1.X + value;
                 }
                 else
                 {
-                    point1.Abscissa = point2.Abscissa + value;
+                    point1.X = point2.X + value;
                 }
             }
         }
@@ -69,25 +69,25 @@ namespace Graphics
         {
             get
             {
-                if (point2.Ordinate >= point1.Ordinate)
+                if (point2.Y >= point1.Y)
                 {
-                    return point2.Ordinate - point1.Ordinate;
+                    return point2.Y - point1.Y;
                 }
                 else
                 {
-                    return point1.Ordinate - point2.Ordinate;
+                    return point1.Y - point2.Y;
                 }
             }
 
             set
             {
-                if (point2.Ordinate >= point1.Ordinate)
+                if (point2.Y >= point1.Y)
                 {
-                    point2.Ordinate = point1.Ordinate + value;
+                    point2.Y = point1.Y + value;
                 }
                 else
                 {
-                    point1.Ordinate = point2.Ordinate + value;
+                    point1.Y = point2.Y + value;
                 }
             }
         }
@@ -99,25 +99,25 @@ namespace Graphics
         {
             get
             {
-                if (point2.Ordinate >= point1.Ordinate)
+                if (point2.Y >= point1.Y)
                 {
-                    return point1.Ordinate;
+                    return point1.Y;
                 }
                 else
                 {
-                    return point2.Ordinate;
+                    return point2.Y;
                 }
             }
 
             set
             {
-                if (point2.Ordinate >= point1.Ordinate)
+                if (point2.Y >= point1.Y)
                 {
-                    point1.Ordinate = value;
+                    point1.Y = value;
                 }
                 else
                 {
-                    point2.Ordinate = value;
+                    point2.Y = value;
                 }
             }
         }
@@ -129,25 +129,25 @@ namespace Graphics
         {
             get
             {
-                if (point2.Abscissa >= point1.Abscissa)
+                if (point2.X >= point1.X)
                 {
-                    return point1.Abscissa;
+                    return point1.X;
                 }
                 else
                 {
-                    return point2.Abscissa;
+                    return point2.X;
                 }
             }
 
             set
             {
-                if (point2.Abscissa >= point1.Abscissa)
+                if (point2.X >= point1.X)
                 {
-                    point1.Abscissa = value;
+                    point1.X = value;
                 }
                 else
                 {
-                    point2.Abscissa = value;
+                    point2.X = value;
                 }
             }
         }
@@ -190,13 +190,13 @@ namespace Graphics
             string horizontalBorder = "";
             for (int borderSize = 0; borderSize < Width; borderSize++)
             {
-                horizontalBorder += borderChar; ;
+                horizontalBorder += borderChar;
             }
 
             // Draw the two horizontal borders
             Console.SetCursorPosition(Left, Top);
             Console.Write(horizontalBorder);
-            Console.SetCursorPosition(Left, Top + Width - 1);
+            Console.SetCursorPosition(Left, Top + Height);
             Console.Write(horizontalBorder);
 
 

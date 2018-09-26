@@ -22,8 +22,8 @@ namespace Graphics
 
         public Point(int abscissa, int ordinate)
         {
-            Abscissa = abscissa;
-            Ordinate = ordinate;
+            X = abscissa;
+            Y = ordinate;
         }
 
         public bool IsInConsole
@@ -44,7 +44,7 @@ namespace Graphics
             }
         }
 
-        public int Abscissa { get => abscissa; set => abscissa = value; }
-        public int Ordinate { get => ordinate; set => ordinate = value; }
+        public int X { get => abscissa; set => abscissa = value; }
+        public int Y { get => ordinate; set => ordinate = value; }
     }
 }

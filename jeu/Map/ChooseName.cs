@@ -30,11 +30,17 @@ namespace levels
                 "Tu es un aventurier ??",
                 "Dis moi, quel-est ton nom ?"
             };
-            Dialog dialog = new Dialog((int)(Console.WindowWidth * 0.4), (int)(Console.WindowHeight * 0.5), (int)(Console.WindowWidth * 0.2), (int)(Console.WindowHeight * 0.2));
+
+            Point dialogPoint = new Point((int)(Console.WindowWidth * 0.4), (int)(Console.WindowHeight * 0.5));
+            Point dialogPoint2 = new Point((int)(Console.WindowWidth * 0.2), (int)(Console.WindowHeight * 0.2));
+
+            Dialog dialog = new Dialog(dialogPoint, dialogPoint2);
             dialog.AddSentences(dialogContent);
             dialog.Display();
 
             // Here PromptBox todo
+            PromptBox namePrompt = new PromptBox(12, dialogPoint, '^');
+            namePrompt.Prompt();
         }
     }
 }

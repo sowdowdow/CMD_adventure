@@ -36,11 +36,11 @@ namespace Graphics
             }
 
 
-            Console.SetCursorPosition(Coordinates.Abscissa, Coordinates.Ordinate);
+            Console.SetCursorPosition(Coordinates.X, Coordinates.Y);
             foreach (var line in Sprite)
             {
                 Console.Write(line);
-                Console.SetCursorPosition(Coordinates.Abscissa, Console.CursorTop + 1);
+                Console.SetCursorPosition(Coordinates.X, Console.CursorTop + 1);
             }
             new GraphicTools().Cursor_StandBy();
         }
@@ -54,11 +54,11 @@ namespace Graphics
             {
                 return false;
             }
-            if (Coordinates.Abscissa + width > Console.WindowWidth)
+            if (Coordinates.X + width > Console.WindowWidth)
             {
                 return false;
             }
-            if (Coordinates.Ordinate + height > Console.WindowHeight)
+            if (Coordinates.Y + height > Console.WindowHeight)
             {
                 return false;
             }

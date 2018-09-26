@@ -26,6 +26,12 @@ namespace Graphics
             this._sentences = new List<string>();
         }
 
+        public Dialog(Point Point1, Point Point2)
+        {
+            this._rectangle = new Rectangle(Point1, Point2);
+            this._sentences = new List<string>();
+        }
+
         public Dialog(int Left, int Top, int Width, int Height)
         {
             this._rectangle = new Rectangle(Left, Top, Width, Height);
