@@ -39,8 +39,11 @@ namespace levels
             dialog.Display();
 
             // Here PromptBox todo
-            PromptBox namePrompt = new PromptBox(12, dialogPoint, '^');
-            namePrompt.Prompt();
+            PromptBox namePrompt = new PromptBox(12, dialogPoint, '*');
+            string playerName = namePrompt.Prompt();
+            dialog = new Dialog(dialogPoint, dialogPoint2);
+            dialog.AddSentence(playerName);
+            dialog.Display();
         }
     }
 }

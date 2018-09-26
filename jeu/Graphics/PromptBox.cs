@@ -57,7 +57,48 @@ namespace Graphics
         {
             Display();
             Point promptStart = new Point(Box.Left + 1, Box.Top + 1);
-            return null;
+            Point promptPoint = promptStart;
+            string promptedString = "";
+            ConsoleKeyInfo buffer = new ConsoleKeyInfo();
+
+            Console.SetCursorPosition(promptStart.X, promptStart.Y);
+
+            do
+            {
+                buffer = Console.ReadKey();
+
+                if (buffer.Key == ConsoleKey.Enter)
+                {
+                    break;
+                }
+
+                // BUG here with backspace function
+                if (buffer.Key == ConsoleKey.Backspace && promptedString.Length > 0)
+                {
+                    Console.Write('_');
+                    Console.CursorLeft--;
+                    promptPoint.X--;
+                    promptedString = promptedString.Substring(0, promptedString.Length - 1);
+                    continue;
+                }
+
+                if (promptedString.Length >= MaxTextLength)
+                {
+                    Console.CursorLeft--;
+                    Console.Write(BorderPattern);
+                    Console.CursorLeft--;
+                    continue;
+                }
+
+
+                //if everything is normal
+                promptedString += buffer.KeyChar;
+                promptPoint.X++;
+
+            } while (buffer.Key != ConsoleKey.Enter);
+
+
+            return promptedString;
         }
 
         /**
