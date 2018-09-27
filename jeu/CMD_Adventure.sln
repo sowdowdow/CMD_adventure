@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geometry", "Geometry\Geomet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileAccess", "FileAccess\FileAccess.csproj", "{6394C53F-A2A8-4069-986B-E9626462B6C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Player", "Player\Player.csproj", "{86FDDC98-9776-4E7E-ACE3-4B77F28631FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{6394C53F-A2A8-4069-986B-E9626462B6C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6394C53F-A2A8-4069-986B-E9626462B6C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6394C53F-A2A8-4069-986B-E9626462B6C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86FDDC98-9776-4E7E-ACE3-4B77F28631FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86FDDC98-9776-4E7E-ACE3-4B77F28631FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86FDDC98-9776-4E7E-ACE3-4B77F28631FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86FDDC98-9776-4E7E-ACE3-4B77F28631FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
