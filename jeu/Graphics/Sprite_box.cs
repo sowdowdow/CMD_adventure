@@ -49,8 +49,8 @@ namespace Graphics
         };
         public static string[] _dynosaur1 = {
                 @"      _______ ",
-                @"    ./     [°\",
-                @"   ././   \ \ ",
+                @"    ./.....'°\",
+                @"   ././...\.\ ",
                 @".__/_|————|_| ",
             };
         public static string[] _dottedFloor1 = {

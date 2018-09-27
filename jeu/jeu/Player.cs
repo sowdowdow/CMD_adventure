@@ -22,6 +22,7 @@ namespace jeu
         private int _attack;
         private int _defense;
         private int _musculationLevel;
+        private int _musculationSessionsCount;
         private int _totalMonstersKilled;
         private int _regenerationSpeed;
 
@@ -56,7 +57,8 @@ namespace jeu
         public int Money { get => _money; set => _money = value; }
         public int SpentMoney { get => _spentMoney; set => _spentMoney = value; }
         public int MaxLife { get => _maxLife; set => _maxLife = value; }
-        public int Life {
+        public int Life
+        {
             get => _life;
             set
             {
@@ -95,5 +97,16 @@ namespace jeu
         public int MusculationLevel { get => _musculationLevel; set => _musculationLevel = value; }
         public int TotalMonstersKilled { get => _totalMonstersKilled; set => _totalMonstersKilled = value; }
         public int RegenerationSpeed { get => _regenerationSpeed; set => _regenerationSpeed = value; }
+        public int MusculationSessionsCount
+        {
+            get => _musculationSessionsCount;
+            set
+            {
+                if (value > _musculationSessionsCount)
+                {
+                    _musculationSessionsCount = value;
+                }
+            }
+        }
     }
 }
