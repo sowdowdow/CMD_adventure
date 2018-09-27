@@ -20,7 +20,6 @@ namespace game
             // 4 is the size of the menu bar
             int freeVerticalSpace = Console.WindowHeight - 4;
             int freeHorizontalSpace = Console.WindowWidth;
-            string cursor = ">>";
             ConsoleColor actualColor = Console.ForegroundColor;  //saving actual color
 
 
@@ -35,7 +34,7 @@ namespace game
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         //displaying cursor at start
-                        _drawer.CenterWrite(cursor + option);
+                        _drawer.CenterWrite(">>" + option + "<<");
                     }
                     else
                     {

@@ -53,7 +53,7 @@
     <Compile Include="LifeBar.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MenuBar.cs" />
-    <Compile Include="Option_menu.cs" />
+    <Compile Include="Options.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
