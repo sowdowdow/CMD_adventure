@@ -67,12 +67,31 @@ namespace Graphics
             {
                 buffer = Console.ReadKey();
 
+                // Enter key to finish the action
                 if (buffer.Key == ConsoleKey.Enter)
                 {
                     break;
                 }
 
-                // BUG here with backspace function
+                // these keys has no effects
+                if (buffer.Key == ConsoleKey.Delete
+                    || buffer.Key == ConsoleKey.DownArrow
+                    || buffer.Key == ConsoleKey.UpArrow
+                    || buffer.Key == ConsoleKey.LeftArrow
+                    || buffer.Key == ConsoleKey.RightArrow)
+                {
+                    Console.CursorLeft--;
+                    continue;
+                }
+
+
+                if (buffer.Key == ConsoleKey.Backspace && promptedString.Length <= 0)
+                {
+                    Console.CursorLeft = promptStart.X;
+                    continue;
+                }
+
+                // Backspace to remove a character
                 if (buffer.Key == ConsoleKey.Backspace && promptedString.Length > 0)
                 {
                     Console.Write('_');
