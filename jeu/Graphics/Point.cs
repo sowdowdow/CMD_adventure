@@ -32,7 +32,7 @@ namespace Graphics
             {
                 if (abscissa >= 0 
                     && abscissa <= Console.WindowWidth
-                    && ordinate >= 4 
+                    && ordinate >= 0 
                     && ordinate <= Console.WindowHeight
                     )
                 {

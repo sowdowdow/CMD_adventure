@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Graphics;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +14,7 @@ namespace FileAccess
         public static void Write<T>(T Player)
         {
             Console.Clear();
+            Loader loader = new Loader(0, 0);
 
             // define the save directory if it 
             // does not already exists
