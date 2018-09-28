@@ -45,6 +45,7 @@ namespace game
         {
             //add 1 second to game time
             Stats.Player.GameTime++;
+            Stats.Player.Money++;
 
             //player regeneration loop
             if (_mutexLifeBar == true)

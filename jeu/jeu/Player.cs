@@ -13,7 +13,7 @@ namespace jeu
     {
         private const int _baseMaxLife = 10;
         private string _name;
-        private int _money;
+        private ulong _money;
         private int _spentMoney;
         private int _maxLife;
         private int _life;
@@ -54,7 +54,7 @@ namespace jeu
 
         public static int BaseMaxLife => _baseMaxLife;
         public string Name { get => _name; set => _name = value; }
-        public int Money { get => _money; set => _money = value; }
+        public ulong Money { get => _money; set => _money = value; }
         public int SpentMoney { get => _spentMoney; set => _spentMoney = value; }
         public int MaxLife { get => _maxLife; set => _maxLife = value; }
         public int Life
