@@ -13,18 +13,18 @@ namespace levels
         {
             List<SpriteEntity> sprites = new List<SpriteEntity>();
 
-            sprites.Add(new SpriteEntity(Sprite_box._neighbourhood1, Console.WindowWidth / 3, 4));
-            sprites.Add(new SpriteEntity(Sprite_box._house1, (int)(Console.WindowWidth * 0.2), (int)(Console.WindowHeight * 0.5)));
-            sprites.Add(new SpriteEntity(Sprite_box._house2, (int)(Console.WindowWidth * 0.8), (int)(Console.WindowHeight * 0.5)));
-            sprites.Add(new SpriteEntity(Sprite_box._dottedFloor1, (int)(Console.WindowWidth * 0.4), (int)(Console.WindowHeight * 0.9)));
-            sprites.Add(new SpriteEntity(Sprite_box._dynosaur1, (int)(Console.WindowWidth * 0.4), (int)(Console.WindowHeight * 0.7)));
+            sprites.Add(new SpriteEntity(Sprites._neighbourhood1, Console.WindowWidth / 3, 4));
+            sprites.Add(new SpriteEntity(Sprites._house1, (int)(Console.WindowWidth * 0.2), (int)(Console.WindowHeight * 0.5)));
+            sprites.Add(new SpriteEntity(Sprites._house2, (int)(Console.WindowWidth * 0.8), (int)(Console.WindowHeight * 0.5)));
+            sprites.Add(new SpriteEntity(Sprites._dottedFloor1, (int)(Console.WindowWidth * 0.4), (int)(Console.WindowHeight * 0.9)));
+            sprites.Add(new SpriteEntity(Sprites._dynosaur1, (int)(Console.WindowWidth * 0.4), (int)(Console.WindowHeight * 0.7)));
 
             Decor = new Decor(sprites);
         }
         public override void Play()
         {
             string[] dialogContent =
-{
+            {
                 "Hey Toi !",
                 "Je ne t'ai jamais vu ici. . .",
                 "Tu es un aventurier ??",
@@ -32,18 +32,41 @@ namespace levels
             };
 
             Point dialogPoint = new Point((int)(Console.WindowWidth * 0.4), (int)(Console.WindowHeight * 0.5));
-            Point dialogPoint2 = new Point((int)(Console.WindowWidth * 0.2), (int)(Console.WindowHeight * 0.2));
+            Point dialogPoint2 = new Point((int)(Console.WindowWidth * 0.6), (int)(Console.WindowHeight * 0.7));
 
             Dialog dialog = new Dialog(dialogPoint, dialogPoint2);
             dialog.AddSentences(dialogContent);
             dialog.Display();
 
-            // Here PromptBox todo
-            PromptBox namePrompt = new PromptBox(12, dialogPoint, '*');
-            string playerName = namePrompt.Prompt();
+            // Here prompting the player name
+            Point promptPoint = new Point((int)(Console.WindowWidth * 0.6), (int)(Console.WindowHeight * 0.5));
+            PromptBox namePrompt = new PromptBox(12, promptPoint, ':');
+            string playerName;
+
+            bool sure = false;
+            do
+            {
+                playerName = namePrompt.Prompt();
+                namePrompt.Clear();
+                dialog = new Dialog(dialogPoint, dialogPoint2);
+                dialog.AddSentence(playerName + ", c'est vraiment ton nom ?");
+                dialog.Display();
+
+                TwoChoicesPromptBox nameChoiceSure = new TwoChoicesPromptBox(promptPoint);
+                sure = nameChoiceSure.Prompt();
+            } while (!sure);
+
             dialog = new Dialog(dialogPoint, dialogPoint2);
-            dialog.AddSentence(playerName);
+            string[] secondDialog =
+{
+                "Eh bien " + playerName + " ravi de te rencontrer !",
+                "Moi c'est Tyrex, mais je n'aime pas spécialement parler . . .",
+                "Alors laisse-moi te montrer un endroit génial !"
+            };
+            dialog.AddSentences(secondDialog);
             dialog.Display();
+
+
         }
     }
 }

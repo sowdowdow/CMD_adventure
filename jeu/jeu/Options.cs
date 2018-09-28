@@ -201,7 +201,7 @@ namespace game
             };
 
             _drawer.CenterWrite(Console.WindowHeight / 2 - 5, informations);
-            _drawer.CenterWrite(Console.WindowHeight - 1, Sprite_box._player_base);
+            _drawer.CenterWrite(Console.WindowHeight - 1, Sprites._player_base);
         }
         public void SaveAndQuit()
         {

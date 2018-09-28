@@ -49,7 +49,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rectangle.cs" />
     <Compile Include="SpriteEntity.cs" />
-    <Compile Include="Sprite_box.cs" />
+    <Compile Include="Sprites.cs" />
+    <Compile Include="TwoChoicesPromptBox.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,7 +9,7 @@ namespace Graphics
      * Each line represent an ordinate to 
      * display
      */
-    public static class Sprite_box
+    public static class Sprites
     {
         //Player skins
         public static string _player_base = "°v°";

@@ -172,10 +172,28 @@ namespace Graphics
             //if all tests passed, it's true
             return true;
         }
+
+        public void Clear()
+        {
+            string lineCleaner = "";
+            for (int width = 0; width <= Width; width++)
+            {
+                lineCleaner += " ";
+            }
+            
+            for (int top = Top; top <= Top + Height; top++)
+            {
+                Console.SetCursorPosition(Left, top);
+                Console.CursorVisible = false;
+                Console.Write(lineCleaner);
+                Console.CursorVisible = true;
+            }
+        }
+
         /**
-         * This function return the free area 
-         * of the rectangle in pixel square.
-         */
+* This function return the free area 
+* of the rectangle in pixel square.
+*/
         public int Area
         {
             get

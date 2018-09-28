@@ -116,8 +116,13 @@ namespace Graphics
 
             } while (buffer.Key != ConsoleKey.Enter);
 
-
+            Clear();
             return promptedString;
+        }
+
+        public void Clear()
+        {
+            _box.Clear();
         }
 
         /**

@@ -30,7 +30,7 @@ namespace game
             //_drawer.CrazyConsoleRandomNumber();    //<--------------------------------réactiver a la fin du dev.
             Console.ForegroundColor = _UIcolor;
             //_drawer.TitleScreen();                    //<--------------------------------réactiver a la fin du dev.
-            new Taptaptap();                 //<--------------------------------réactiver a la fin du dev.
+            new Taptaptap();
             _mutexLifeBar = true;
         }
 

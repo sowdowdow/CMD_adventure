@@ -138,7 +138,7 @@ namespace jeu
             // display the player sprite fall
             for (int i = Console.CursorTop + 1; i < Console.WindowHeight; i++)
             {
-                _drawer.CenterWrite(Sprite_box._player_base);
+                _drawer.CenterWrite(Sprites._player_base);
                 // the duration is 1 sec
                 // so each line last a division by
                 // the number of lines
@@ -147,7 +147,7 @@ namespace jeu
                 _drawer.CenterWrite("   ");
                 Console.Write("\n");
             }
-            _drawer.CenterWrite(Sprite_box._player_base);
+            _drawer.CenterWrite(Sprites._player_base);
             Console.CursorVisible = true;
         }
     }
