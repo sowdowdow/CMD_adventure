@@ -57,13 +57,15 @@ namespace levels
             } while (!sure);
 
             dialog = new Dialog(dialogPoint, dialogPoint2);
-            string[] secondDialog =
-{
-                "Eh bien " + playerName + " ravi de te rencontrer !",
-                "Moi c'est Tyrex, mais je n'aime pas spécialement parler . . .",
-                "Alors laisse-moi te montrer un endroit génial !"
-            };
-            dialog.AddSentences(secondDialog);
+
+            dialog.AddSentence("Eh bien " + playerName + " ravi de te rencontrer !");
+
+            string secondSentence = (playerName.ToLower() == "tyrex") 
+                ? "Figure-toi que c'est mon nom aussi :)"
+                : "Moi c'est Tyrex, mais je n'aime pas spécialement parler . . .";
+            dialog.AddSentence(secondSentence);
+
+            dialog.AddSentence("Mais laisse-moi te montrer un endroit génial !");
             dialog.Display();
 
 
