@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dialog.cs" />
-    <Compile Include="Graphic_tools.cs" />
+    <Compile Include="GraphicTools.cs" />
     <Compile Include="Loader.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="PromptBox.cs" />
