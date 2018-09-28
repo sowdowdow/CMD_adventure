@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Graphics;
+using System;
+using System.Collections.Generic;
 
 namespace levels
 {
@@ -20,7 +22,16 @@ namespace levels
 
         public void PlayLevel(int level)
         {
-            Levels[level].Play();
+            try
+            {
+                Levels[level].Play();
+            }
+            catch (Exception e)
+            {
+                Console.SetCursorPosition(0, 4);
+                Console.Write("Vous avez fini mon jeu .-.");
+                new GraphicTools().Cursor_StandBy();
+            }
         }
 
         internal List<Level> Levels { get => _Levels; set => _Levels = value; }

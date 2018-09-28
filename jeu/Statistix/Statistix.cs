@@ -1,8 +1,5 @@
 ﻿using FileAccess;
 using jeu;
-using Newtonsoft.Json;
-using System;
-using System.IO;
 
 namespace game
 {
@@ -25,7 +22,7 @@ namespace game
             Save.Read(ref _player);
         }
 
-        internal static void WriteSave()
+        public static void WriteSave()
         {
             Save.Write(_player);
         }

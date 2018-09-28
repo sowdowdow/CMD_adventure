@@ -1,4 +1,5 @@
-﻿using Graphics;
+﻿using game;
+using Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,9 @@ namespace levels
                 sure = nameChoiceSure.Prompt();
             } while (!sure);
 
+            // Here the player name is definitely chosen
+            Stats.Player.Name = playerName;
+
             dialog = new Dialog(dialogPoint, dialogPoint2);
 
             dialog.AddSentence("Eh bien " + playerName + " ravi de te rencontrer !");
@@ -68,7 +72,7 @@ namespace levels
             dialog.AddSentence("Mais laisse-moi te montrer un endroit génial !");
             dialog.Display();
 
-
+            Stats.Player.ProgressLevel++;
         }
     }
 }

@@ -81,7 +81,7 @@ namespace jeu
             }
         }
 
-        internal void Regenerate()
+        public void Regenerate()
         {
             Life += RegenerationSpeed;
         }
