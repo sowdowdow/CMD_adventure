@@ -64,6 +64,14 @@ namespace Graphics
         * Weapons are
         * 8 char. large and 4 char. height
         */
+        public static string[] _fist =
+        {
+                @"/\/\/\_ ",
+                @"|    | |",
+                @" \    / ",
+                @" |   |  ",
+        };
+
         public static string[] _woodenStick =
         {
                 @"    / / ",
