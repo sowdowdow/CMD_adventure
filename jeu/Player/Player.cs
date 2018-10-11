@@ -25,6 +25,7 @@ namespace jeu
         private int _musculationSessionsCount;
         private int _totalMonstersKilled;
         private int _regenerationSpeed;
+        private Inventory _inventory;
 
         private DateTime _dateFirstGame;
         private ushort _taptaptapScore;
@@ -45,6 +46,7 @@ namespace jeu
             _musculationLevel = 0;
             _totalMonstersKilled = 0;
             _regenerationSpeed = 1;
+            _inventory = new Inventory();
 
             _dateFirstGame = DateTime.Now;
             _taptaptapScore = 0;
@@ -108,5 +110,6 @@ namespace jeu
                 }
             }
         }
+        internal Inventory Inventory { get => _inventory; set => _inventory = value; }
     }
 }

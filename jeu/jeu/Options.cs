@@ -214,7 +214,7 @@ namespace game
             {
                 //align center
                 string yesSelected = "║      >OUI<         NON       ║";
-                string noSelected =  "║       OUI         >NON<      ║";
+                string noSelected = "║       OUI         >NON<      ║";
                 string[] dialogBox =
                 {
                     "╔══════════════════════════════╗",
@@ -264,6 +264,14 @@ namespace game
                         {
                             exitLoop = true;
                             // Here I need to clear the dialogBox
+                            string[] cleanBox =
+                            {
+                                "                                ",
+                                "                                ",
+                                "                                ",
+                                "                                ",
+                            };
+
                         }
                         break;
                     default:

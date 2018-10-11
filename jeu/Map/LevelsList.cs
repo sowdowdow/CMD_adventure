@@ -26,7 +26,7 @@ namespace levels
             {
                 Levels[level].Play();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.SetCursorPosition(0, 4);
                 Console.Write("Vous avez fini mon jeu .-.");
