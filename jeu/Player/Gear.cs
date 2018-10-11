@@ -43,14 +43,7 @@ namespace jeu
 
         public override string ToString()
         {
-            return string.Format(
-                "{Name : {0}, Attack : {1}, Defense, {2}, Life : {3}, Description : {4}}",
-                Name,
-                Attack,
-                Defense,
-                Life,
-                Description
-            );
+            return "{\n\tName : " + Name + ", \n\tAttack : " + Attack + ", \n\tDefense, " + Defense + ", \n\tLife : " + Life + ", \n\tDescription : " + Description +"\n}";
         }
     }
 }

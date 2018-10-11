@@ -110,6 +110,6 @@ namespace jeu
                 }
             }
         }
-        internal Inventory Inventory { get => _inventory; set => _inventory = value; }
+        public Inventory Inventory { get => _inventory; }
     }
 }

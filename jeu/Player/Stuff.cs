@@ -108,7 +108,10 @@ namespace jeu
             string buffer = "";
             foreach (Gear gear in ListOfGear)
             {
-                buffer += gear.ToString();
+                if (gear != null)
+                {
+                    buffer += gear.ToString();
+                }
             }
             return buffer;
         }

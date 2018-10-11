@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace jeu
 {
-    internal class Inventory
+    public class Inventory
     {
-        protected Stuff _stuff;
-        protected List<InventoryObjects> _objects;
+        private Stuff _stuff;
+        private List<InventoryObjects> _objects;
 
         public Inventory()
         {
@@ -15,7 +16,7 @@ namespace jeu
 
         public override string ToString()
         {
-            return _stuff.ToString() + _objects.ToString();
+            return _stuff.ToString() + "\n" + _objects.ToArray().ToString();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using jeu;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace game
     {
         public Inventory()
         {
-            Console.Write("Vous ouvrez votre inventaire");
+            Console.Write(Stats.Player.Inventory.ToString());
         }
     }
 }
