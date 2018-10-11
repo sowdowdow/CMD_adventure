@@ -7,7 +7,7 @@ namespace jeu
 {
     public class Ring : Gear
     {
-        public Ring(string name, int attack, int defense, int life, string[] sprite, int description) : base(name, attack, defense, life, sprite, description)
+        public Ring(string name, int attack, int defense, int life, string[] sprite, string description) : base(name, attack, defense, life, sprite, description)
         {
         }
     }

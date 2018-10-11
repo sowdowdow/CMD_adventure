@@ -9,7 +9,7 @@ namespace jeu
     {
         protected int _speed;
 
-        public Weapon(string name, int attack, int defense, int life, string[] sprite, int description, int speed) : base(name, attack, defense, life, sprite, description)
+        public Weapon(string name, int attack, int defense, int life, string[] sprite, string description, int speed) : base(name, attack, defense, life, sprite, description)
         {
             this._speed = speed;
         }

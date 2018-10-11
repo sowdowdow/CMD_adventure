@@ -7,7 +7,7 @@ namespace jeu
 {
     public class Glove : Gear
     {
-        public Glove(string name, int attack, int defense, int life, string[] sprite, int description) : base(name, attack, defense, life, sprite, description)
+        public Glove(string name, int attack, int defense, int life, string[] sprite, string description) : base(name, attack, defense, life, sprite, description)
         {
         }
     }

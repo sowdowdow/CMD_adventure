@@ -12,10 +12,15 @@ namespace jeu
         protected int _defense;
         protected int _life;
         private string[] _sprite;
-        private int _description;
+        private string _description;
 
-        public Gear(string name, int attack, int defense, int life, string[] sprite, int description)
+        public Gear(string name, int attack, int defense, int life, string[] sprite, string description)
         {
+            if (string.IsNullOrEmpty(description))
+            {
+                throw new ArgumentException("empty description", nameof(description));
+            }
+
             this._name = name;
             this._attack = attack;
             this._defense = defense;
@@ -29,6 +34,6 @@ namespace jeu
         public int Defense { get => _defense; }
         public int Life { get => _life; }
         public string[] Sprite { get => _sprite; }
-        public int Description { get => _description; set => _description = value; }
+        public string Description { get => _description; set => _description = value; }
     }
 }

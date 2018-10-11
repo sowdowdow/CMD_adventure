@@ -7,7 +7,7 @@ namespace jeu
 {
     public class Belt : Gear
     {
-        public Belt(string name, int attack, int defense, int life, string[] sprite, int description) : base(name, attack, defense, life, sprite, description)
+        public Belt(string name, int attack, int defense, int life, string[] sprite, string description) : base(name, attack, defense, life, sprite, description)
         {
         }
     }
