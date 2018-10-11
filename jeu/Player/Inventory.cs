@@ -12,5 +12,10 @@ namespace jeu
             _stuff = new Stuff();
             _objects = new List<InventoryObjects>();
         }
+
+        public override string ToString()
+        {
+            return _stuff.ToString() + _objects.ToString();
+        }
     }
 }

@@ -102,5 +102,15 @@ namespace jeu
         protected Shield Shield { get => shield; set => shield = value; }
         protected Belt Belt { get => belt; set => belt = value; }
         protected Boots Boots { get => boots; set => boots = value; }
+
+        public override string ToString()
+        {
+            string buffer = "";
+            foreach (Gear gear in ListOfGear)
+            {
+                buffer += gear.ToString();
+            }
+            return buffer;
+        }
     }
 }
