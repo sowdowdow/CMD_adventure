@@ -34,6 +34,6 @@ namespace jeu
         public int Defense { get => _defense; }
         public int Life { get => _life; }
         public string[] Sprite { get => _sprite; }
-        public string Description { get => _description; set => _description = value; }
+        public string Description { get => _description; }
     }
 }
