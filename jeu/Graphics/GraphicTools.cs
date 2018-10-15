@@ -29,6 +29,25 @@ namespace Graphics
             Console.Write(text);
         }
 
+        public void VerticalLine(int Left, char printedChararcter)
+        {
+            int top = 4;
+            Console.SetCursorPosition(Left, top);
+            while (top < Console.BufferHeight -1)
+            {
+                if (Console.CursorTop < Console.BufferHeight - 1)
+                {
+                    Console.CursorTop++;
+                }
+                else
+                {
+                    break;
+                }
+                Console.Write(printedChararcter);
+                Console.SetCursorPosition(Left, Console.CursorTop);
+            }
+        }
+
         //display a line of 1 character
         public void HorizontalLine(int hauteur, char printedChararcter)
         {

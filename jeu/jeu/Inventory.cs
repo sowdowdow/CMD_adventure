@@ -11,6 +11,7 @@ namespace game
         public Inventory()
         {
             Console.Write(Stats.Player.Inventory.ToString());
+            Stats.Player.Inventory.Display();
         }
     }
 }
