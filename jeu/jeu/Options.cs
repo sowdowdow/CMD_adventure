@@ -47,6 +47,36 @@ namespace game
 
             displayOptions();    //Launching the method a first time
 
+            void OpenOption()
+            {
+                //open the desired option
+                option_active = true;
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                switch (activeOptionNumber)
+                {
+                    case 0:
+                        Controls();
+                        break;
+                    case 1:
+                        Help();
+                        break;
+                    case 2:
+                        Language();
+                        break;
+                    case 3:
+                        Credit();
+                        break;
+                    case 4:
+                        SaveAndQuit();
+                        break;
+                    default:
+                        //si jamais on rencontre une erreur
+                        option_active = false;
+                        Console.Write("situation impossible rencontré");
+                        break;
+                }
+            }
+
             // Loop until an input is encountered
             while (!changingOfTab)
             {
@@ -68,43 +98,16 @@ namespace game
                             displayOptions();
                         }
                         break;
-                    case ConsoleKey.RightArrow:
-                        //we go into the desired option
-                        option_active = true;
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        switch (activeOptionNumber)
-                        {
-                            case 0:
-                                Controls();
-                                break;
-                            case 1:
-                                Help();
-                                break;
-                            case 2:
-                                Language();
-                                break;
-                            case 3:
-                                Credit();
-                                break;
-                            case 4:
-                                SaveAndQuit();
-                                break;
-                            default:
-                                //si jamais on rencontre une erreur
-                                option_active = false;
-                                Console.Write("situation impossible rencontré");
-                                break;
-                        }
+                    case ConsoleKey.Spacebar:
+                        OpenOption();
                         break;
-                    case ConsoleKey.LeftArrow:
+                    case ConsoleKey.Enter:
+                        OpenOption();
+                        break;
+                    case ConsoleKey.Backspace:
                         option_active = false;
                         _drawer.ClearInterface();
                         displayOptions();
-                        break;
-                    case ConsoleKey.Enter:
-                        Console.SetCursorPosition(0, 4);
-                        Console.ForegroundColor = ConsoleColor.Gray;
-                        Console.ForegroundColor = ConsoleColor.Yellow;
                         break;
                     #region touches_vers_retour_choix_onglet
                     case ConsoleKey.A:
