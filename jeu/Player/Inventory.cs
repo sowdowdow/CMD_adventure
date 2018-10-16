@@ -22,10 +22,17 @@ namespace jeu
 
         public void Display()
         {
-            GraphicTools drawer = new GraphicTools();
-            drawer.HorizontalLine(4, '*');
-            drawer.VerticalLine(0, '*');
-            drawer.HorizontalLine(Console.WindowHeight - 2, '*');
+            //GraphicTools drawer = new GraphicTools();
+            //drawer.HorizontalLine(4, '*');
+            //drawer.VerticalLine(0, '*');
+            //drawer.VerticalLine(0, '*');
+            //drawer.HorizontalLine(Console.WindowHeight - 2, '*');
+
+            // Example
+            FrameBuffer frameBuffer = new FrameBuffer();
+            frameBuffer.AddSprite(Sprites._fist, 0, 0);
+            frameBuffer.AddSprite(Sprites._fist, 0, 22);
+            frameBuffer.Display();
         }
     }
 }

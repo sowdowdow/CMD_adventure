@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dialog.cs" />
+    <Compile Include="FrameBuffer.cs" />
     <Compile Include="GraphicTools.cs" />
     <Compile Include="Loader.cs" />
     <Compile Include="Point.cs" />

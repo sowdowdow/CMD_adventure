@@ -45,44 +45,68 @@ namespace Graphics
             new GraphicTools().Cursor_StandBy();
         }
 
-        private bool IsInWindowBoundaries()
+        public bool IsInWindowBoundaries(bool checkInDisplayZone = false)
         {
-            int width = GetWidth();
-            int height = GetHeight();
+            int width = Width;
+            int height = Height;
 
             if (!Coordinates.IsInConsole)
             {
                 return false;
             }
-            if (Coordinates.X + width > Console.WindowWidth)
+            if (MaxLeft > Console.WindowWidth)
             {
                 return false;
             }
-            if (Coordinates.Y + height > Console.WindowHeight)
+            if (checkInDisplayZone)
             {
-                return false;
+                if (MaxHeight > Console.WindowHeight - 4)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (MaxHeight > Console.WindowHeight)
+                {
+                    return false;
+                }
             }
 
 
             return true;
         }
 
-        private int GetWidth()
+        public int Width
         {
-            int width = 0;
-            foreach (string line in Sprite)
+            get
             {
-                if (line.Length > width)
+                int width = 0;
+                foreach (string line in Sprite)
                 {
-                    width = line.Length;
+                    if (line.Length > width)
+                    {
+                        width = line.Length;
+                    }
                 }
+                return width;
             }
-            return width;
+        }
+        public int MaxLeft
+        {
+            get
+            {
+                return Coordinates.X + Width;
+            }
         }
 
-        private int GetHeight()
+        public int Height => Sprite.Length;
+        public int MaxHeight
         {
-            return Sprite.Length;
+            get
+            {
+                return Coordinates.Y + Height;
+            }
         }
 
         public string[] Sprite { get => _Sprite; }

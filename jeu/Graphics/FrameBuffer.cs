@@ -26,6 +26,10 @@ namespace Graphics
         public FrameBuffer()
         {
             _bufferArray = new char[Console.WindowWidth, Console.WindowHeight - 4];
+            for (int character = 0; character < _bufferArray.Length; character++)
+            {
+                _bufferArray[character / Height, character / Width] = ' ';
+            }
         }
         public int Width
         {
@@ -45,16 +49,34 @@ namespace Graphics
 
         public void AddSprite(string[] sprite, int X, int Y)
         {
-            // TODO
+            SpriteEntity spriteBuffer = new SpriteEntity(sprite, new Point(X, Y));
+
+            if (!spriteBuffer.IsInWindowBoundaries(true))
+            {
+                throw new Exception("Sprite out of boundaries");
+            }
+
+
+            for (int line = 0; line < sprite.Length; line++)
+            {
+                for (int character = 0; character < sprite[line].Length; character++)
+                {
+                    _bufferArray[character + X, line + Y] = sprite[line][character];
+                }
+            }
         }
 
         public void Display()
         {
             string stringBuffer = "";
-            foreach (char character in _bufferArray)
+            for (int y = 0; y < Height; y++)
             {
-                stringBuffer += character;
+                for (int x = 0; x < Width; x++)
+                {
+                    stringBuffer += _bufferArray[x, y];
+                }
             }
+            stringBuffer = stringBuffer.Substring(0, stringBuffer.Length - 1);
             Console.SetCursorPosition(0, 4);
             Console.Write(stringBuffer);
         }
