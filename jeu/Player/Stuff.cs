@@ -94,14 +94,14 @@ namespace jeu
             }
         }
 
-        protected Weapon Weapon { get => weapon; set => weapon = value; }
-        protected Glove LeftGlove { get => leftGlove; set => leftGlove = value; }
-        protected Glove RightGlove { get => rightGlove; set => rightGlove = value; }
-        protected Ring LeftRing { get => leftRing; set => leftRing = value; }
-        protected Ring RightRing { get => rightRing; set => rightRing = value; }
-        protected Shield Shield { get => shield; set => shield = value; }
-        protected Belt Belt { get => belt; set => belt = value; }
-        protected Boots Boots { get => boots; set => boots = value; }
+        public Weapon Weapon { get => weapon; set => weapon = value; }
+        public Glove LeftGlove { get => leftGlove; set => leftGlove = value; }
+        public Glove RightGlove { get => rightGlove; set => rightGlove = value; }
+        public Ring LeftRing { get => leftRing; set => leftRing = value; }
+        public Ring RightRing { get => rightRing; set => rightRing = value; }
+        public Shield Shield { get => shield; set => shield = value; }
+        public Belt Belt { get => belt; set => belt = value; }
+        public Boots Boots { get => boots; set => boots = value; }
 
         public override string ToString()
         {

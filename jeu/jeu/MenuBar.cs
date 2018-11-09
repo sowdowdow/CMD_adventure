@@ -9,6 +9,9 @@ namespace game
     public static class MenuBar
     {
         private static String[] _menu = { "Carte (a)", "Inventaire (z)", "Magasin (e)", "??? (r)", "Options (t)" };
+        /// <summary>
+        /// This method is used to display the permanent UI on the top part of the console.
+        /// </summary>
         public static void Display()
         {
             GraphicTools drawer = new GraphicTools();

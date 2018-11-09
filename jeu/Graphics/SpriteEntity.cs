@@ -29,9 +29,10 @@ namespace Graphics
             if (!IsInWindowBoundaries())
             {
                 Console.SetCursorPosition(0,0);
-                Console.Write("The sprite is not in console boundaries" +
-                    "\nwindow resized");
-                Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+                Console.Clear();
+                Console.Write("The sprite is not in console boundaries, window resized" +
+                    "\n press any key...");
+                Console.SetWindowSize(120, 30);
                 return;
             }
 

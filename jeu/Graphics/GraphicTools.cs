@@ -29,33 +29,40 @@ namespace Graphics
             Console.Write(text);
         }
 
+        /// <summary>
+        /// Draw a Vertical line of one character on a fixed left
+        /// </summary>
+        /// <param name="Left">Position of the line from left of the console, starting from 0</param>
+        /// <param name="printedChararcter">The character used as a blueprint</param>
         public void VerticalLine(int Left, char printedChararcter)
         {
             int top = 4;
             Console.SetCursorPosition(Left, top);
-            while (top < Console.BufferHeight -1)
+            while (top < Console.BufferHeight - 1)
             {
                 if (Console.CursorTop < Console.BufferHeight - 1)
-                {
                     Console.CursorTop++;
-                }
                 else
-                {
                     break;
-                }
                 Console.Write(printedChararcter);
                 Console.SetCursorPosition(Left, Console.CursorTop);
             }
         }
 
-        //display a line of 1 character
-        public void HorizontalLine(int hauteur, char printedChararcter)
+        /// <summary>
+        /// Draw a line of one character on a fixed height
+        /// </summary>
+        /// <param name="top">Position of the line from top of the console, starting from 0</param>
+        /// <param name="printedCharacter">The character used as a blueprint</param>
+        public void HorizontalLine(int top, char printedCharacter)
         {
-            Console.SetCursorPosition(0, hauteur);
+            string buffer = "";
+            Console.SetCursorPosition(0, top);
             for (int i = 0; i < Console.BufferWidth; i++)
             {
-                Console.Write(printedChararcter);
+                buffer += printedCharacter;
             }
+            Console.Write(buffer);
         }
 
         //display a line with 2 characters alternated

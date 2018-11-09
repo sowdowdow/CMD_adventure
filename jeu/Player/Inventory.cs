@@ -22,16 +22,35 @@ namespace jeu
 
         public void Display()
         {
-            //GraphicTools drawer = new GraphicTools();
-            //drawer.HorizontalLine(4, '*');
-            //drawer.VerticalLine(0, '*');
-            //drawer.VerticalLine(0, '*');
-            //drawer.HorizontalLine(Console.WindowHeight - 2, '*');
 
-            // Example
+            // Drawing the borders and frame
             FrameBuffer frameBuffer = new FrameBuffer();
-            frameBuffer.AddSprite(Sprites._fist, 0, 0);
-            frameBuffer.AddSprite(Sprites._fist, 0, 22);
+            char borderStyleV = '|';
+            char borderStyleH = '~';
+
+            frameBuffer.AddHorizontalLine(0, borderStyleH);
+            frameBuffer.AddHorizontalLine(Console.WindowHeight - 5, borderStyleH);
+            frameBuffer.AddHorizontalLine(6, borderStyleH);
+
+            frameBuffer.AddVerticalLine(0, borderStyleV);
+            frameBuffer.AddVerticalLine(9, borderStyleV);
+            frameBuffer.AddVerticalLine(80, borderStyleV);
+            frameBuffer.AddVerticalLine(Console.WindowWidth - 1, borderStyleV);
+
+            // Drawing the actual weapon
+            frameBuffer.AddSprite(_stuff.Weapon.Sprite, 1, 1);
+            frameBuffer.AddText(_stuff.Weapon.Name + " :", 11, 1);
+            frameBuffer.AddText(_stuff.Weapon.Description, 11, 2);
+            frameBuffer.AddText($"ATK : {_stuff.Weapon.Attack}, DEF : {_stuff.Weapon.Defense}", 11, 4);
+            frameBuffer.AddText($"HP: { _stuff.Weapon.Life} SPD: { _stuff.Weapon.Speed}", 11, 5);
+
+            // Drawing the player and his stats
+            frameBuffer.AddText("HERENAMEPLYR", 95, 1); //center player name !
+            frameBuffer.AddSprite(Sprites._player_base, 99, 2);
+
+
+
+            //Displaying the frame ✅
             frameBuffer.Display();
         }
     }
