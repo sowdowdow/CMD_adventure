@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace jeu
 {
-    internal class Stuff
+    public class Stuff
     {
         private Weapon weapon;
         private Glove leftGlove;

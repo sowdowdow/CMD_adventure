@@ -1,6 +1,6 @@
 ﻿namespace jeu
 {
-    internal class InventoryObjects
+    public class InventoryObjects
     {
     }
 }
