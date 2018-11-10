@@ -9,74 +9,55 @@ namespace game
 {
     public class Options : Action
     {
+        bool option_active = false;
+        bool changingOfTab = false;
+        int activeOptionNumber = 0;
+        string[] options = { "Contrôles", "Aide", "Langue", "Crédit", "Sauvegarder & quitter" };
+        // 4 is the size of the menu bar
+        int freeVerticalSpace = Console.WindowHeight - 4;
+        int freeHorizontalSpace = Console.WindowWidth;
+        ConsoleColor actualColor = Console.ForegroundColor;  //saving actual color
+
+        public int NumberOfOptions { get => options.Length; }
+        public int LongestOption { get => options.OrderByDescending(s => s.Length).First().Length; }
+
+        private void OpenOption()
+        {
+            //open the desired option
+            option_active = true;
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            switch (activeOptionNumber)
+            {
+                case 0:
+                    Controls();
+                    break;
+                case 1:
+                    Help();
+                    break;
+                case 2:
+                    Language();
+                    break;
+                case 3:
+                    Credit();
+                    break;
+                case 4:
+                    SaveAndQuit();
+                    break;
+                default:
+                    //si jamais on rencontre une erreur
+                    option_active = false;
+                    Console.Write("situation impossible rencontré");
+                    break;
+            }
+        }
+        // Constructor
         public Options()
         {
-            bool option_active = false;
-            bool changingOfTab = false;
-            int activeOptionNumber = 0;
-            String[] options = { "Contrôles", "Aide", "Langue", "Crédit", "Sauvegarder & quitter" };
-            int numberOfOptions = options.Length;
-            int longestOption = options.OrderByDescending(s => s.Length).First().Length;
-            // 4 is the size of the menu bar
-            int freeVerticalSpace = Console.WindowHeight - 4;
-            int freeHorizontalSpace = Console.WindowWidth;
-            ConsoleColor actualColor = Console.ForegroundColor;  //saving actual color
+        }
 
-
-            void displayOptions()
-            {
-                // initial cursor position
-                Console.SetCursorPosition(freeHorizontalSpace / 2, (freeVerticalSpace - numberOfOptions) / 2);
-                foreach (string option in options)  //displaying each option
-                {
-                    Console.SetCursorPosition((option.Length + Console.WindowWidth) / 2, Console.CursorTop += 2);
-                    if (option == options[activeOptionNumber])
-                    {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        //displaying cursor at start
-                        _drawer.CenterWrite(">>" + option + "<<");
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = actualColor;
-                        _drawer.CenterWrite(option);
-                    }
-                }
-                _drawer.Cursor_StandBy();   //prevent display glitch (override)
-            }
-
-            displayOptions();    //Launching the method a first time
-
-            void OpenOption()
-            {
-                //open the desired option
-                option_active = true;
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                switch (activeOptionNumber)
-                {
-                    case 0:
-                        Controls();
-                        break;
-                    case 1:
-                        Help();
-                        break;
-                    case 2:
-                        Language();
-                        break;
-                    case 3:
-                        Credit();
-                        break;
-                    case 4:
-                        SaveAndQuit();
-                        break;
-                    default:
-                        //si jamais on rencontre une erreur
-                        option_active = false;
-                        Console.Write("situation impossible rencontré");
-                        break;
-                }
-            }
-
+        internal void DisplayOptions()
+        {
+            DrawOptions();
             // Loop until an input is encountered
             while (!changingOfTab)
             {
@@ -87,7 +68,7 @@ namespace game
                         {
                             _drawer.ClearInterface();
                             activeOptionNumber++;
-                            displayOptions();
+                            DrawOptions();
                         }
                         break;
                     case ConsoleKey.UpArrow:
@@ -95,7 +76,7 @@ namespace game
                         {
                             _drawer.ClearInterface();
                             activeOptionNumber--;
-                            displayOptions();
+                            DrawOptions();
                         }
                         break;
                     case ConsoleKey.Spacebar:
@@ -107,7 +88,7 @@ namespace game
                     case ConsoleKey.Backspace:
                         option_active = false;
                         _drawer.ClearInterface();
-                        displayOptions();
+                        DrawOptions();
                         break;
                     #region touches_vers_retour_choix_onglet
                     case ConsoleKey.A:
@@ -135,6 +116,28 @@ namespace game
             Console.ForegroundColor = actualColor;
         }
 
+        private void DrawOptions()
+        {
+            // initial cursor position
+            Console.SetCursorPosition(freeHorizontalSpace / 2, (freeVerticalSpace - NumberOfOptions) / 2);
+
+            foreach (string option in options)
+            {
+                Console.SetCursorPosition((option.Length + Console.WindowWidth) / 2, Console.CursorTop += 2);
+                if (option == options[activeOptionNumber])
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    //displaying cursor at start
+                    _drawer.CenterWrite(">>" + option + "<<");
+                }
+                else
+                {
+                    Console.ForegroundColor = actualColor;
+                    _drawer.CenterWrite(option);
+                }
+            }
+            _drawer.Cursor_StandBy();   //prevent display glitch (override)
+        }
 
         public void Controls()
         {

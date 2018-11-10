@@ -16,7 +16,6 @@ namespace game
         public static bool _mutexLifeBar = false;
 
         public GraphicTools _drawer = new GraphicTools();
-        public Options _options = new Options();
 
         //Constructeur
         public Game()
@@ -123,6 +122,7 @@ namespace game
                         Stats._activeTab = "Options";
                         MenuBar.Display();
                         Options options = new Options();
+                        options.DisplayOptions();
                         _mutexLifeBar = true;
                     }
                     else
@@ -132,6 +132,7 @@ namespace game
                     break;
                 case ConsoleKey.Escape:
                     _mutexLifeBar = false;
+                    Options _options = new Options();
                     _options.SaveAndQuit();
                     _mutexLifeBar = true;
                     break;
