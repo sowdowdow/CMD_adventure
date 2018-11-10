@@ -78,6 +78,7 @@ namespace Graphics
                     || buffer.Key == ConsoleKey.DownArrow
                     || buffer.Key == ConsoleKey.UpArrow
                     || buffer.Key == ConsoleKey.LeftArrow
+                    || buffer.Key == ConsoleKey.Escape
                     || buffer.Key == ConsoleKey.RightArrow)
                 {
                     Console.CursorLeft--;
