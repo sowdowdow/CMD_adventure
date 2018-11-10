@@ -50,10 +50,6 @@ namespace game
                     break;
             }
         }
-        // Constructor
-        public Options()
-        {
-        }
 
         internal void DisplayOptions()
         {

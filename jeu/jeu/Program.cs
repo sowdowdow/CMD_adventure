@@ -9,8 +9,8 @@ namespace game
         {
             Game Jeu = new Game();
 
-            Thread thread1 = new Thread(LifeBar.Display);
-            thread1.Start();
+            Thread lifeBarThread = new Thread(LifeBar.Display);
+            lifeBarThread.Start();
 
             //on déclare l'éxecution du timer
             Jeu._gameTimeTimer.Elapsed += Jeu.UpdateGameTime;
