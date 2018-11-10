@@ -89,11 +89,25 @@ namespace Graphics
         };
 
         public static string[] _stove =
-{
+        {
                 @"  ____  ",
                 @" /    \\",
                 @" \_  _//",
                 @"   ||   ",
+        };
+        /**=~=~=~=~=~=~=~=~=~=~=~=~=~=~
+        *          Gloves
+        *=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~
+        *
+        * Gloves are
+        * 8 char. large and 4 char. height
+        */
+        public static string[] _leatherGlove =
+        {
+                @"/'`'`\_ ",
+                @"|    | |",
+                @"\     / ",
+                @" |   |  ",
         };
     }
 }

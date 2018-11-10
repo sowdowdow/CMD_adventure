@@ -31,7 +31,7 @@ namespace jeu
             get
             {
                 int totalAttack = 0;
-                foreach (Gear gear in ListOfGear)
+                foreach (Gear gear in GetListOfGear())
                 {
                     if (gear != null)
                     {
@@ -47,7 +47,7 @@ namespace jeu
             get
             {
                 int totalDefense = 0;
-                foreach (Gear gear in ListOfGear)
+                foreach (Gear gear in GetListOfGear())
                 {
                     if (gear != null)
                     {
@@ -63,7 +63,7 @@ namespace jeu
             get
             {
                 int totalLife = 0;
-                foreach (Gear gear in ListOfGear)
+                foreach (Gear gear in GetListOfGear())
                 {
                     if (gear != null)
                     {
@@ -77,11 +77,9 @@ namespace jeu
         /**
          * Return the list of all the gears
          */
-        public List<Gear> ListOfGear
+        public List<Gear> GetListOfGear()
         {
-            get
-            {
-                return new List<Gear> {
+            return new List<Gear> {
                     weapon,
                     leftGlove,
                     rightGlove,
@@ -91,7 +89,6 @@ namespace jeu
                     belt,
                     boots,
                 };
-            }
         }
 
         public Weapon Weapon { get => weapon; set => weapon = value; }
@@ -106,7 +103,7 @@ namespace jeu
         public override string ToString()
         {
             string buffer = "";
-            foreach (Gear gear in ListOfGear)
+            foreach (Gear gear in GetListOfGear())
             {
                 if (gear != null)
                 {
